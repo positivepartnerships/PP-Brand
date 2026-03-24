@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petal Motif Ideas — PP Brand Exploration</title>
+<style>
+  :root {
+    --pp-medium-purple: #712D90;
+    --pp-dark-purple: #330044;
+    --pp-light-purple: #C2A7CF;
+    --pp-white: #FFFFFF;
+    --pp-lime: #BBD64A;
+    --pp-red: #F15B40;
+    --pp-orange: #F7941E;
+    --pp-dark-grey: #333333;
+    --pp-medium-grey: #999999;
+    --pp-light-grey: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--pp-dark-grey);
+    background: #F8F6FA;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--pp-dark-purple);
+    border-bottom: 2px solid var(--pp-medium-purple);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 1.5rem; height: 52px;
+    overflow-x: auto;
+  }
+  .topnav a {
+    color: var(--pp-light-purple); text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase;
+    white-space: nowrap; padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: 0.25s ease;
+  }
+  .topnav a:hover { color: var(--pp-white); border-bottom-color: var(--pp-lime); }
+  .topnav a.back { margin-right: auto; font-weight: 600; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--pp-dark-purple);
+    padding: 4rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -60px;
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, rgba(113,45,144,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -120px; left: 10%;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(187,214,74,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero h1 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: var(--pp-white); font-weight: 300;
+    letter-spacing: -0.02em; margin-bottom: 0.4em;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--pp-medium-purple), var(--pp-red), var(--pp-orange), var(--pp-lime));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; font-weight: 600;
+  }
+  .hero p {
+    color: var(--pp-light-purple); font-size: 1.05rem;
+    max-width: 600px; line-height: 1.7;
+  }
+
+  /* ── SOURCE ── */
+  .source-section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+  }
+  .source-card {
+    background: white; border-radius: 16px;
+    padding: 2.5rem; box-shadow: 0 2px 16px rgba(51,0,68,0.06);
+    display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem;
+    align-items: center;
+  }
+  @media (max-width: 700px) { .source-card { grid-template-columns: 1fr; } }
+  .source-card img {
+    width: 100%; height: auto; border-radius: 12px;
+  }
+  .source-card h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem; font-weight: 400; color: var(--pp-dark-purple);
+    margin-bottom: 0.5rem;
+  }
+  .source-card p { color: var(--pp-medium-grey); font-size: 0.95rem; margin-bottom: 0.8rem; }
+  .source-colours {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem;
+  }
+  .source-colour {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  .section + .section { border-top: 1px solid rgba(51,0,68,0.06); }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--pp-medium-purple);
+    margin-bottom: 0.4rem; font-weight: 600;
+  }
+  .section-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.7rem; color: var(--pp-dark-purple);
+    margin-bottom: 0.3rem; font-weight: 300;
+  }
+  .section-desc {
+    color: var(--pp-medium-grey); font-size: 0.95rem;
+    margin-bottom: 2rem; max-width: 600px;
+  }
+
+  /* ── IDEA CARDS ── */
+  .ideas-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .idea-card {
+    background: white; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(51,0,68,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .idea-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(51,0,68,0.1);
+  }
+  .idea-preview {
+    height: 220px; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .idea-preview svg { transition: transform 0.4s ease; }
+  .idea-card:hover .idea-preview svg { transform: scale(1.04); }
+  .idea-info { padding: 1.4rem 1.6rem; }
+  .idea-info h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.05rem; font-weight: 500; color: var(--pp-dark-purple);
+    margin-bottom: 0.3rem;
+  }
+  .idea-info p { font-size: 0.85rem; color: var(--pp-medium-grey); line-height: 1.55; }
+  .idea-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+  .idea-tag {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.2em 0.6em; border-radius: 100px; font-weight: 600;
+    background: rgba(113,45,144,0.08); color: var(--pp-medium-purple);
+  }
+
+  /* ── FULL-WIDTH DEMOS ── */
+  .demo-banner {
+    max-width: 1100px; margin: 0 auto 0;
+    padding: 0 2rem;
+  }
+  .demo-banner-inner {
+    border-radius: 16px; overflow: hidden; position: relative;
+    min-height: 260px; display: flex; align-items: center;
+    padding: 3rem;
+  }
+  .demo-banner-content { position: relative; z-index: 2; max-width: 480px; }
+  .demo-banner-content h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.6rem; font-weight: 300; margin-bottom: 0.4rem;
+  }
+  .demo-banner-content p { font-size: 0.92rem; line-height: 1.6; margin-bottom: 1rem; opacity: 0.85; }
+  .demo-btn {
+    display: inline-block; padding: 0.6rem 1.4rem; border-radius: 6px;
+    font-size: 0.88rem; font-weight: 600; text-decoration: none;
+    transition: 0.2s ease; border: 2px solid;
+  }
+
+  /* ── SLIDE MOCKUPS ── */
+  .slides-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+  @media (max-width: 500px) { .slides-grid { grid-template-columns: 1fr; } }
+  .slide-mockup {
+    background: white; border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(51,0,68,0.08);
+    overflow: hidden;
+  }
+  .slide-frame {
+    aspect-ratio: 16/9; position: relative; overflow: hidden;
+  }
+  .slide-label {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.78rem; color: var(--pp-medium-grey);
+    border-top: 1px solid #f0f0f0;
+    font-weight: 600;
+  }
+
+  /* ── DOWNLOAD GRID ── */
+  .downloads-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .download-card {
+    background: white; border-radius: 10px; padding: 1.5rem;
+    text-align: center; box-shadow: 0 2px 8px rgba(51,0,68,0.05);
+    transition: 0.2s ease; cursor: pointer;
+  }
+  .download-card:hover {
+    box-shadow: 0 4px 16px rgba(51,0,68,0.1);
+    transform: translateY(-2px);
+  }
+  .download-card svg { margin-bottom: 0.8rem; }
+  .download-card h4 {
+    font-size: 0.85rem; color: var(--pp-dark-purple); margin-bottom: 0.2rem;
+  }
+  .download-card p { font-size: 0.72rem; color: var(--pp-medium-grey); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    text-align: center; padding: 2.5rem 2rem;
+    color: var(--pp-medium-grey); font-size: 0.78rem;
+    border-top: 1px solid rgba(51,0,68,0.06);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section, .source-section, .demo-banner { animation: fadeUp 0.5s ease both; }
+
+  /* toast */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: var(--pp-dark-purple); color: var(--pp-white);
+    padding: 0.7rem 1.4rem; border-radius: 100px; font-size: 0.85rem;
+    z-index: 10000; box-shadow: 0 8px 30px rgba(51,0,68,0.3);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- Nav -->
+<nav class="topnav">
+  <a class="back" href="../index.html">&larr; Brand Sandpit</a>
+  <a href="#single-petals">Single Petals</a>
+  <a href="#clusters">Clusters</a>
+  <a href="#banners">Banners</a>
+  <a href="#slides">Slides</a>
+  <a href="#assets">Assets</a>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Exploring the <em>Petal Motif</em></h1>
+    <p>Ideas for evolving the Diversity Wheel's central bloom into a flexible brand shape system — for slides, web, print, and beyond. Each concept here is derived from the overlapping petal forms at the heart of the wheel.</p>
+  </div>
+</header>
+
+<!-- Source: the wheel -->
+<div class="source-section">
+  <div class="source-card">
+    <img src="../Diversity_Wheel.svg" alt="Diversity Wheel">
+    <div>
+      <h2>The Source: Diversity Wheel</h2>
+      <p>The central bloom is made of overlapping, translucent petal shapes radiating from a single point. Each petal is a different hue — together they form a complete spectrum. This is the visual metaphor we're extracting from.</p>
+      <p><strong>What it represents:</strong> Every petal is unique in colour and position, but they overlap and connect to create something whole. That's neurodiversity. That's partnership.</p>
+      <div class="source-colours">
+        <div class="source-colour" style="background:#782b8f"></div>
+        <div class="source-colour" style="background:#684b9e"></div>
+        <div class="source-colour" style="background:#527cbe"></div>
+        <div class="source-colour" style="background:#0091c0"></div>
+        <div class="source-colour" style="background:#00a9ad"></div>
+        <div class="source-colour" style="background:#19b261"></div>
+        <div class="source-colour" style="background:#91c73e"></div>
+        <div class="source-colour" style="background:#e6e414"></div>
+        <div class="source-colour" style="background:#ffce01"></div>
+        <div class="source-colour" style="background:#f9a31a"></div>
+        <div class="source-colour" style="background:#f37b20"></div>
+        <div class="source-colour" style="background:#ed2524"></div>
+        <div class="source-colour" style="background:#f05f61"></div>
+        <div class="source-colour" style="background:#da7ab0"></div>
+        <div class="source-colour" style="background:#ac3392"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ IDEA 1: SINGLE PETALS ═══════════ -->
+<section class="section" id="single-petals">
+  <div class="section-label">Idea 01</div>
+  <h2 class="section-title">Single Petal Shapes</h2>
+  <p class="section-desc">The most atomic unit — a single petal extracted from the bloom. Useful as accent marks, bullet points, section markers, or decorative elements. Each one carries a colour from the spectrum.</p>
+
+  <div class="ideas-grid">
+    <!-- Petal variations -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background: #faf8fc;">
+        <svg width="280" height="180" viewBox="0 0 280 180">
+          <defs>
+            <linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#782b8f;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#684b9e;stop-opacity:0.7"/>
+            </linearGradient>
+            <linearGradient id="pg2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#0091c0;stop-opacity:0.8"/>
+              <stop offset="100%" style="stop-color:#5cade0;stop-opacity:0.6"/>
+            </linearGradient>
+            <linearGradient id="pg3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#91c73e;stop-opacity:0.85"/>
+              <stop offset="100%" style="stop-color:#BBD64A;stop-opacity:0.65"/>
+            </linearGradient>
+            <linearGradient id="pg4" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#f37b20;stop-opacity:0.85"/>
+              <stop offset="100%" style="stop-color:#F7941E;stop-opacity:0.65"/>
+            </linearGradient>
+            <linearGradient id="pg5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#ed2524;stop-opacity:0.85"/>
+              <stop offset="100%" style="stop-color:#F15B40;stop-opacity:0.65"/>
+            </linearGradient>
+          </defs>
+          <!-- Five petals in a row -->
+          <path d="M30,90 Q30,40 55,25 Q80,40 80,90 Q80,140 55,155 Q30,140 30,90Z" fill="url(#pg1)"/>
+          <path d="M80,90 Q80,40 105,25 Q130,40 130,90 Q130,140 105,155 Q80,140 80,90Z" fill="url(#pg2)"/>
+          <path d="M130,90 Q130,40 155,25 Q180,40 180,90 Q180,140 155,155 Q130,140 130,90Z" fill="url(#pg3)"/>
+          <path d="M180,90 Q180,40 205,25 Q230,40 230,90 Q230,140 205,155 Q180,140 180,90Z" fill="url(#pg4)"/>
+          <path d="M230,90 Q230,40 255,25 Q280,40 280,90 Q280,140 255,155 Q230,140 230,90Z" fill="url(#pg5)"/>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Spectrum Petal Set</h3>
+        <p>Individual petals in each brand spectrum colour. Use as bullet markers, section accents, or decorative elements across any material.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">PowerPoint</span>
+          <span class="idea-tag">Web</span>
+          <span class="idea-tag">Print</span>
+          <span class="idea-tag">Icons</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-preview" style="background: var(--pp-dark-purple);">
+        <svg width="280" height="180" viewBox="0 0 280 180">
+          <!-- Petal as section marker with text -->
+          <path d="M20,90 Q20,35 52,18 Q84,35 84,90 Q84,145 52,162 Q20,145 20,90Z" fill="#C2A7CF" opacity="0.4"/>
+          <path d="M30,90 Q30,42 56,28 Q82,42 82,90 Q82,138 56,152 Q30,138 30,90Z" fill="#712D90" opacity="0.7"/>
+          <text x="120" y="72" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" font-weight="300" letter-spacing="0.1em" text-transform="uppercase" opacity="0.6">SECTION</text>
+          <text x="120" y="100" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="22" font-weight="300">Sensory Processing</text>
+          <line x1="120" y1="115" x2="200" y2="115" stroke="#BBD64A" stroke-width="2" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Section Marker</h3>
+        <p>A petal paired with a heading — use it to mark chapters, sections, or topic areas in presentations and documents.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">PowerPoint</span>
+          <span class="idea-tag">Reports</span>
+          <span class="idea-tag">Navigation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-preview" style="background: #f0edf3;">
+        <svg width="280" height="180" viewBox="0 0 280 180">
+          <!-- Petals as bullet points -->
+          <path d="M30,32 Q30,16 42,10 Q54,16 54,32 Q54,48 42,54 Q30,48 30,32Z" fill="#782b8f" opacity="0.8"/>
+          <text x="68" y="37" fill="#333" font-family="Arial,sans-serif" font-size="14">Evidence-informed practice</text>
+
+          <path d="M30,74 Q30,58 42,52 Q54,58 54,74 Q54,90 42,96 Q30,90 30,74Z" fill="#0091c0" opacity="0.8"/>
+          <text x="68" y="79" fill="#333" font-family="Arial,sans-serif" font-size="14">Strengths-based approaches</text>
+
+          <path d="M30,116 Q30,100 42,94 Q54,100 54,116 Q54,132 42,138 Q30,132 30,116Z" fill="#91c73e" opacity="0.8"/>
+          <text x="68" y="121" fill="#333" font-family="Arial,sans-serif" font-size="14">Collaborative partnerships</text>
+
+          <path d="M30,158 Q30,142 42,136 Q54,142 54,158 Q54,174 42,180 Q30,174 30,158Z" fill="#f37b20" opacity="0.8"/>
+          <text x="68" y="163" fill="#333" font-family="Arial,sans-serif" font-size="14">Individual support plans</text>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Petal Bullet Points</h3>
+        <p>Replace standard bullets with small petal shapes — each a different spectrum colour. Brings the brand into everyday content like lists and agendas.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">PowerPoint</span>
+          <span class="idea-tag">Documents</span>
+          <span class="idea-tag">Workshop Materials</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ IDEA 2: CLUSTERS ═══════════ -->
+<section class="section" id="clusters">
+  <div class="section-label">Idea 02</div>
+  <h2 class="section-title">Petal Clusters</h2>
+  <p class="section-desc">Groups of 3–7 overlapping petals that echo the bloom without being the full wheel. These work as corner accents, card decorations, or background elements.</p>
+
+  <div class="ideas-grid">
+    <div class="idea-card">
+      <div class="idea-preview" style="background: white;">
+        <svg width="260" height="200" viewBox="0 0 260 200">
+          <!-- 5-petal cluster radiating from bottom-left -->
+          <g transform="translate(70,140)">
+            <path d="M0,0 Q-30,-55 -10,-95 Q15,-75 30,-20Z" fill="#782b8f" opacity="0.55"/>
+            <path d="M0,0 Q-50,-35 -55,-80 Q-25,-72 10,-25Z" fill="#684b9e" opacity="0.5"/>
+            <path d="M0,0 Q-10,-60 15,-95 Q35,-65 35,-15Z" fill="#0091c0" opacity="0.5"/>
+            <path d="M0,0 Q20,-55 50,-75 Q50,-40 25,-5Z" fill="#5cade0" opacity="0.45"/>
+            <path d="M0,0 Q-55,-15 -80,-50 Q-50,-55 -10,-20Z" fill="#C2A7CF" opacity="0.4"/>
+          </g>
+          <!-- Mock content -->
+          <text x="90" y="55" fill="#330044" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="18" font-weight="300">Corner Accent</text>
+          <text x="90" y="75" fill="#999" font-family="Arial,sans-serif" font-size="11">For slide corners and card headers</text>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Corner Bloom</h3>
+        <p>A cluster of 3–5 petals positioned in a corner. Creates a branded accent without overwhelming the content. Perfect for slide templates.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">PowerPoint</span>
+          <span class="idea-tag">Flyers</span>
+          <span class="idea-tag">Cards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-preview" style="background: var(--pp-dark-purple);">
+        <svg width="260" height="200" viewBox="0 0 260 200">
+          <!-- Central mini bloom -->
+          <g transform="translate(130,100)">
+            <path d="M0,-8 Q-22,-58 0,-85 Q22,-58 0,-8Z" fill="#782b8f" opacity="0.7"/>
+            <path d="M-8,0 Q-58,-22 -85,0 Q-58,22 -8,0Z" fill="#0091c0" opacity="0.6"/>
+            <path d="M0,8 Q-22,58 0,85 Q22,58 0,8Z" fill="#91c73e" opacity="0.65"/>
+            <path d="M8,0 Q58,-22 85,0 Q58,22 8,0Z" fill="#f37b20" opacity="0.6"/>
+            <!-- diagonal petals -->
+            <path d="M-5,-5 Q-45,-45 -30,-75 Q-10,-50 -5,-5Z" fill="#684b9e" opacity="0.45"/>
+            <path d="M5,-5 Q45,-45 30,-75 Q10,-50 5,-5Z" fill="#5cade0" opacity="0.4"/>
+            <path d="M5,5 Q45,45 30,75 Q10,50 5,5Z" fill="#ffce01" opacity="0.5"/>
+            <path d="M-5,5 Q-45,45 -30,75 Q-10,50 -5,5Z" fill="#19b261" opacity="0.45"/>
+          </g>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Mini Bloom</h3>
+        <p>A simplified 8-petal bloom that works at small sizes — for icons, favicons, social media avatars, or watermarks on dark backgrounds.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Social Media</span>
+          <span class="idea-tag">Icons</span>
+          <span class="idea-tag">Watermark</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-preview" style="background: #f8f6fa;">
+        <svg width="280" height="200" viewBox="0 0 280 200">
+          <!-- Partnership: two clusters meeting -->
+          <g transform="translate(100,100)">
+            <path d="M0,-5 Q-18,-50 0,-80 Q18,-50 0,-5Z" fill="#782b8f" opacity="0.6"/>
+            <path d="M-5,0 Q-50,-18 -80,0 Q-50,18 -5,0Z" fill="#684b9e" opacity="0.5"/>
+            <path d="M0,5 Q-18,50 0,80 Q18,50 0,5Z" fill="#0091c0" opacity="0.55"/>
+          </g>
+          <g transform="translate(180,100)">
+            <path d="M0,-5 Q-18,-50 0,-80 Q18,-50 0,-5Z" fill="#f37b20" opacity="0.6"/>
+            <path d="M5,0 Q50,-18 80,0 Q50,18 5,0Z" fill="#ed2524" opacity="0.5"/>
+            <path d="M0,5 Q18,50 0,80 Q-18,50 0,5Z" fill="#ffce01" opacity="0.55"/>
+          </g>
+          <!-- Overlap zone -->
+          <ellipse cx="140" cy="100" rx="18" ry="50" fill="#C2A7CF" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Partnership Motif</h3>
+        <p>Two petal clusters reaching toward each other — the overlap zone represents partnership, connection, and shared understanding. Ideal for covers and banners.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Branding</span>
+          <span class="idea-tag">Cover Pages</span>
+          <span class="idea-tag">Conceptual</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DEMO BANNER 1 ═══════════ -->
+<div style="padding: 2rem 0;">
+  <div class="demo-banner">
+    <div class="demo-banner-inner" style="background: var(--pp-dark-purple); position: relative;">
+      <!-- Petal background decoration -->
+      <svg style="position:absolute;right:0;top:0;height:100%;width:50%;opacity:0.15;" viewBox="0 0 400 260" preserveAspectRatio="xMaxYMid slice">
+        <g transform="translate(300,130)">
+          <path d="M0,-10 Q-30,-80 0,-130 Q30,-80 0,-10Z" fill="#782b8f"/>
+          <path d="M-10,0 Q-80,-30 -130,0 Q-80,30 -10,0Z" fill="#0091c0"/>
+          <path d="M0,10 Q-30,80 0,130 Q30,80 0,10Z" fill="#91c73e"/>
+          <path d="M10,0 Q80,-30 130,0 Q80,30 10,0Z" fill="#f37b20"/>
+          <path d="M-7,-7 Q-60,-60 -45,-110 Q-15,-70 -7,-7Z" fill="#684b9e"/>
+          <path d="M7,-7 Q60,-60 45,-110 Q15,-70 7,-7Z" fill="#5cade0"/>
+          <path d="M7,7 Q60,60 45,110 Q15,70 7,7Z" fill="#ffce01"/>
+          <path d="M-7,7 Q-60,60 -45,110 Q-15,70 -7,7Z" fill="#19b261"/>
+        </g>
+      </svg>
+      <div class="demo-banner-content">
+        <h3 style="color:white;">Banner with Petal Accent</h3>
+        <p style="color:var(--pp-light-purple);">This shows how the bloom motif works as a subtle background element on a dark purple banner — the kind of thing you'd use on the website hero, email headers, or event signage.</p>
+        <a class="demo-btn" style="background:var(--pp-lime);color:var(--pp-dark-purple);border-color:var(--pp-lime);" href="#">Register for Workshop</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ IDEA 3: EDGE & DIVIDER TREATMENTS ═══════════ -->
+<section class="section" id="banners">
+  <div class="section-label">Idea 03</div>
+  <h2 class="section-title">Edge Treatments &amp; Dividers</h2>
+  <p class="section-desc">Petal arcs and spectrum bands for horizontal dividers, page edges, and section breaks.</p>
+
+  <div class="ideas-grid">
+    <div class="idea-card">
+      <div class="idea-preview" style="background: white; padding: 0;">
+        <svg width="100%" height="220" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet">
+          <!-- Horizontal petal arc -->
+          <g transform="translate(0,110)">
+            <ellipse cx="50" cy="0" rx="28" ry="55" fill="#782b8f" opacity="0.5" transform="rotate(-15,50,0)"/>
+            <ellipse cx="95" cy="0" rx="28" ry="55" fill="#684b9e" opacity="0.45" transform="rotate(-8,95,0)"/>
+            <ellipse cx="140" cy="0" rx="28" ry="55" fill="#0091c0" opacity="0.5" transform="rotate(-2,140,0)"/>
+            <ellipse cx="185" cy="0" rx="28" ry="55" fill="#19b261" opacity="0.45" transform="rotate(2,185,0)"/>
+            <ellipse cx="230" cy="0" rx="28" ry="55" fill="#91c73e" opacity="0.5" transform="rotate(5,230,0)"/>
+            <ellipse cx="275" cy="0" rx="28" ry="55" fill="#ffce01" opacity="0.5" transform="rotate(8,275,0)"/>
+            <ellipse cx="320" cy="0" rx="28" ry="55" fill="#f37b20" opacity="0.5" transform="rotate(12,320,0)"/>
+            <ellipse cx="365" cy="0" rx="28" ry="55" fill="#ed2524" opacity="0.45" transform="rotate(15,365,0)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Spectrum Arc</h3>
+        <p>Overlapping petal ellipses arranged horizontally, gently fanning out. Works as a page divider, footer accent, or header decoration.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Divider</span>
+          <span class="idea-tag">Web</span>
+          <span class="idea-tag">Print</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-preview" style="background: var(--pp-dark-purple); padding:0;">
+        <svg width="100%" height="220" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet">
+          <!-- Flowing ribbon of overlapping circles -->
+          <circle cx="40" cy="110" r="45" fill="#782b8f" opacity="0.35"/>
+          <circle cx="85" cy="105" r="42" fill="#684b9e" opacity="0.3"/>
+          <circle cx="130" cy="112" r="44" fill="#0091c0" opacity="0.3"/>
+          <circle cx="175" cy="108" r="40" fill="#19b261" opacity="0.3"/>
+          <circle cx="220" cy="113" r="43" fill="#91c73e" opacity="0.3"/>
+          <circle cx="265" cy="107" r="41" fill="#ffce01" opacity="0.3"/>
+          <circle cx="310" cy="111" r="44" fill="#f37b20" opacity="0.3"/>
+          <circle cx="355" cy="109" r="42" fill="#ed2524" opacity="0.3"/>
+          <!-- Text over -->
+          <text x="200" y="100" text-anchor="middle" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="20" font-weight="300">Every learner is unique</text>
+          <text x="200" y="125" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="11" opacity="0.7">Positive Partnerships</text>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Spectrum Ribbon</h3>
+        <p>Soft overlapping circles in spectrum colours create a flowing ribbon effect. Beautiful for email footers, social media banners, and quote graphics.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Social Media</span>
+          <span class="idea-tag">Email</span>
+          <span class="idea-tag">Quotes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-preview" style="background: white; padding:0; display:block;">
+        <svg width="100%" height="220" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet">
+          <!-- Top edge petal treatment -->
+          <g transform="translate(0,-30)">
+            <path d="M0,70 Q50,30 100,70" fill="none" stroke="#782b8f" stroke-width="3" opacity="0.5"/>
+            <path d="M50,70 Q100,20 150,70" fill="none" stroke="#684b9e" stroke-width="3" opacity="0.45"/>
+            <path d="M100,70 Q150,25 200,70" fill="none" stroke="#0091c0" stroke-width="3" opacity="0.5"/>
+            <path d="M150,70 Q200,30 250,70" fill="none" stroke="#19b261" stroke-width="3" opacity="0.45"/>
+            <path d="M200,70 Q250,20 300,70" fill="none" stroke="#91c73e" stroke-width="3" opacity="0.5"/>
+            <path d="M250,70 Q300,28 350,70" fill="none" stroke="#ffce01" stroke-width="3" opacity="0.5"/>
+            <path d="M300,70 Q350,22 400,70" fill="none" stroke="#f37b20" stroke-width="3" opacity="0.45"/>
+          </g>
+          <!-- Content below -->
+          <rect x="40" y="70" width="320" height="120" rx="8" fill="#faf8fc"/>
+          <text x="60" y="105" fill="#330044" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="400">Workshop Registration</text>
+          <text x="60" y="125" fill="#999" font-family="Arial,sans-serif" font-size="11">Term 2, 2026 — Professional Learning</text>
+          <rect x="60" y="145" width="120" height="30" rx="5" fill="#712D90"/>
+          <text x="87" y="165" fill="white" font-family="Arial,sans-serif" font-size="11" font-weight="600">Register Now</text>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Petal Wave Border</h3>
+        <p>Interlocking arcs in spectrum colours along an edge — like a gentle wave. Clean and modern, works at the top of cards, flyers, or web sections.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Cards</span>
+          <span class="idea-tag">Flyers</span>
+          <span class="idea-tag">Web Headers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DEMO BANNER 2 ═══════════ -->
+<div style="padding: 1rem 0 2rem;">
+  <div class="demo-banner">
+    <div class="demo-banner-inner" style="background: linear-gradient(135deg, #f8f6fa 0%, #ede4f2 100%);">
+      <!-- Left petal accent -->
+      <svg style="position:absolute;left:-20px;bottom:-20px;width:200px;height:200px;opacity:0.2;" viewBox="0 0 200 200">
+        <g transform="translate(60,140)">
+          <path d="M0,-5 Q-15,-55 0,-90 Q15,-55 0,-5Z" fill="#782b8f"/>
+          <path d="M-5,0 Q-55,-15 -90,0 Q-55,15 -5,0Z" fill="#0091c0"/>
+          <path d="M5,0 Q55,-15 90,0 Q55,15 5,0Z" fill="#f37b20"/>
+        </g>
+      </svg>
+      <div class="demo-banner-content">
+        <h3 style="color:var(--pp-dark-purple);">Light Theme Banner</h3>
+        <p style="color:var(--pp-medium-grey);">The petal motif also works subtly on light backgrounds — here as a soft corner accent. Ideal for internal communications or lighter-toned sections of the website.</p>
+        <a class="demo-btn" style="background:var(--pp-medium-purple);color:white;border-color:var(--pp-medium-purple);" href="#">Learn More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ IDEA 4: SLIDE MOCKUPS ═══════════ -->
+<section class="section" id="slides">
+  <div class="section-label">Idea 04</div>
+  <h2 class="section-title">Slide &amp; Layout Mockups</h2>
+  <p class="section-desc">How the petal shapes could work in real PowerPoint slides and document layouts.</p>
+
+  <div class="slides-grid">
+    <!-- Title Slide -->
+    <div class="slide-mockup">
+      <div class="slide-frame" style="background: var(--pp-dark-purple);">
+        <svg width="100%" height="100%" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">
+          <!-- Corner bloom -->
+          <g transform="translate(540,60)" opacity="0.18">
+            <path d="M0,-8 Q-20,-60 0,-95 Q20,-60 0,-8Z" fill="#782b8f"/>
+            <path d="M-8,0 Q-60,-20 -95,0 Q-60,20 -8,0Z" fill="#0091c0"/>
+            <path d="M0,8 Q-20,60 0,95 Q20,60 0,8Z" fill="#91c73e"/>
+            <path d="M8,0 Q60,-20 95,0 Q60,20 8,0Z" fill="#f37b20"/>
+            <path d="M-6,-6 Q-45,-45 -35,-80 Q-12,-55 -6,-6Z" fill="#684b9e"/>
+            <path d="M6,6 Q45,45 35,80 Q12,55 6,6Z" fill="#ffce01"/>
+          </g>
+          <!-- Bottom spectrum line -->
+          <rect x="60" y="310" width="60" height="4" rx="2" fill="#782b8f" opacity="0.7"/>
+          <rect x="125" y="310" width="60" height="4" rx="2" fill="#0091c0" opacity="0.7"/>
+          <rect x="190" y="310" width="60" height="4" rx="2" fill="#91c73e" opacity="0.7"/>
+          <rect x="255" y="310" width="60" height="4" rx="2" fill="#ffce01" opacity="0.7"/>
+          <rect x="320" y="310" width="60" height="4" rx="2" fill="#f37b20" opacity="0.7"/>
+          <rect x="385" y="310" width="60" height="4" rx="2" fill="#ed2524" opacity="0.7"/>
+          <!-- Text -->
+          <text x="60" y="150" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="300">Professional Learning</text>
+          <text x="60" y="185" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="300">Workshop Series</text>
+          <text x="60" y="220" fill="#C2A7CF" font-family="Arial,sans-serif" font-size="14">Term 2, 2026 — Positive Partnerships</text>
+          <line x1="60" y1="236" x2="160" y2="236" stroke="#BBD64A" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="slide-label">Title Slide — dark background with corner bloom and spectrum bar</div>
+    </div>
+
+    <!-- Content Slide -->
+    <div class="slide-mockup">
+      <div class="slide-frame" style="background: white;">
+        <svg width="100%" height="100%" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">
+          <!-- Left petal accent -->
+          <g transform="translate(30,180)" opacity="0.12">
+            <path d="M0,-8 Q-18,-55 0,-85 Q18,-55 0,-8Z" fill="#782b8f"/>
+            <path d="M-8,0 Q-55,-18 -85,0 Q-55,18 -8,0Z" fill="#0091c0"/>
+            <path d="M0,8 Q-18,55 0,85 Q18,55 0,8Z" fill="#91c73e"/>
+          </g>
+          <!-- Header -->
+          <rect x="0" y="0" width="640" height="5" fill="#712D90"/>
+          <text x="60" y="55" fill="#330044" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="22" font-weight="400">Key Strategies</text>
+          <line x1="60" y1="68" x2="120" y2="68" stroke="#BBD64A" stroke-width="2"/>
+          <!-- Petal bullets -->
+          <ellipse cx="74" cy="107" rx="6" ry="12" fill="#782b8f" opacity="0.7"/>
+          <text x="92" y="112" fill="#333" font-family="Arial,sans-serif" font-size="13">Understand individual sensory profiles</text>
+
+          <ellipse cx="74" cy="147" rx="6" ry="12" fill="#0091c0" opacity="0.7"/>
+          <text x="92" y="152" fill="#333" font-family="Arial,sans-serif" font-size="13">Create structured visual supports</text>
+
+          <ellipse cx="74" cy="187" rx="6" ry="12" fill="#91c73e" opacity="0.7"/>
+          <text x="92" y="192" fill="#333" font-family="Arial,sans-serif" font-size="13">Build predictable routines and transitions</text>
+
+          <ellipse cx="74" cy="227" rx="6" ry="12" fill="#f37b20" opacity="0.7"/>
+          <text x="92" y="232" fill="#333" font-family="Arial,sans-serif" font-size="13">Collaborate with families and specialists</text>
+
+          <!-- Bottom bar -->
+          <rect x="0" y="335" width="640" height="25" fill="#faf8fc"/>
+          <text x="560" y="352" fill="#999" font-family="Arial,sans-serif" font-size="9">Positive Partnerships</text>
+          <circle cx="74" cy="348" r="3" fill="#782b8f" opacity="0.5"/>
+          <circle cx="84" cy="348" r="3" fill="#0091c0" opacity="0.5"/>
+          <circle cx="94" cy="348" r="3" fill="#91c73e" opacity="0.5"/>
+          <circle cx="104" cy="348" r="3" fill="#ffce01" opacity="0.5"/>
+          <circle cx="114" cy="348" r="3" fill="#f37b20" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="slide-label">Content Slide — light background with petal bullets and watermark</div>
+    </div>
+
+    <!-- Section Divider -->
+    <div class="slide-mockup">
+      <div class="slide-frame" style="background: var(--pp-medium-purple);">
+        <svg width="100%" height="100%" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">
+          <!-- Large central bloom -->
+          <g transform="translate(320,180)" opacity="0.2">
+            <path d="M0,-12 Q-30,-90 0,-140 Q30,-90 0,-12Z" fill="white"/>
+            <path d="M-12,0 Q-90,-30 -140,0 Q-90,30 -12,0Z" fill="white"/>
+            <path d="M0,12 Q-30,90 0,140 Q30,90 0,12Z" fill="white"/>
+            <path d="M12,0 Q90,-30 140,0 Q90,30 12,0Z" fill="white"/>
+          </g>
+          <!-- Section number and title -->
+          <text x="320" y="140" text-anchor="middle" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="60" font-weight="200" opacity="0.4">02</text>
+          <text x="320" y="200" text-anchor="middle" fill="white" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="28" font-weight="300">Communication</text>
+          <text x="320" y="225" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="13" opacity="0.7">Supporting social interaction in the classroom</text>
+          <line x1="280" y1="245" x2="360" y2="245" stroke="#BBD64A" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="slide-label">Section Divider — bloom watermark behind section title</div>
+    </div>
+
+    <!-- Quote Slide -->
+    <div class="slide-mockup">
+      <div class="slide-frame" style="background: #faf8fc;">
+        <svg width="100%" height="100%" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">
+          <!-- Soft petal behind quote -->
+          <path d="M80,180 Q80,80 140,40 Q200,80 200,180 Q200,280 140,320 Q80,280 80,180Z" fill="#C2A7CF" opacity="0.15"/>
+          <!-- Quote mark -->
+          <text x="100" y="130" fill="#712D90" font-family="Georgia,serif" font-size="72" opacity="0.3">&quot;</text>
+          <!-- Quote text -->
+          <text x="120" y="160" fill="#330044" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="18" font-weight="300">
+            <tspan x="120" dy="0">When we understand how</tspan>
+            <tspan x="120" dy="28">someone experiences the world,</tspan>
+            <tspan x="120" dy="28">we can build better partnerships.</tspan>
+          </text>
+          <line x1="120" y1="260" x2="180" y2="260" stroke="#BBD64A" stroke-width="2"/>
+          <text x="120" y="280" fill="#999" font-family="Arial,sans-serif" font-size="11">— Workshop participant, 2025</text>
+          <!-- Spectrum dots bottom-right -->
+          <g transform="translate(500,310)">
+            <circle cx="0" cy="0" r="5" fill="#782b8f" opacity="0.4"/>
+            <circle cx="14" cy="0" r="5" fill="#0091c0" opacity="0.4"/>
+            <circle cx="28" cy="0" r="5" fill="#91c73e" opacity="0.4"/>
+            <circle cx="42" cy="0" r="5" fill="#ffce01" opacity="0.4"/>
+            <circle cx="56" cy="0" r="5" fill="#f37b20" opacity="0.4"/>
+            <circle cx="70" cy="0" r="5" fill="#ed2524" opacity="0.4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="slide-label">Quote Slide — single petal backdrop with spectrum dot signature</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ DOWNLOADABLE ASSETS ═══════════ -->
+<section class="section" id="assets">
+  <div class="section-label">Idea 05</div>
+  <h2 class="section-title">Asset Ideas to Develop</h2>
+  <p class="section-desc">If these directions feel right, here's what a full asset kit could include. Click any card to download the SVG preview.</p>
+
+  <div class="downloads-grid">
+    <div class="download-card" onclick="downloadSVG('single-petal','single-petal-purple')">
+      <svg width="60" height="80" viewBox="0 0 60 80">
+        <path d="M30,5 Q10,20 10,40 Q10,60 30,75 Q50,60 50,40 Q50,20 30,5Z" fill="#712D90" opacity="0.8"/>
+      </svg>
+      <h4>Single Petal</h4>
+      <p>SVG &middot; Brand Purple</p>
+    </div>
+
+    <div class="download-card" onclick="downloadSVG('three-cluster','three-petal-cluster')">
+      <svg width="80" height="80" viewBox="0 0 80 80">
+        <path d="M40,5 Q25,18 25,40 Q25,62 40,75 Q55,62 55,40 Q55,18 40,5Z" fill="#782b8f" opacity="0.6"/>
+        <path d="M15,55 Q18,35 35,28 Q40,45 30,65 Q18,68 15,55Z" fill="#0091c0" opacity="0.5"/>
+        <path d="M65,55 Q62,35 45,28 Q40,45 50,65 Q62,68 65,55Z" fill="#91c73e" opacity="0.5"/>
+      </svg>
+      <h4>3-Petal Cluster</h4>
+      <p>SVG &middot; Corner accent</p>
+    </div>
+
+    <div class="download-card" onclick="downloadSVG('mini-bloom','mini-bloom')">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <g transform="translate(50,50)">
+          <path d="M0,-5 Q-12,-35 0,-55 Q12,-35 0,-5Z" fill="#782b8f" opacity="0.6"/>
+          <path d="M-5,0 Q-35,-12 -55,0 Q-35,12 -5,0Z" fill="#0091c0" opacity="0.55"/>
+          <path d="M0,5 Q-12,35 0,55 Q12,35 0,5Z" fill="#91c73e" opacity="0.6"/>
+          <path d="M5,0 Q35,-12 55,0 Q35,12 5,0Z" fill="#f37b20" opacity="0.55"/>
+        </g>
+      </svg>
+      <h4>Mini Bloom</h4>
+      <p>SVG &middot; 4-petal icon</p>
+    </div>
+
+    <div class="download-card" onclick="downloadSVG('spectrum-bar','spectrum-bar')">
+      <svg width="100" height="30" viewBox="0 0 120 12">
+        <rect x="0" y="2" width="16" height="8" rx="4" fill="#782b8f" opacity="0.7"/>
+        <rect x="18" y="2" width="16" height="8" rx="4" fill="#0091c0" opacity="0.7"/>
+        <rect x="36" y="2" width="16" height="8" rx="4" fill="#91c73e" opacity="0.7"/>
+        <rect x="54" y="2" width="16" height="8" rx="4" fill="#ffce01" opacity="0.7"/>
+        <rect x="72" y="2" width="16" height="8" rx="4" fill="#f37b20" opacity="0.7"/>
+        <rect x="90" y="2" width="16" height="8" rx="4" fill="#ed2524" opacity="0.7"/>
+      </svg>
+      <h4>Spectrum Bar</h4>
+      <p>SVG &middot; Divider element</p>
+    </div>
+
+    <div class="download-card" onclick="downloadSVG('spectrum-dots','spectrum-dots')">
+      <svg width="100" height="30" viewBox="0 0 100 16">
+        <circle cx="8" cy="8" r="6" fill="#782b8f" opacity="0.6"/>
+        <circle cx="24" cy="8" r="6" fill="#0091c0" opacity="0.6"/>
+        <circle cx="40" cy="8" r="6" fill="#91c73e" opacity="0.6"/>
+        <circle cx="56" cy="8" r="6" fill="#ffce01" opacity="0.6"/>
+        <circle cx="72" cy="8" r="6" fill="#f37b20" opacity="0.6"/>
+        <circle cx="88" cy="8" r="6" fill="#ed2524" opacity="0.6"/>
+      </svg>
+      <h4>Spectrum Dots</h4>
+      <p>SVG &middot; Footer signature</p>
+    </div>
+
+    <div class="download-card" onclick="downloadSVG('partnership-motif','partnership-motif')">
+      <svg width="90" height="60" viewBox="0 0 120 80">
+        <g transform="translate(35,40)">
+          <path d="M0,-4 Q-10,-30 0,-48 Q10,-30 0,-4Z" fill="#782b8f" opacity="0.55"/>
+          <path d="M-4,0 Q-30,-10 -48,0 Q-30,10 -4,0Z" fill="#0091c0" opacity="0.5"/>
+        </g>
+        <g transform="translate(85,40)">
+          <path d="M0,-4 Q-10,-30 0,-48 Q10,-30 0,-4Z" fill="#f37b20" opacity="0.55"/>
+          <path d="M4,0 Q30,-10 48,0 Q30,10 4,0Z" fill="#ed2524" opacity="0.5"/>
+        </g>
+        <ellipse cx="60" cy="40" rx="10" ry="28" fill="#C2A7CF" opacity="0.2"/>
+      </svg>
+      <h4>Partnership Motif</h4>
+      <p>SVG &middot; Two blooms meeting</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TOOLS RECOMMENDATION ═══════════ -->
+<section class="section">
+  <div class="section-label">Next Steps</div>
+  <h2 class="section-title">Recommended Tools</h2>
+  <p class="section-desc">To develop these ideas into production-ready assets:</p>
+
+  <div class="ideas-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+    <div class="idea-card" style="border-left: 4px solid var(--pp-medium-purple);">
+      <div class="idea-info">
+        <h3>Figma <span style="font-weight:300;color:var(--pp-medium-grey);">(free)</span></h3>
+        <p>Build a shared component library. Export SVGs, PNGs at any size. The team can collaborate in real time. Best for: creating the definitive asset kit.</p>
+        <div class="idea-tags"><span class="idea-tag">Design System</span><span class="idea-tag">Collaboration</span></div>
+      </div>
+    </div>
+    <div class="idea-card" style="border-left: 4px solid var(--pp-lime);">
+      <div class="idea-info">
+        <h3>Canva <span style="font-weight:300;color:var(--pp-medium-grey);">(team access)</span></h3>
+        <p>Upload the SVG assets as brand elements. Non-designers can drag and drop them into flyers, social posts, and presentations. Best for: team self-service.</p>
+        <div class="idea-tags"><span class="idea-tag">Flyers</span><span class="idea-tag">Social</span><span class="idea-tag">Self-Service</span></div>
+      </div>
+    </div>
+    <div class="idea-card" style="border-left: 4px solid var(--pp-orange);">
+      <div class="idea-info">
+        <h3>PowerPoint <span style="font-weight:300;color:var(--pp-medium-grey);">(templates)</span></h3>
+        <p>Create a .potx template with the petal shapes pre-placed as slide masters. Everyone gets on-brand slides without thinking about it. Best for: workshops.</p>
+        <div class="idea-tags"><span class="idea-tag">Workshops</span><span class="idea-tag">Templates</span></div>
+      </div>
+    </div>
+    <div class="idea-card" style="border-left: 4px solid var(--pp-red);">
+      <div class="idea-info">
+        <h3>Claude Code <span style="font-weight:300;color:var(--pp-medium-grey);">(right here)</span></h3>
+        <p>I can keep generating SVG assets, refining these ideas, and building interactive previews. Best for: rapid exploration and iteration before committing to a direction.</p>
+        <div class="idea-tags"><span class="idea-tag">SVG Generation</span><span class="idea-tag">Prototyping</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  Positive Partnerships Brand Sandpit &middot; new-ideas / petal-ideas &middot; Internal exploration
+</footer>
+
+<script>
+// SVG download helper
+const svgAssets = {
+  'single-petal': `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="160" viewBox="0 0 60 80"><path d="M30,5 Q10,20 10,40 Q10,60 30,75 Q50,60 50,40 Q50,20 30,5Z" fill="#712D90" opacity="0.85"/></svg>`,
+  'three-cluster': `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 80 80"><path d="M40,5 Q25,18 25,40 Q25,62 40,75 Q55,62 55,40 Q55,18 40,5Z" fill="#782b8f" opacity="0.6"/><path d="M15,55 Q18,35 35,28 Q40,45 30,65 Q18,68 15,55Z" fill="#0091c0" opacity="0.5"/><path d="M65,55 Q62,35 45,28 Q40,45 50,65 Q62,68 65,55Z" fill="#91c73e" opacity="0.5"/></svg>`,
+  'mini-bloom': `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100"><g transform="translate(50,50)"><path d="M0,-5 Q-12,-35 0,-55 Q12,-35 0,-5Z" fill="#782b8f" opacity="0.6"/><path d="M-5,0 Q-35,-12 -55,0 Q-35,12 -5,0Z" fill="#0091c0" opacity="0.55"/><path d="M0,5 Q-12,35 0,55 Q12,35 0,5Z" fill="#91c73e" opacity="0.6"/><path d="M5,0 Q35,-12 55,0 Q35,12 5,0Z" fill="#f37b20" opacity="0.55"/></g></svg>`,
+  'spectrum-bar': `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="48" viewBox="0 0 120 12"><rect x="0" y="2" width="16" height="8" rx="4" fill="#782b8f" opacity="0.7"/><rect x="18" y="2" width="16" height="8" rx="4" fill="#0091c0" opacity="0.7"/><rect x="36" y="2" width="16" height="8" rx="4" fill="#91c73e" opacity="0.7"/><rect x="54" y="2" width="16" height="8" rx="4" fill="#ffce01" opacity="0.7"/><rect x="72" y="2" width="16" height="8" rx="4" fill="#f37b20" opacity="0.7"/><rect x="90" y="2" width="16" height="8" rx="4" fill="#ed2524" opacity="0.7"/></svg>`,
+  'spectrum-dots': `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="32" viewBox="0 0 100 16"><circle cx="8" cy="8" r="6" fill="#782b8f" opacity="0.7"/><circle cx="24" cy="8" r="6" fill="#0091c0" opacity="0.7"/><circle cx="40" cy="8" r="6" fill="#91c73e" opacity="0.7"/><circle cx="56" cy="8" r="6" fill="#ffce01" opacity="0.7"/><circle cx="72" cy="8" r="6" fill="#f37b20" opacity="0.7"/><circle cx="88" cy="8" r="6" fill="#ed2524" opacity="0.7"/></svg>`,
+  'partnership-motif': `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 120 80"><g transform="translate(35,40)"><path d="M0,-4 Q-10,-30 0,-48 Q10,-30 0,-4Z" fill="#782b8f" opacity="0.55"/><path d="M-4,0 Q-30,-10 -48,0 Q-30,10 -4,0Z" fill="#0091c0" opacity="0.5"/></g><g transform="translate(85,40)"><path d="M0,-4 Q-10,-30 0,-48 Q10,-30 0,-4Z" fill="#f37b20" opacity="0.55"/><path d="M4,0 Q30,-10 48,0 Q30,10 4,0Z" fill="#ed2524" opacity="0.5"/></g><ellipse cx="60" cy="40" rx="10" ry="28" fill="#C2A7CF" opacity="0.2"/></svg>`
+};
+
+function downloadSVG(key, filename) {
+  const svg = svgAssets[key];
+  if (!svg) return;
+  const blob = new Blob([svg], {type: 'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename + '.svg';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+  showToast('Downloaded ' + filename + '.svg');
+}
+
+const toast = document.getElementById('toast');
+let toastTimer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+// Smooth scroll
+document.querySelectorAll('.topnav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+</script>
+</body>
+</html>
