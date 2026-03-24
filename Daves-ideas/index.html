@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dave's Ideas — Diversity Wheel Explorations | Positive Partnerships</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple-dark:   #330044;
+      --purple-medium: #712D90;
+      --purple-light:  #C2A7CF;
+      --white:         #FFFFFF;
+      --lime:          #BBD64A;
+      --red:           #F15B40;
+      --orange:        #F7941E;
+      --mist:          #E8E0F0;
+      --neural-blue:   #1B4F8A;
+      --teal:          #00B5C8;
+      --growth-green:  #47B549;
+      --amber:         #F9A31A;
+      --blossom:       #DA7AB0;
+      --mist-lav:      #E8E0F0;
+      --body-bg:       #F0EBF5;
+      --card-bg:       #FFFFFF;
+      --text-dark:     #1a0028;
+      --text-mid:      #4a3060;
+      --section-gap:   80px;
+      --radius:        12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--body-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    h1,h2,h3,h4,h5 { font-family: 'Raleway', sans-serif; }
+
+    /* ─── Keyframes ─── */
+    @keyframes spin-slow      { to { transform: rotate(360deg); } }
+    @keyframes spin-reverse   { to { transform: rotate(-360deg); } }
+    @keyframes float          { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes pulse-glow     { 0%,100%{opacity:.6;r:3} 50%{opacity:1;r:5} }
+    @keyframes dash-flow      { to { stroke-dashoffset: -200; } }
+    @keyframes petal-drift    {
+      0%   { transform: translate(0,0)    rotate(0deg)   scale(1);   opacity:.55; }
+      33%  { transform: translate(8px,-12px)  rotate(15deg)  scale(1.05); opacity:.7; }
+      66%  { transform: translate(-6px,8px)   rotate(-8deg)  scale(.95);  opacity:.5; }
+      100% { transform: translate(0,0)    rotate(0deg)   scale(1);   opacity:.55; }
+    }
+    @keyframes synapse-pulse  { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.6)} }
+    @keyframes infinity-flow  { 0%{stroke-dashoffset:800} 100%{stroke-dashoffset:0} }
+    @keyframes petal-fill     { 0%{opacity:.15} 100%{opacity:1} }
+    @keyframes fade-in-up     { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--purple-dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 60px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.4);
+    }
+    nav a.back-link {
+      color: var(--purple-light); text-decoration: none;
+      font-family: 'Raleway', sans-serif; font-size: .9rem; font-weight: 600;
+      display: flex; align-items: center; gap: 8px; transition: color .2s;
+    }
+    nav a.back-link:hover { color: var(--white); }
+    nav .nav-title {
+      color: var(--white); font-family: 'Raleway', sans-serif;
+      font-size: .85rem; font-weight: 500; opacity: .8;
+      text-align: right; max-width: 360px;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      background: linear-gradient(160deg, var(--purple-dark) 0%, #1a0030 60%, #0d001e 100%);
+      min-height: 520px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 60px 32px;
+      position: relative; overflow: hidden;
+    }
+    .hero-wheel-wrap {
+      width: 240px; height: 240px; margin-bottom: 36px;
+      animation: spin-slow 40s linear infinite;
+      filter: drop-shadow(0 0 28px rgba(113,45,144,.7));
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900;
+      color: var(--white); letter-spacing: -.02em;
+      animation: fade-in-up .8s ease both;
+    }
+    .hero h1 span { color: var(--lime); }
+    .hero p {
+      color: var(--purple-light); font-size: 1.15rem; max-width: 600px;
+      margin-top: 16px; font-weight: 300;
+      animation: fade-in-up .9s .2s ease both;
+    }
+    .hero-badge {
+      margin-top: 28px;
+      background: rgba(113,45,144,.25); border: 1px solid rgba(194,167,207,.3);
+      border-radius: 40px; padding: 8px 24px;
+      color: var(--purple-light); font-size: .85rem; font-weight: 500;
+      animation: fade-in-up 1s .4s ease both;
+    }
+
+    /* ─── Sections ─── */
+    .section-wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: var(--section-gap) 24px;
+    }
+    .section-label {
+      display: inline-block; background: var(--purple-medium);
+      color: var(--white); font-family: 'Raleway', sans-serif;
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; border-radius: 4px;
+      padding: 4px 12px; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
+      color: var(--purple-dark); margin-bottom: 8px;
+    }
+    .section-sub {
+      color: var(--text-mid); font-size: 1rem; max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    /* ─── Design Notes ─── */
+    .design-notes {
+      background: linear-gradient(135deg, #f7f2ff, #ede4f7);
+      border-left: 4px solid var(--purple-medium);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 20px 24px; margin-top: 40px;
+    }
+    .design-notes h4 {
+      color: var(--purple-medium); font-size: .85rem;
+      font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .design-notes p { font-size: .92rem; color: var(--text-mid); }
+    .design-notes ul {
+      margin: 8px 0 0 18px; font-size: .9rem; color: var(--text-mid);
+    }
+    .design-notes li { margin-bottom: 4px; }
+
+    /* ─── Card grid ─── */
+    .card-grid {
+      display: grid; gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    .card {
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: 0 2px 16px rgba(51,0,68,.08);
+      padding: 28px 20px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(113,45,144,.18); }
+    .card-label { font-family:'Raleway',sans-serif; font-size:.8rem; font-weight:700; color:var(--purple-medium); text-transform:uppercase; letter-spacing:.08em; }
+    .card-name  { font-family:'Raleway',sans-serif; font-size:1rem; font-weight:600; color:var(--text-dark); }
+    .card-use   { font-size:.82rem; color:var(--text-mid); }
+
+    /* ─── Concept 2 — Corner treatments ─── */
+    .corner-grid {
+      display: grid; gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .mock-slide {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(51,0,68,.15);
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #fff;
+    }
+    .mock-slide.dark { background: var(--purple-dark); }
+    .slide-title-text {
+      position: absolute; left: 28px; top: 28px;
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(.8rem,2.5vw,1.1rem); font-weight: 700;
+    }
+    .mock-slide .slide-svg { position:absolute; top:0; left:0; width:100%; height:100%; }
+
+    /* ─── Concept 3 — Pattern ─── */
+    .pattern-grid {
+      display: grid; gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    .pattern-box {
+      border-radius: var(--radius); overflow: hidden;
+      height: 220px; position: relative;
+      box-shadow: 0 4px 20px rgba(51,0,68,.12);
+    }
+    .pattern-box svg { width:100%; height:100%; }
+    .pattern-label {
+      position: absolute; bottom: 12px; left: 12px;
+      font-family: 'Raleway', sans-serif; font-size: .78rem;
+      font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      background: rgba(0,0,0,.35); color: #fff;
+      padding: 4px 10px; border-radius: 4px;
+    }
+
+    /* ─── Concept 5 — Infinity ─── */
+    .infinity-grid { display:grid; gap:24px; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); }
+    .infinity-box { background: var(--card-bg); border-radius: var(--radius); box-shadow: 0 2px 16px rgba(51,0,68,.08); padding: 32px; text-align: center; }
+    .infinity-box.dark { background: var(--purple-dark); }
+    .infinity-box svg { width:100%; max-width:340px; }
+
+    /* ─── Concept 6 — UI ─── */
+    .ui-grid { display:grid; gap:24px; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
+    .ui-card { background: var(--card-bg); border-radius: var(--radius); overflow:hidden; box-shadow: 0 2px 16px rgba(51,0,68,.08); }
+    .ui-card-body { padding:20px; }
+    .ui-card-body h4 { font-family:'Raleway',sans-serif; font-size:.95rem; font-weight:700; color:var(--purple-dark); margin-bottom:6px; }
+    .ui-card-body p { font-size:.82rem; color:var(--text-mid); }
+
+    /* ─── Color Palette ─── */
+    .palette-section { background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: 0 2px 16px rgba(51,0,68,.06); }
+    .palette-group-title { font-family:'Raleway',sans-serif; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-mid); margin:24px 0 12px; }
+    .palette-group-title:first-child { margin-top:0; }
+    .swatch-row { display:flex; flex-wrap:wrap; gap:12px; }
+    .swatch {
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      width: 90px;
+    }
+    .swatch-color {
+      width: 72px; height: 72px; border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      border: 3px solid rgba(255,255,255,.6);
+    }
+    .swatch-name { font-size:.72rem; font-weight:600; color:var(--text-mid); text-align:center; }
+    .swatch-hex  { font-size:.7rem; color:#888; font-family:monospace; }
+
+    /* ─── Mockups ─── */
+    .mockup-grid { display:grid; gap:28px; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); }
+    .mockup-frame { border-radius: var(--radius); overflow:hidden; box-shadow: 0 8px 32px rgba(51,0,68,.2); }
+    .mockup-frame svg { display:block; width:100%; }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--purple-dark); color: var(--purple-light);
+      text-align: center; padding: 32px;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--white); }
+    footer a { color: var(--purple-light); text-decoration: none; }
+    footer a:hover { color: var(--lime); }
+
+    /* ─── Divider ─── */
+    .section-divider {
+      width: 60px; height: 4px; background: var(--lime);
+      border-radius: 2px; margin-bottom: 28px;
+    }
+
+    /* ─── Responsive ─── */
+    @media(max-width:600px){
+      nav { padding: 0 16px; }
+      nav .nav-title { display:none; }
+      .card-grid, .corner-grid, .pattern-grid, .infinity-grid, .ui-grid, .mockup-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav>
+  <a href="../index.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Brand Sandpit
+  </a>
+  <span class="nav-title">Dave's Ideas — Diversity Wheel Explorations</span>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ══════════════════════════════ -->
+<section class="hero">
+  <div class="hero-wheel-wrap" id="heroWheel"></div>
+  <h1>Exploring the <span>Petal Motif</span></h1>
+  <p>How the diversity wheel's petal forms can extend into brand marks, patterns, interface elements, and neurodiversity storytelling — celebrating every mind.</p>
+  <div class="hero-badge">Brand Sandpit · Dave's Ideas · March 2026</div>
+</section>
+
+<!-- ═══════════════════ CONCEPT 1: PETAL MARK ════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label">Concept 1</span>
+  <h2 class="section-title">The Petal Mark — Simplified Brand Marks</h2>
+  <p class="section-sub">Reducing the diversity wheel to its essential petal form creates versatile logomarks that work across digital and print applications at any size.</p>
+  <div class="section-divider"></div>
+
+  <div class="card-grid" id="petalMarkGrid"></div>
+
+  <div class="design-notes">
+    <h4>Design Notes</h4>
+    <p>Each mark uses the same petal path <code>M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z</code> rotated around a shared centre. The key decisions are petal count and colour palette:</p>
+    <ul>
+      <li><strong>6-petal purple</strong> — tight, authoritative; ideal for small contexts (favicon, document watermark).</li>
+      <li><strong>12-petal rainbow</strong> — expressive, celebratory; best for large-format, social covers.</li>
+      <li><strong>Reversed (white)</strong> — for dark backgrounds, merchandise, embossed print.</li>
+      <li><strong>Accent triad</strong> — Lime, Orange, Red only; energetic, youth-facing tone.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ CONCEPT 2: CORNER TREATMENTS ═════════════════ -->
+<div style="background: var(--mist); padding: 1px 0;">
+<div class="section-wrap">
+  <span class="section-label">Concept 2</span>
+  <h2 class="section-title">Corner &amp; Edge Treatments</h2>
+  <p class="section-sub">A quarter-wheel fan of petals in a corner, or a vertical edge strip, instantly brands a slide or document without dominating the content.</p>
+  <div class="section-divider"></div>
+
+  <div class="corner-grid" id="cornerGrid"></div>
+
+  <div class="design-notes">
+    <h4>Design Notes</h4>
+    <p>Quarter-wheel and edge treatments solve a common problem: how to brand templates without fighting content. The petal fan is clipped to its corner, giving an organic softness that contrasts well with the rectangular slide format. Use the rainbow version for participant-facing materials; use the purple-monochrome version for internal or executive documents.</p>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ CONCEPT 3: SCATTER PATTERN ═══════════════════ -->
+<div class="section-wrap">
+  <span class="section-label">Concept 3</span>
+  <h2 class="section-title">Petal Scatter Pattern</h2>
+  <p class="section-sub">Petals used as a repeating texture — perfect as a background on slides, web sections, or print collateral. Semi-transparency keeps them supportive, not dominant.</p>
+  <div class="section-divider"></div>
+
+  <div class="pattern-grid" id="patternGrid"></div>
+
+  <div class="design-notes">
+    <h4>Design Notes</h4>
+    <ul>
+      <li><strong>Light version</strong> — mist lavender base with purple-tinted petals. Ideal for speaker notes pages, handout backgrounds.</li>
+      <li><strong>Dark version</strong> — deep purple base with muted rainbow petals. Striking for title slides, hero web sections.</li>
+      <li><strong>Animated</strong> — gentle drift for web use. Subtle enough to not distract; adds life to a page on load.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ CONCEPT 4: NEURAL FUSION ═════════════════════ -->
+<div style="background: var(--purple-dark); padding: 1px 0;">
+<div class="section-wrap">
+  <span class="section-label" style="background:var(--teal);color:#00111a;">Concept 4</span>
+  <h2 class="section-title" style="color:var(--white);">Neural Network &amp; Petal Fusion</h2>
+  <p class="section-sub" style="color:var(--purple-light);">Petal shapes as synaptic nodes, connected by flowing bezier curves — celebrating the beauty of neurodivergent minds through the language of brain imaging and botanical form.</p>
+  <div class="section-divider" style="background:var(--teal);"></div>
+
+  <div id="neuralContainer" style="background: #050a18; border-radius: var(--radius); overflow:hidden; box-shadow: 0 8px 40px rgba(0,0,0,.6);">
+    <svg id="neuralSvg" viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+      <defs>
+        <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#0d1a30"/>
+          <stop offset="100%" stop-color="#050a18"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-strong">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <rect width="800" height="480" fill="url(#bgGrad)"/>
+      <!-- generated by JS -->
+      <g id="neuralConnections"></g>
+      <g id="neuralNodes"></g>
+      <g id="neuralSynapses"></g>
+      <text x="400" y="456" text-anchor="middle" font-family="Raleway,sans-serif" font-size="13" fill="#4a7ab0" opacity=".7" letter-spacing="3">NEURAL PATHWAYS · CELEBRATING THE BEAUTY OF NEURODIVERGENT MINDS</text>
+    </svg>
+  </div>
+
+  <div class="design-notes" style="background:linear-gradient(135deg,#0d1530,#162040);border-color:var(--teal);">
+    <h4 style="color:var(--teal);">Design Notes</h4>
+    <p style="color:#a0c0e0;">The petal's organic curve echoes the dendritic branching of neurons. Bezier paths flow between petal tips, and animated <code>stroke-dashoffset</code> creates the illusion of electrical signals travelling along pathways. Colours reference fMRI brain imaging palettes: deep navy backgrounds, electric blues and teals for active pathways, warm amber for high-activity nodes.</p>
+    <ul style="color:#a0c0e0;">
+      <li>Use cases: conference keynote opening slide, website hero, printed poster.</li>
+      <li>Accessible alternative: provide a static version without animation for motion-sensitive users.</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ CONCEPT 5: INFINITY SPECTRUM ═════════════════ -->
+<div class="section-wrap">
+  <span class="section-label">Concept 5</span>
+  <h2 class="section-title">The Infinity Spectrum</h2>
+  <p class="section-sub">The neurodiversity infinity symbol — universally recognised — filled with the diversity wheel's colours, with petal accents scattered along its path.</p>
+  <div class="section-divider"></div>
+
+  <div class="infinity-grid" id="infinityGrid"></div>
+
+  <div class="design-notes">
+    <h4>Design Notes</h4>
+    <p>The infinity/figure-8 is the established symbol of the neurodiversity movement. Pairing it with the petal motif creates a bridge between PP's brand language and a globally understood icon. The rainbow gradient version is emotionally expressive; the single-colour version is practical for single-colour print (letterheads, stamps, embossing).</p>
+    <ul>
+      <li>Tagline "Every Mind Matters" is set in Raleway 300 — lightweight against the bold mark.</li>
+      <li>Small petal accents scattered along the path echo the full diversity wheel without copying it directly.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ CONCEPT 6: PETAL AS UI ELEMENT ═══════════════ -->
+<div style="background: var(--mist); padding: 1px 0;">
+<div class="section-wrap">
+  <span class="section-label">Concept 6</span>
+  <h2 class="section-title">Petal as UI Element</h2>
+  <p class="section-sub">Petals as functional interface components — icon containers, section dividers, progress indicators, and watermarks — showing how the motif can be systematised into a design system.</p>
+  <div class="section-divider"></div>
+
+  <div class="ui-grid" id="uiGrid"></div>
+
+  <div class="design-notes">
+    <h4>Design Notes</h4>
+    <ul>
+      <li><strong>Petal icon containers</strong> — clip-path on a div creates the petal shape for icon backgrounds. More distinctive than circles or squares.</li>
+      <li><strong>Progress petals</strong> — each step fills a petal. Works for multi-step forms, module completion trackers.</li>
+      <li><strong>Watermark header</strong> — a large, very-low-opacity petal behind a section heading. Subtle texture.</li>
+      <li><strong>Section divider</strong> — a row of small petals replaces the standard horizontal rule.</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ EXTENDED COLOUR PALETTE ══════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label">Colour Palette</span>
+  <h2 class="section-title">Extended Colour Palette</h2>
+  <p class="section-sub">The existing Positive Partnerships palette plus proposed additions to support the neurodiversity storytelling and neural network concepts.</p>
+  <div class="section-divider"></div>
+
+  <div class="palette-section">
+    <p class="palette-group-title">Core Brand Palette</p>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-color" style="background:#330044;"></div><div class="swatch-name">Dark Purple</div><div class="swatch-hex">#330044</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#712D90;"></div><div class="swatch-name">Medium Purple</div><div class="swatch-hex">#712D90</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#C2A7CF;border:3px solid #e0d0ea;"></div><div class="swatch-name">Light Purple</div><div class="swatch-hex">#C2A7CF</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#FFFFFF;border:3px solid #ddd;"></div><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#BBD64A;"></div><div class="swatch-name">Lime</div><div class="swatch-hex">#BBD64A</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F15B40;"></div><div class="swatch-name">Red</div><div class="swatch-hex">#F15B40</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F7941E;"></div><div class="swatch-name">Orange</div><div class="swatch-hex">#F7941E</div></div>
+    </div>
+
+    <p class="palette-group-title">Proposed Additions — Neural &amp; Extended</p>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-color" style="background:#1B4F8A;"></div><div class="swatch-name">Neural Blue</div><div class="swatch-hex">#1B4F8A</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#00B5C8;"></div><div class="swatch-name">Synapse Teal</div><div class="swatch-hex">#00B5C8</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#47B549;"></div><div class="swatch-name">Growth Green</div><div class="swatch-hex">#47B549</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F9A31A;"></div><div class="swatch-name">Warm Amber</div><div class="swatch-hex">#F9A31A</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#DA7AB0;"></div><div class="swatch-name">Blossom Pink</div><div class="swatch-hex">#DA7AB0</div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#E8E0F0;border:3px solid #d0c8e0;"></div><div class="swatch-name">Mist Lavender</div><div class="swatch-hex">#E8E0F0</div></div>
+    </div>
+
+    <p class="palette-group-title">Diversity Wheel Spectrum (from the wheel)</p>
+    <div class="swatch-row" id="wheelSwatches"></div>
+  </div>
+
+  <div class="design-notes" style="margin-top:24px;">
+    <h4>Design Notes</h4>
+    <p>The extended palette is additive — it doesn't replace the core brand colours but gives the team richer options for the neurodiversity storytelling contexts. Neural Blue and Synapse Teal are data/science-adjacent; Growth Green and Warm Amber are warm and optimistic. Mist Lavender (new) provides a gentler alternative to white for large background areas.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ APPLICATION MOCKUPS ══════════════════════════ -->
+<div style="background: var(--purple-dark); padding: 1px 0;">
+<div class="section-wrap">
+  <span class="section-label" style="background:var(--lime);color:#1a0028;">Application Mockups</span>
+  <h2 class="section-title" style="color:var(--white);">Application Mockups</h2>
+  <p class="section-sub" style="color:var(--purple-light);">How these concepts look in real-world contexts — PowerPoint title slide, web hero section, and document cover.</p>
+  <div class="section-divider" style="background:var(--lime);"></div>
+
+  <div class="mockup-grid" id="mockupGrid"></div>
+
+  <div class="design-notes" style="background:linear-gradient(135deg,#1a0030,#240040);border-color:var(--lime);">
+    <h4 style="color:var(--lime);">Design Notes</h4>
+    <p style="color:var(--purple-light);">These mockups illustrate the three primary brand touchpoints: presentation slides (the most common output), web/digital, and formal documents. The petal decoration is consistently placed at the right or bottom-right — establishing a spatial convention that makes templated materials instantly recognisable as PP.</p>
+  </div>
+</div>
+</div>
+
+<footer>
+  <strong>Positive Partnerships</strong> · Brand Sandpit · Dave's Ideas<br/>
+  <span style="opacity:.6;">Exploring the diversity wheel petal motif · March 2026</span><br/><br/>
+  <a href="../index.html">← Back to Brand Sandpit</a>
+</footer>
+
+<!-- ════════════════════════════ JAVASCRIPT ══════════════════════════ -->
+<script>
+  /* ── Shared petal path function ── */
+  const NS = 'http://www.w3.org/2000/svg';
+
+  /**
+   * Create an SVG <path> element for a single petal.
+   * The petal points "up" from centre (50,50) in a 100×100 coordinate space.
+   * @param {number} angleDeg   rotation in degrees around (cx, cy)
+   * @param {string} fill       fill color
+   * @param {number} cx         center x (default 50)
+   * @param {number} cy         center y (default 50)
+   * @param {number} scale      scale factor (default 1)
+   * @param {number} opacity    opacity (default 1)
+   */
+  function makePetal(angleDeg, fill, cx=50, cy=50, scale=1, opacity=1) {
+    const p = document.createElementNS(NS, 'path');
+    // Path for a petal pointing up in a 100×100 vb (tip at ~8, root at 50)
+    p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+    p.setAttribute('fill', fill);
+    p.setAttribute('opacity', opacity);
+    p.setAttribute('transform', `rotate(${angleDeg} ${cx} ${cy}) scale(${scale})`);
+    if (scale !== 1) {
+      // adjust transform origin via translate
+      p.setAttribute('transform',
+        `rotate(${angleDeg} ${cx} ${cy})`
+      );
+    }
+    return p;
+  }
+
+  /**
+   * Build an SVG flower with N petals in a 100×100 viewBox.
+   */
+  function buildFlower(n, colors, opts={}) {
+    const {
+      size = 100,
+      cx = 50, cy = 50,
+      petalOpacity = 1,
+      gap = 0          // optional tiny rotation offset
+    } = opts;
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+    svg.setAttribute('xmlns', NS);
+    for (let i = 0; i < n; i++) {
+      const angle = (360 / n) * i + gap;
+      const color = colors[i % colors.length];
+      const p = makePetal(angle, color, cx, cy, 1, petalOpacity);
+      svg.appendChild(p);
+    }
+    return svg;
+  }
+
+  /* ── Color palettes ── */
+  const wheelColors = [
+    '#712D90','#AC3392','#DA7AB0','#F15B40','#F7941E',
+    '#FBB016','#E6E414','#91C73E','#19B261','#00A9AD','#0091C0','#5C4D9F'
+  ];
+  const purpleColors  = ['#330044','#4a1568','#712D90','#9b5ab8','#C2A7CF','#9b5ab8'];
+  const monoColors    = Array(6).fill('#FFFFFF');
+  const accentColors  = ['#BBD64A','#F7941E','#F15B40','#BBD64A','#F7941E','#F15B40'];
+  const neuralColors  = ['#1B4F8A','#00B5C8','#47B549','#F9A31A','#DA7AB0','#712D90'];
+
+  /* ═══════════════════════════════════════════════════════
+     HERO WHEEL
+     ═══════════════════════════════════════════════════ */
+  (function buildHeroWheel() {
+    const wrap = document.getElementById('heroWheel');
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('xmlns', NS);
+
+    // 24 petals, rich palette
+    const heroColors = [
+      '#712D90','#8B2FA0','#AC3392','#C44A9C','#DA7AB0','#E890C0',
+      '#F15B40','#F37050','#F7941E','#F9A31A','#FBB016','#FBC030',
+      '#E6E414','#C8D020','#91C73E','#70B835','#47B549','#19B261',
+      '#00A9AD','#00BABE','#0091C0','#1B4F8A','#5C4D9F','#7060B0'
+    ];
+    for (let i = 0; i < 24; i++) {
+      const angle = (360 / 24) * i;
+      const p = makePetal(angle, heroColors[i], 50, 50, 1, 0.85);
+      svg.appendChild(p);
+    }
+    wrap.appendChild(svg);
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     CONCEPT 1: PETAL MARK GRID
+     ═══════════════════════════════════════════════════ */
+  (function buildPetalMarks() {
+    const grid = document.getElementById('petalMarkGrid');
+    const marks = [
+      {
+        n: 6, colors: purpleColors,
+        bg: '#f7f2ff', label: '6-Petal Purple',
+        name: 'Brand Purple Mark',
+        use: 'Favicon · Document watermark · Social media profile'
+      },
+      {
+        n: 12, colors: wheelColors,
+        bg: '#fff', label: '12-Petal Rainbow',
+        name: 'Full Spectrum Mark',
+        use: 'Social media cover · Print posters · Large-format display'
+      },
+      {
+        n: 6, colors: monoColors,
+        bg: '#330044', label: 'Reversed (White)',
+        name: 'Monochrome Reversed',
+        use: 'Dark backgrounds · Merchandise · Embossed print · App icon'
+      },
+      {
+        n: 6, colors: accentColors,
+        bg: '#fff', label: 'Accent Triad',
+        name: 'Lime · Orange · Red',
+        use: 'Youth-facing materials · Campaign assets · Digital ads'
+      }
+    ];
+
+    marks.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const svgWrap = document.createElement('div');
+      svgWrap.style.cssText = `
+        width:120px;height:120px;border-radius:50%;
+        background:${m.bg};display:flex;align-items:center;justify-content:center;
+        box-shadow: 0 4px 20px rgba(51,0,68,.18);
+        flex-shrink:0;
+      `;
+      const flower = buildFlower(m.n, m.colors, {petalOpacity: m.colors[0]==='#FFFFFF' ? .95 : .9});
+      flower.style.width = '88px';
+      flower.style.height = '88px';
+      svgWrap.appendChild(flower);
+
+      card.innerHTML = `
+        <div class="card-label">${m.label}</div>
+      `;
+      card.insertBefore(svgWrap, card.firstChild);
+      card.innerHTML += `
+        <div class="card-name">${m.name}</div>
+        <div class="card-use">${m.use}</div>
+      `;
+      // re-insert svgWrap properly
+      card.innerHTML = `<div class="card-label">${m.label}</div>`;
+      card.appendChild(svgWrap);
+      card.innerHTML += `<div class="card-name">${m.name}</div><div class="card-use">${m.use}</div>`;
+      card.insertBefore(svgWrap, card.children[1]);
+      grid.appendChild(card);
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     CONCEPT 2: CORNER TREATMENTS
+     ═══════════════════════════════════════════════════ */
+  (function buildCornerTreatments() {
+    const grid = document.getElementById('cornerGrid');
+
+    // Helper: build a quarter-fan of petals positioned at a corner of a rect
+    // viewBox 320×180
+    function makeSlideSvg(dark, petals, titleColor, titleText, subText, edgeMode) {
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 320 180');
+      svg.setAttribute('xmlns', NS);
+
+      // background
+      const bg = document.createElementNS(NS, 'rect');
+      bg.setAttribute('width','320'); bg.setAttribute('height','180');
+      bg.setAttribute('fill', dark ? '#330044' : '#FFFFFF');
+      svg.appendChild(bg);
+
+      if (!edgeMode) {
+        // Bottom-right corner fan — clip to bottom-right quadrant
+        const clip = document.createElementNS(NS, 'clipPath');
+        clip.setAttribute('id', `clip-${Math.random().toString(36).slice(2)}`);
+        const clipR = document.createElementNS(NS, 'rect');
+        clipR.setAttribute('x','160'); clipR.setAttribute('y','80');
+        clipR.setAttribute('width','160'); clipR.setAttribute('height','100');
+        clip.appendChild(clipR);
+        svg.appendChild(clip);
+
+        const petalG = document.createElementNS(NS, 'g');
+        petalG.setAttribute('clip-path', `url(#${clip.getAttribute('id')})`);
+        // Fan of petals from bottom-right corner (320,180)
+        const fanColors = dark
+          ? ['#712D90','#9b5ab8','#C2A7CF','#5C4D9F','#AC3392','#DA7AB0','#8B2FA0']
+          : wheelColors;
+        for (let i = 0; i < petals; i++) {
+          const baseAngle = -45; // fan from ~-45 to +90 relative to corner
+          const spreadAngle = 135;
+          const angle = baseAngle + (spreadAngle / (petals-1)) * i;
+          // Petals centred at the bottom-right corner
+          const p = document.createElementNS(NS, 'path');
+          // Petal path in local space: tip points in direction `angle` from (0,0)
+          // We'll draw petal and position with transform
+          p.setAttribute('d', 'M 0,0 C -12,-10 -22,-28 0,-42 C 22,-28 12,-10 0,0 Z');
+          p.setAttribute('fill', fanColors[i % fanColors.length]);
+          p.setAttribute('opacity', dark ? '0.75' : '0.7');
+          p.setAttribute('transform', `translate(320,180) rotate(${angle + 180})`);
+          petalG.appendChild(p);
+        }
+        svg.appendChild(petalG);
+      } else {
+        // Left edge strip of petals
+        const fanColors = dark
+          ? ['#712D90','#9b5ab8','#C2A7CF','#5C4D9F','#AC3392','#DA7AB0']
+          : wheelColors;
+
+        const clip2 = document.createElementNS(NS, 'clipPath');
+        clip2.setAttribute('id', `clip2-${Math.random().toString(36).slice(2)}`);
+        const clipR2 = document.createElementNS(NS, 'rect');
+        clipR2.setAttribute('x','0'); clipR2.setAttribute('y','0');
+        clipR2.setAttribute('width','52'); clipR2.setAttribute('height','180');
+        clip2.appendChild(clipR2);
+        svg.appendChild(clip2);
+
+        const stripG = document.createElementNS(NS, 'g');
+        stripG.setAttribute('clip-path', `url(#${clip2.getAttribute('id')})`);
+        for (let i = 0; i < 8; i++) {
+          const y = 15 + i * 22;
+          const p = document.createElementNS(NS, 'path');
+          p.setAttribute('d', 'M 0,0 C -12,-10 -22,-28 0,-42 C 22,-28 12,-10 0,0 Z');
+          p.setAttribute('fill', fanColors[i % fanColors.length]);
+          p.setAttribute('opacity', dark ? '0.7' : '0.6');
+          p.setAttribute('transform', `translate(8,${y}) rotate(${-30 + i * 8})`);
+          stripG.appendChild(p);
+        }
+        svg.appendChild(stripG);
+      }
+
+      // Title text
+      const t1 = document.createElementNS(NS, 'text');
+      t1.setAttribute('x','20'); t1.setAttribute('y','38');
+      t1.setAttribute('font-family','Raleway,sans-serif');
+      t1.setAttribute('font-size','14'); t1.setAttribute('font-weight','800');
+      t1.setAttribute('fill', titleColor);
+      t1.textContent = titleText;
+      svg.appendChild(t1);
+
+      const t2 = document.createElementNS(NS, 'text');
+      t2.setAttribute('x','20'); t2.setAttribute('y','58');
+      t2.setAttribute('font-family','Open Sans,sans-serif');
+      t2.setAttribute('font-size','8');
+      t2.setAttribute('fill', dark ? '#C2A7CF' : '#712D90');
+      t2.textContent = subText;
+      svg.appendChild(t2);
+
+      return svg;
+    }
+
+    const slides = [
+      {
+        dark: false, petals: 7, titleColor: '#330044',
+        title: 'Participant Workbook', sub: 'Understanding Communication Styles',
+        edge: false, label: 'Rainbow corner · light slide'
+      },
+      {
+        dark: true, petals: 7, titleColor: '#FFFFFF',
+        title: 'Positive Partnerships', sub: 'Workshop Series · 2026',
+        edge: false, label: 'Purple mono corner · dark slide'
+      },
+      {
+        dark: false, petals: 0, titleColor: '#330044',
+        title: 'Module 3: Strengths', sub: 'Facilitator Notes',
+        edge: true, label: 'Rainbow edge strip · light slide'
+      }
+    ];
+
+    slides.forEach(s => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;flex-direction:column;gap:12px;';
+
+      const frame = document.createElement('div');
+      frame.className = 'mock-slide' + (s.dark ? ' dark' : '');
+      const svgEl = makeSlideSvg(s.dark, s.petals, s.titleColor, s.title, s.sub, s.edge);
+      svgEl.classList.add('slide-svg');
+      svgEl.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+      frame.appendChild(svgEl);
+
+      const lbl = document.createElement('p');
+      lbl.style.cssText = 'font-size:.8rem;color:var(--text-mid);font-style:italic;text-align:center;';
+      lbl.textContent = s.label;
+
+      wrap.appendChild(frame);
+      wrap.appendChild(lbl);
+      grid.appendChild(wrap);
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     CONCEPT 3: SCATTER PATTERN
+     ═══════════════════════════════════════════════════ */
+  (function buildScatterPattern() {
+    const grid = document.getElementById('patternGrid');
+
+    function makeScatterSvg(dark, animated) {
+      const w = 500, h = 300;
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.setAttribute('xmlns', NS);
+      svg.style.width = '100%';
+      svg.style.height = '100%';
+
+      const bg = document.createElementNS(NS, 'rect');
+      bg.setAttribute('width', w); bg.setAttribute('height', h);
+      bg.setAttribute('fill', dark ? '#1a0028' : '#E8E0F0');
+      svg.appendChild(bg);
+
+      const petalColors = dark
+        ? ['#712D90','#AC3392','#DA7AB0','#00A9AD','#0091C0','#5C4D9F',
+           '#F15B40','#F7941E','#91C73E','#FBB016','#E6E414','#19B261']
+        : ['#712D90','#9b5ab8','#C2A7CF','#5C4D9F','#AC3392','#330044',
+           '#BBD64A','#47B549','#00A9AD','#F7941E','#DA7AB0','#0091C0'];
+
+      const rng = (() => {
+        let seed = 42;
+        return () => { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; };
+      })();
+
+      const petalCount = 38;
+      for (let i = 0; i < petalCount; i++) {
+        const x = rng() * w;
+        const y = rng() * h;
+        const size = 14 + rng() * 30;
+        const rot  = rng() * 360;
+        const op   = dark ? (.2 + rng() * .45) : (.15 + rng() * .3);
+        const col  = petalColors[Math.floor(rng() * petalColors.length)];
+
+        const g = document.createElementNS(NS, 'g');
+        if (animated) {
+          const delay = rng() * 8;
+          const dur   = 6 + rng() * 8;
+          g.style.animation = `petal-drift ${dur}s ${delay}s ease-in-out infinite`;
+          g.style.transformOrigin = `${x}px ${y}px`;
+        }
+
+        // Petals: the path is in 100x100 space, scale it
+        const sc = size / 42; // ~42px is the radius of our petal in 100-unit space
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+        p.setAttribute('fill', col);
+        p.setAttribute('opacity', op);
+        // translate to position, scale, rotate
+        p.setAttribute('transform',
+          `translate(${x - 50*sc}, ${y - 50*sc}) scale(${sc}) rotate(${rot} 50 50)`
+        );
+        g.appendChild(p);
+        svg.appendChild(g);
+      }
+      return svg;
+    }
+
+    const patterns = [
+      { dark: false, animated: false, label: 'Light · static' },
+      { dark: true,  animated: false, label: 'Dark · static' },
+      { dark: false, animated: true,  label: 'Light · animated drift' }
+    ];
+
+    patterns.forEach(pat => {
+      const box = document.createElement('div');
+      box.className = 'pattern-box';
+      const svgEl = makeScatterSvg(pat.dark, pat.animated);
+      box.appendChild(svgEl);
+      const lbl = document.createElement('span');
+      lbl.className = 'pattern-label';
+      lbl.textContent = pat.label;
+      box.appendChild(lbl);
+      grid.appendChild(box);
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     CONCEPT 4: NEURAL NETWORK
+     ═══════════════════════════════════════════════════ */
+  (function buildNeuralNetwork() {
+    const svg = document.getElementById('neuralSvg');
+    const connLayer    = document.getElementById('neuralConnections');
+    const nodeLayer    = document.getElementById('neuralNodes');
+    const synapseLayer = document.getElementById('neuralSynapses');
+
+    const W = 800, H = 480;
+
+    // Node positions and colors
+    const nodes = [
+      {x:120, y:80,  col:'#712D90', s:16},
+      {x:280, y:50,  col:'#00B5C8', s:12},
+      {x:460, y:90,  col:'#F9A31A', s:18},
+      {x:620, y:55,  col:'#DA7AB0', s:13},
+      {x:700, y:180, col:'#47B549', s:15},
+      {x:680, y:320, col:'#1B4F8A', s:17},
+      {x:550, y:400, col:'#F15B40', s:12},
+      {x:380, y:420, col:'#91C73E', s:16},
+      {x:200, y:380, col:'#00A9AD', s:14},
+      {x:80,  y:260, col:'#AC3392', s:18},
+      {x:160, y:170, col:'#FBB016', s:12},
+      {x:340, y:220, col:'#5C4D9F', s:20},
+      {x:520, y:250, col:'#0091C0', s:14},
+      {x:400, y:130, col:'#E6E414', s:11},
+    ];
+
+    // Connections (pairs of node indices)
+    const connections = [
+      [0,10],[10,1],[1,13],[13,2],[2,11],[11,12],[12,4],
+      [4,5],[5,6],[6,7],[7,8],[8,9],[9,0],
+      [11,3],[3,4],[11,13],[10,8],[12,6],[1,2],[5,12],
+      [9,10],[0,1],[7,11],[2,4]
+    ];
+
+    // Colors for connection lines
+    const lineColors = [
+      '#1B4F8A','#00B5C8','#712D90','#47B549','#F9A31A',
+      '#DA7AB0','#5C4D9F','#0091C0','#AC3392','#00A9AD'
+    ];
+
+    // Draw connections with animated dash
+    connections.forEach(([a,b], idx) => {
+      const na = nodes[a], nb = nodes[b];
+      // Control point offset for bezier curve
+      const mx = (na.x + nb.x) / 2 + (Math.random() - 0.5) * 60;
+      const my = (na.y + nb.y) / 2 + (Math.random() - 0.5) * 60;
+      const path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', `M${na.x},${na.y} Q${mx},${my} ${nb.x},${nb.y}`);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', lineColors[idx % lineColors.length]);
+      path.setAttribute('stroke-width', '1.2');
+      path.setAttribute('stroke-opacity', '0.45');
+      path.setAttribute('stroke-dasharray', '6 4');
+      const dur = 2.5 + (idx % 5) * 0.7;
+      const delay = (idx * 0.3) % 4;
+      path.style.animation = `dash-flow ${dur}s ${delay}s linear infinite`;
+      connLayer.appendChild(path);
+    });
+
+    // Draw nodes as mini petal clusters
+    nodes.forEach((n, idx) => {
+      const g = document.createElementNS(NS, 'g');
+      const petalN = 5 + (idx % 3); // 5–7 petals
+      const r = n.s;
+      // Cluster centre at n.x, n.y
+      for (let i = 0; i < petalN; i++) {
+        const angle = (360 / petalN) * i;
+        const p = document.createElementNS(NS, 'path');
+        // Scale petal to fit in radius r
+        // Original petal: 42 units tall in 100-unit space → scale = r/42
+        const sc = r / 42;
+        // The petal pivots around (50,50) in its own space
+        // We translate so that (50,50) maps to (n.x, n.y)
+        p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+        p.setAttribute('fill', n.col);
+        p.setAttribute('opacity', '0.8');
+        p.setAttribute('transform',
+          `translate(${n.x - 50*sc}, ${n.y - 50*sc}) scale(${sc}) rotate(${angle} 50 50)`
+        );
+        g.appendChild(p);
+      }
+      // Glow circle behind
+      const glow = document.createElementNS(NS, 'circle');
+      glow.setAttribute('cx', n.x); glow.setAttribute('cy', n.y);
+      glow.setAttribute('r', r * 1.8);
+      glow.setAttribute('fill', n.col);
+      glow.setAttribute('opacity', '0.08');
+      nodeLayer.insertBefore(glow, nodeLayer.firstChild);
+      nodeLayer.appendChild(g);
+    });
+
+    // Draw synapse dots at connection midpoints
+    connections.forEach(([a,b], idx) => {
+      const na = nodes[a], nb = nodes[b];
+      const mx = (na.x + nb.x) / 2;
+      const my = (na.y + nb.y) / 2;
+      const dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('cx', mx); dot.setAttribute('cy', my);
+      dot.setAttribute('r', '3');
+      dot.setAttribute('fill', lineColors[idx % lineColors.length]);
+      dot.setAttribute('opacity', '0.7');
+      const dur  = 1.5 + (idx % 4) * 0.5;
+      const del  = (idx * 0.2) % 3;
+      dot.style.animation = `synapse-pulse ${dur}s ${del}s ease-in-out infinite`;
+      synapseLayer.appendChild(dot);
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     CONCEPT 5: INFINITY SPECTRUM
+     ═══════════════════════════════════════════════════ */
+  (function buildInfinity() {
+    const grid = document.getElementById('infinityGrid');
+
+    function makeInfinitySvg(rainbow, showText) {
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 400 220');
+      svg.setAttribute('xmlns', NS);
+
+      const defs = document.createElementNS(NS, 'defs');
+
+      if (rainbow) {
+        // Linear gradient along path direction
+        const grad = document.createElementNS(NS, 'linearGradient');
+        grad.setAttribute('id', 'infGrad');
+        grad.setAttribute('x1','0%'); grad.setAttribute('y1','0%');
+        grad.setAttribute('x2','100%'); grad.setAttribute('y2','0%');
+        const stops = [
+          {o:'0%',  c:'#712D90'},
+          {o:'14%', c:'#AC3392'},
+          {o:'28%', c:'#F15B40'},
+          {o:'42%', c:'#F7941E'},
+          {o:'56%', c:'#E6E414'},
+          {o:'70%', c:'#19B261'},
+          {o:'84%', c:'#0091C0'},
+          {o:'100%',c:'#5C4D9F'}
+        ];
+        stops.forEach(s => {
+          const st = document.createElementNS(NS, 'stop');
+          st.setAttribute('offset', s.o);
+          st.setAttribute('stop-color', s.c);
+          grad.appendChild(st);
+        });
+        defs.appendChild(grad);
+
+        // Animated stroke gradient
+        const animGrad = document.createElementNS(NS, 'linearGradient');
+        animGrad.setAttribute('id', 'infGrad2');
+        animGrad.setAttribute('x1','100%'); animGrad.setAttribute('y1','0%');
+        animGrad.setAttribute('x2','0%'); animGrad.setAttribute('y2','0%');
+        stops.forEach(s => {
+          const st = document.createElementNS(NS, 'stop');
+          st.setAttribute('offset', s.o);
+          st.setAttribute('stop-color', s.c);
+          animGrad.appendChild(st);
+        });
+        defs.appendChild(animGrad);
+      }
+      svg.appendChild(defs);
+
+      // Background
+      const bg = document.createElementNS(NS, 'rect');
+      bg.setAttribute('width','400'); bg.setAttribute('height','220');
+      bg.setAttribute('fill', rainbow ? '#FFFFFF' : '#330044');
+      svg.appendChild(bg);
+
+      // Infinity path: figure-8 using cubic bezier
+      // Centred at (200,110), width ~300, height ~120
+      const infPath = 'M 200,110 C 200,70 270,40 320,70 C 380,110 380,170 320,200 C 270,230 200,200 200,160 C 200,200 130,230 80,200 C 20,170 20,110 80,70 C 130,40 200,70 200,110 Z';
+
+      // Shadow/glow
+      if (!rainbow) {
+        const shadow = document.createElementNS(NS, 'path');
+        shadow.setAttribute('d', infPath);
+        shadow.setAttribute('fill', 'none');
+        shadow.setAttribute('stroke', '#712D90');
+        shadow.setAttribute('stroke-width', '18');
+        shadow.setAttribute('opacity', '0.25');
+        svg.appendChild(shadow);
+      }
+
+      // Main filled infinity
+      const inf = document.createElementNS(NS, 'path');
+      inf.setAttribute('d', infPath);
+      inf.setAttribute('fill', rainbow ? 'url(#infGrad)' : '#712D90');
+      inf.setAttribute('opacity', '0.85');
+      svg.appendChild(inf);
+
+      // Animated highlight stroke
+      const stroke = document.createElementNS(NS, 'path');
+      stroke.setAttribute('d', infPath);
+      stroke.setAttribute('fill', 'none');
+      stroke.setAttribute('stroke', rainbow ? 'url(#infGrad2)' : '#C2A7CF');
+      stroke.setAttribute('stroke-width', '2.5');
+      stroke.setAttribute('stroke-dasharray', '800');
+      stroke.setAttribute('stroke-dashoffset', '800');
+      stroke.setAttribute('opacity', '0.8');
+      stroke.style.animation = 'infinity-flow 4s 0.5s ease-in-out forwards';
+      svg.appendChild(stroke);
+
+      // Scatter small petals along the infinity outline
+      const petalPositions = [
+        {x:200,y:70, a:0},   {x:320,y:70,a:60},  {x:370,y:110,a:90},
+        {x:320,y:200,a:180}, {x:200,y:160,a:270}, {x:80,y:200,a:240},
+        {x:30,y:110,a:270},  {x:80,y:70,a:300},   {x:260,y:50,a:30},
+        {x:140,y:50,a:330}
+      ];
+      const petalAccentCols = rainbow
+        ? ['#712D90','#F15B40','#F7941E','#91C73E','#00A9AD','#5C4D9F','#AC3392','#FBB016','#DA7AB0','#0091C0']
+        : Array(10).fill('#FFFFFF');
+
+      petalPositions.forEach((pp, i) => {
+        const sc = 0.28;
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+        p.setAttribute('fill', petalAccentCols[i % petalAccentCols.length]);
+        p.setAttribute('opacity', rainbow ? '0.9' : '0.7');
+        p.setAttribute('transform',
+          `translate(${pp.x - 50*sc}, ${pp.y - 50*sc}) scale(${sc}) rotate(${pp.a} 50 50)`
+        );
+        svg.appendChild(p);
+      });
+
+      // Text
+      if (showText) {
+        const tagline = document.createElementNS(NS, 'text');
+        tagline.setAttribute('x', '200'); tagline.setAttribute('y', '200');
+        tagline.setAttribute('text-anchor', 'middle');
+        tagline.setAttribute('font-family', 'Raleway,sans-serif');
+        tagline.setAttribute('font-size', '11');
+        tagline.setAttribute('font-weight', '300');
+        tagline.setAttribute('letter-spacing', '2.5');
+        tagline.setAttribute('fill', rainbow ? '#330044' : '#C2A7CF');
+        tagline.textContent = 'EVERY MIND MATTERS';
+        svg.appendChild(tagline);
+      }
+
+      return svg;
+    }
+
+    const variants = [
+      { rainbow: true,  text: true,  label: 'Full Colour', sub: 'Celebrations, social media, keynote' },
+      { rainbow: false, text: true,  label: 'Single Colour (Purple)', sub: 'Letterheads, formal documents, embossing' }
+    ];
+
+    variants.forEach(v => {
+      const box = document.createElement('div');
+      box.className = 'infinity-box' + (v.rainbow ? '' : ' dark');
+      const svgEl = makeInfinitySvg(v.rainbow, v.text);
+      box.appendChild(svgEl);
+      box.innerHTML += `
+        <p style="font-family:'Raleway',sans-serif;font-weight:700;color:${v.rainbow ? '#330044' : '#FFFFFF'};margin-top:16px;">${v.label}</p>
+        <p style="font-size:.82rem;color:${v.rainbow ? '#712D90' : '#C2A7CF'};margin-top:4px;">${v.sub}</p>
+      `;
+      grid.appendChild(box);
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     CONCEPT 6: PETAL AS UI ELEMENT
+     ═══════════════════════════════════════════════════ */
+  (function buildUiElements() {
+    const grid = document.getElementById('uiGrid');
+
+    // 6a: Petal icon containers
+    function makePetalIconCard() {
+      const card = document.createElement('div');
+      card.className = 'ui-card';
+
+      const svgWrap = document.createElement('div');
+      svgWrap.style.cssText = 'background:#f7f2ff;padding:24px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;';
+
+      const icons = [
+        { col: '#712D90', icon: '★' },
+        { col: '#00B5C8', icon: '♥' },
+        { col: '#F7941E', icon: '◆' },
+        { col: '#47B549', icon: '✦' }
+      ];
+
+      icons.forEach(ic => {
+        const svg = document.createElementNS(NS, 'svg');
+        svg.setAttribute('viewBox', '0 0 100 100');
+        svg.setAttribute('width', '52'); svg.setAttribute('height', '52');
+
+        // 4-petal cluster as clip shape
+        for (let i = 0; i < 4; i++) {
+          const p = document.createElementNS(NS, 'path');
+          p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+          p.setAttribute('fill', ic.col);
+          p.setAttribute('opacity', '0.9');
+          p.setAttribute('transform', `rotate(${i*90} 50 50)`);
+          svg.appendChild(p);
+        }
+        const t = document.createElementNS(NS, 'text');
+        t.setAttribute('x','50'); t.setAttribute('y','55');
+        t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','18');
+        t.setAttribute('fill','#FFFFFF'); t.textContent = ic.icon;
+        svg.appendChild(t);
+
+        svgWrap.appendChild(svg);
+      });
+
+      card.appendChild(svgWrap);
+      card.innerHTML += `<div class="ui-card-body"><h4>Petal Icon Containers</h4><p>Four-petal cluster as icon background — a distinctive alternative to circles or rounded squares.</p></div>`;
+      return card;
+    }
+
+    // 6b: Progress petals
+    function makeProgressCard() {
+      const card = document.createElement('div');
+      card.className = 'ui-card';
+
+      const svgWrap = document.createElement('div');
+      svgWrap.style.cssText = 'background:#fff;padding:24px 16px;';
+
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 300 80');
+      svg.setAttribute('width', '100%');
+
+      const steps = 5;
+      const completed = 3;
+      const stepColors = ['#712D90','#AC3392','#00B5C8','#F7941E','#F15B40'];
+
+      for (let i = 0; i < steps; i++) {
+        const cx = 30 + i * 60;
+        const cy = 38;
+        const done = i < completed;
+
+        // Petal pair (2 petals per step)
+        for (let j = 0; j < 2; j++) {
+          const p = document.createElementNS(NS, 'path');
+          p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+          p.setAttribute('fill', done ? stepColors[i] : '#E8E0F0');
+          p.setAttribute('opacity', done ? '0.9' : '1');
+          const sc = 0.38;
+          p.setAttribute('transform',
+            `translate(${cx - 50*sc},${cy - 50*sc}) scale(${sc}) rotate(${j * 180} 50 50)`
+          );
+          if (done) {
+            p.style.animation = `petal-fill .4s ${i * 0.15}s ease both`;
+          }
+          svg.appendChild(p);
+        }
+
+        // Label
+        const t = document.createElementNS(NS, 'text');
+        t.setAttribute('x', cx); t.setAttribute('y', 72);
+        t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','7');
+        t.setAttribute('font-family','Raleway,sans-serif'); t.setAttribute('font-weight','600');
+        t.setAttribute('fill', done ? stepColors[i] : '#C2A7CF');
+        t.textContent = `Step ${i+1}`;
+        svg.appendChild(t);
+
+        // Connector line
+        if (i < steps - 1) {
+          const line = document.createElementNS(NS, 'line');
+          line.setAttribute('x1', cx + 16); line.setAttribute('y1', cy);
+          line.setAttribute('x2', cx + 44); line.setAttribute('y2', cy);
+          line.setAttribute('stroke', done && i < completed - 1 ? stepColors[i] : '#E8E0F0');
+          line.setAttribute('stroke-width','2');
+          svg.appendChild(line);
+        }
+      }
+
+      svgWrap.appendChild(svg);
+      card.appendChild(svgWrap);
+      card.innerHTML += `<div class="ui-card-body"><h4>Progress Indicator</h4><p>Each petal fills as a step is completed. Works for module trackers, multi-step forms.</p></div>`;
+      return card;
+    }
+
+    // 6c: Section divider
+    function makeDividerCard() {
+      const card = document.createElement('div');
+      card.className = 'ui-card';
+
+      const svgWrap = document.createElement('div');
+      svgWrap.style.cssText = 'background:#fff;padding:24px 16px;';
+
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox','0 0 300 50');
+      svg.setAttribute('width','100%');
+
+      // Thin line
+      const line = document.createElementNS(NS, 'line');
+      line.setAttribute('x1','0');line.setAttribute('y1','25');
+      line.setAttribute('x2','300');line.setAttribute('y2','25');
+      line.setAttribute('stroke','#E8E0F0');line.setAttribute('stroke-width','1');
+      svg.appendChild(line);
+
+      // Row of petals replacing the line in the centre
+      const dColors = wheelColors;
+      for (let i = 0; i < 10; i++) {
+        const cx = 60 + i * 18;
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', 'M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+        p.setAttribute('fill', dColors[i % dColors.length]);
+        p.setAttribute('opacity','0.75');
+        const sc = 0.22;
+        p.setAttribute('transform',
+          `translate(${cx - 50*sc}, ${25 - 50*sc}) scale(${sc}) rotate(${i * 36} 50 50)`
+        );
+        svg.appendChild(p);
+      }
+
+      svgWrap.appendChild(svg);
+      card.appendChild(svgWrap);
+      card.innerHTML += `<div class="ui-card-body"><h4>Petal Section Divider</h4><p>A row of petals replaces the standard horizontal rule — decorative yet structurally clear.</p></div>`;
+      return card;
+    }
+
+    // 6d: Watermark header
+    function makeWatermarkCard() {
+      const card = document.createElement('div');
+      card.className = 'ui-card';
+
+      const svgWrap = document.createElement('div');
+      svgWrap.style.cssText = 'background:#f7f2ff;padding:0;overflow:hidden;position:relative;';
+
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox','0 0 300 100');
+      svg.setAttribute('width','100%');
+
+      // Watermark flower
+      const wmColors = Array(12).fill('#712D90');
+      for (let i = 0; i < 12; i++) {
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('d','M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+        p.setAttribute('fill','#712D90');
+        p.setAttribute('opacity','0.07');
+        const sc = 1.6;
+        p.setAttribute('transform',
+          `translate(${210 - 50*sc},${50 - 50*sc}) scale(${sc}) rotate(${i*30} 50 50)`
+        );
+        svg.appendChild(p);
+      }
+
+      // Text over watermark
+      const t1 = document.createElementNS(NS,'text');
+      t1.setAttribute('x','20');t1.setAttribute('y','40');
+      t1.setAttribute('font-family','Raleway,sans-serif');t1.setAttribute('font-size','16');
+      t1.setAttribute('font-weight','800');t1.setAttribute('fill','#330044');
+      t1.textContent = 'Module 4';
+      svg.appendChild(t1);
+
+      const t2 = document.createElementNS(NS,'text');
+      t2.setAttribute('x','20');t2.setAttribute('y','58');
+      t2.setAttribute('font-family','Open Sans,sans-serif');t2.setAttribute('font-size','8');
+      t2.setAttribute('fill','#712D90');t2.setAttribute('opacity','.8');
+      t2.textContent = 'Understanding Sensory Processing';
+      svg.appendChild(t2);
+
+      const div = document.createElementNS(NS,'line');
+      div.setAttribute('x1','20');div.setAttribute('y1','66');
+      div.setAttribute('x2','200');div.setAttribute('y2','66');
+      div.setAttribute('stroke','#BBD64A');div.setAttribute('stroke-width','2.5');
+      svg.appendChild(div);
+
+      svgWrap.appendChild(svg);
+      card.appendChild(svgWrap);
+      card.innerHTML += `<div class="ui-card-body"><h4>Petal Watermark Header</h4><p>Large low-opacity flower behind section headings. Subtle brand presence without visual competition.</p></div>`;
+      return card;
+    }
+
+    grid.appendChild(makePetalIconCard());
+    grid.appendChild(makeProgressCard());
+    grid.appendChild(makeDividerCard());
+    grid.appendChild(makeWatermarkCard());
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     WHEEL SWATCHES
+     ═══════════════════════════════════════════════════ */
+  (function buildWheelSwatches() {
+    const container = document.getElementById('wheelSwatches');
+    const names = [
+      'Wheel Purple','Wheel Magenta','Blossom','Wheel Red','Wheel Orange',
+      'Wheel Amber','Wheel Yellow','Wheel Green','Wheel Emerald',
+      'Wheel Teal','Wheel Blue','Wheel Indigo'
+    ];
+    wheelColors.forEach((col, i) => {
+      const swatch = document.createElement('div');
+      swatch.className = 'swatch';
+      swatch.innerHTML = `
+        <div class="swatch-color" style="background:${col};"></div>
+        <div class="swatch-name">${names[i]}</div>
+        <div class="swatch-hex">${col}</div>
+      `;
+      container.appendChild(swatch);
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════
+     APPLICATION MOCKUPS
+     ═══════════════════════════════════════════════════ */
+  (function buildMockups() {
+    const grid = document.getElementById('mockupGrid');
+
+    // Mockup 1: PowerPoint title slide
+    function makePPTMockup() {
+      const svg = document.createElementNS(NS,'svg');
+      svg.setAttribute('viewBox','0 0 480 270');
+      svg.setAttribute('xmlns',NS);
+
+      // Background
+      const bg = document.createElementNS(NS,'rect');
+      bg.setAttribute('width','480');bg.setAttribute('height','270');
+      bg.setAttribute('fill','#330044');
+      svg.appendChild(bg);
+
+      // Subtle noise texture via tiny rects
+      for(let i=0;i<30;i++){
+        const r = document.createElementNS(NS,'rect');
+        r.setAttribute('x', Math.random()*480);
+        r.setAttribute('y', Math.random()*270);
+        r.setAttribute('width','80');r.setAttribute('height','1');
+        r.setAttribute('fill','#712D90');r.setAttribute('opacity','.06');
+        svg.appendChild(r);
+      }
+
+      // Bottom-right petal fan (12 petals, rainbow)
+      for(let i=0;i<12;i++){
+        const baseAngle = -80;
+        const angle = baseAngle + (180/(12-1))*i;
+        const p = document.createElementNS(NS,'path');
+        p.setAttribute('d','M 0,0 C -12,-10 -22,-28 0,-42 C 22,-28 12,-10 0,0 Z');
+        p.setAttribute('fill', wheelColors[i % wheelColors.length]);
+        p.setAttribute('opacity','0.7');
+        p.setAttribute('transform',`translate(480,270) rotate(${angle+180})`);
+        svg.appendChild(p);
+      }
+
+      // PP logo text
+      const logo = document.createElementNS(NS,'text');
+      logo.setAttribute('x','36');logo.setAttribute('y','52');
+      logo.setAttribute('font-family','Raleway,sans-serif');
+      logo.setAttribute('font-size','11');logo.setAttribute('font-weight','700');
+      logo.setAttribute('fill','#C2A7CF');logo.setAttribute('letter-spacing','1');
+      logo.textContent = 'POSITIVE PARTNERSHIPS';
+      svg.appendChild(logo);
+
+      // Title
+      const t1 = document.createElementNS(NS,'text');
+      t1.setAttribute('x','36');t1.setAttribute('y','128');
+      t1.setAttribute('font-family','Raleway,sans-serif');
+      t1.setAttribute('font-size','30');t1.setAttribute('font-weight','900');
+      t1.setAttribute('fill','#FFFFFF');
+      t1.textContent = 'Understanding';
+      svg.appendChild(t1);
+
+      const t2 = document.createElementNS(NS,'text');
+      t2.setAttribute('x','36');t2.setAttribute('y','162');
+      t2.setAttribute('font-family','Raleway,sans-serif');
+      t2.setAttribute('font-size','30');t2.setAttribute('font-weight','900');
+      t2.setAttribute('fill','#BBD64A');
+      t2.textContent = 'Autism';
+      svg.appendChild(t2);
+
+      const t3 = document.createElementNS(NS,'text');
+      t3.setAttribute('x','36');t3.setAttribute('y','188');
+      t3.setAttribute('font-family','Open Sans,sans-serif');
+      t3.setAttribute('font-size','11');t3.setAttribute('font-weight','300');
+      t3.setAttribute('fill','#C2A7CF');
+      t3.textContent = 'Workshop Series · Module 1 of 6';
+      svg.appendChild(t3);
+
+      // Bottom bar
+      const bar = document.createElementNS(NS,'rect');
+      bar.setAttribute('x','0');bar.setAttribute('y','252');
+      bar.setAttribute('width','480');bar.setAttribute('height','4');
+      bar.setAttribute('fill','#BBD64A');
+      svg.appendChild(bar);
+
+      return svg;
+    }
+
+    // Mockup 2: Web hero section
+    function makeWebMockup() {
+      const svg = document.createElementNS(NS,'svg');
+      svg.setAttribute('viewBox','0 0 480 270');
+      svg.setAttribute('xmlns',NS);
+
+      // Background
+      const bg = document.createElementNS(NS,'rect');
+      bg.setAttribute('width','480');bg.setAttribute('height','270');
+      bg.setAttribute('fill','#E8E0F0');
+      svg.appendChild(bg);
+
+      // Scatter petal pattern (static for mockup)
+      const rng = (() => {
+        let seed = 99;
+        return () => { seed=(seed*16807)%2147483647; return (seed-1)/2147483646; };
+      })();
+      for(let i=0;i<24;i++){
+        const x=rng()*480, y=rng()*270;
+        const sc=(0.18+rng()*.25);
+        const rot=rng()*360;
+        const col=wheelColors[Math.floor(rng()*wheelColors.length)];
+        const p=document.createElementNS(NS,'path');
+        p.setAttribute('d','M 50,50 C 38,40 28,22 50,8 C 72,22 62,40 50,50 Z');
+        p.setAttribute('fill',col);
+        p.setAttribute('opacity',(0.12+rng()*.18).toFixed(2));
+        p.setAttribute('transform',`translate(${x-50*sc},${y-50*sc}) scale(${sc}) rotate(${rot} 50 50)`);
+        svg.appendChild(p);
+      }
+
+      // Nav bar
+      const nav = document.createElementNS(NS,'rect');
+      nav.setAttribute('x','0');nav.setAttribute('y','0');
+      nav.setAttribute('width','480');nav.setAttribute('height','30');
+      nav.setAttribute('fill','#330044');
+      svg.appendChild(nav);
+
+      const navTxt = document.createElementNS(NS,'text');
+      navTxt.setAttribute('x','16');navTxt.setAttribute('y','19');
+      navTxt.setAttribute('font-family','Raleway,sans-serif');
+      navTxt.setAttribute('font-size','9');navTxt.setAttribute('font-weight','700');
+      navTxt.setAttribute('fill','#FFFFFF');
+      navTxt.textContent = 'Positive Partnerships';
+      svg.appendChild(navTxt);
+
+      // Headline
+      const h1=document.createElementNS(NS,'text');
+      h1.setAttribute('x','40');h1.setAttribute('y','88');
+      h1.setAttribute('font-family','Raleway,sans-serif');
+      h1.setAttribute('font-size','22');h1.setAttribute('font-weight','900');
+      h1.setAttribute('fill','#330044');
+      h1.textContent = 'Every Family.';
+      svg.appendChild(h1);
+
+      const h2=document.createElementNS(NS,'text');
+      h2.setAttribute('x','40');h2.setAttribute('y','114');
+      h2.setAttribute('font-family','Raleway,sans-serif');
+      h2.setAttribute('font-size','22');h2.setAttribute('font-weight','900');
+      h2.setAttribute('fill','#712D90');
+      h2.textContent = 'Every Child.';
+      svg.appendChild(h2);
+
+      const sub=document.createElementNS(NS,'text');
+      sub.setAttribute('x','40');sub.setAttribute('y','136');
+      sub.setAttribute('font-family','Open Sans,sans-serif');
+      sub.setAttribute('font-size','8');sub.setAttribute('font-weight','300');
+      sub.setAttribute('fill','#4a3060');
+      sub.textContent = 'Free autism workshops for families and educators across Australia.';
+      svg.appendChild(sub);
+
+      // CTA button
+      const btn=document.createElementNS(NS,'rect');
+      btn.setAttribute('x','40');btn.setAttribute('y','148');
+      btn.setAttribute('width','110');btn.setAttribute('height','28');
+      btn.setAttribute('rx','14');btn.setAttribute('fill','#BBD64A');
+      svg.appendChild(btn);
+
+      const btnTxt=document.createElementNS(NS,'text');
+      btnTxt.setAttribute('x','95');btnTxt.setAttribute('y','166');
+      btnTxt.setAttribute('text-anchor','middle');
+      btnTxt.setAttribute('font-family','Raleway,sans-serif');
+      btnTxt.setAttribute('font-size','8');btnTxt.setAttribute('font-weight','700');
+      btnTxt.setAttribute('fill','#330044');
+      btnTxt.textContent = 'Find a Workshop';
+      svg.appendChild(btnTxt);
+
+      // Hero image placeholder
+      const imgPH=document.createElementNS(NS,'rect');
+      imgPH.setAttribute('x','240');imgPH.setAttribute('y','35');
+      imgPH.setAttribute('width','220');imgPH.setAttribute('height','200');
+      imgPH.setAttribute('rx','8');imgPH.setAttribute('fill','#C2A7CF');
+      imgPH.setAttribute('opacity','.35');
+      svg.appendChild(imgPH);
+
+      const imgTxt=document.createElementNS(NS,'text');
+      imgTxt.setAttribute('x','350');imgTxt.setAttribute('y','138');
+      imgTxt.setAttribute('text-anchor','middle');
+      imgTxt.setAttribute('font-family','Open Sans,sans-serif');
+      imgTxt.setAttribute('font-size','9');imgTxt.setAttribute('fill','#712D90');
+      imgTxt.setAttribute('opacity','.5');
+      imgTxt.textContent = '[ Photo ]';
+      svg.appendChild(imgTxt);
+
+      return svg;
+    }
+
+    // Mockup 3: Document cover
+    function makeDocMockup() {
+      const svg = document.createElementNS(NS,'svg');
+      svg.setAttribute('viewBox','0 0 380 480');
+      svg.setAttribute('xmlns',NS);
+
+      // A4-ish portrait background
+      const bg=document.createElementNS(NS,'rect');
+      bg.setAttribute('width','380');bg.setAttribute('height','480');
+      bg.setAttribute('fill','#FFFFFF');
+      svg.appendChild(bg);
+
+      // Purple header band
+      const header=document.createElementNS(NS,'rect');
+      header.setAttribute('x','0');header.setAttribute('y','0');
+      header.setAttribute('width','380');header.setAttribute('height','180');
+      header.setAttribute('fill','#330044');
+      svg.appendChild(header);
+
+      // Top-right petal corner fan
+      for(let i=0;i<10;i++){
+        const baseAngle=-120;
+        const angle=baseAngle+(160/(10-1))*i;
+        const p=document.createElementNS(NS,'path');
+        p.setAttribute('d','M 0,0 C -12,-10 -22,-28 0,-42 C 22,-28 12,-10 0,0 Z');
+        p.setAttribute('fill', wheelColors[i % wheelColors.length]);
+        p.setAttribute('opacity','0.65');
+        p.setAttribute('transform',`translate(380,0) rotate(${angle})`);
+        svg.appendChild(p);
+      }
+
+      // Document title
+      const dt=document.createElementNS(NS,'text');
+      dt.setAttribute('x','32');dt.setAttribute('y','80');
+      dt.setAttribute('font-family','Raleway,sans-serif');
+      dt.setAttribute('font-size','22');dt.setAttribute('font-weight','900');
+      dt.setAttribute('fill','#FFFFFF');
+      dt.textContent = 'Participant';
+      svg.appendChild(dt);
+
+      const dt2=document.createElementNS(NS,'text');
+      dt2.setAttribute('x','32');dt2.setAttribute('y','106');
+      dt2.setAttribute('font-family','Raleway,sans-serif');
+      dt2.setAttribute('font-size','22');dt2.setAttribute('font-weight','900');
+      dt2.setAttribute('fill','#BBD64A');
+      dt2.textContent = 'Workbook';
+      svg.appendChild(dt2);
+
+      const dt3=document.createElementNS(NS,'text');
+      dt3.setAttribute('x','32');dt3.setAttribute('y','130');
+      dt3.setAttribute('font-family','Open Sans,sans-serif');
+      dt3.setAttribute('font-size','9');dt3.setAttribute('font-weight','300');
+      dt3.setAttribute('fill','#C2A7CF');
+      dt3.textContent = 'Understanding Autism in the Classroom';
+      svg.appendChild(dt3);
+
+      // Lime accent line
+      const acc=document.createElementNS(NS,'rect');
+      acc.setAttribute('x','0');acc.setAttribute('y','178');
+      acc.setAttribute('width','380');acc.setAttribute('height','4');
+      acc.setAttribute('fill','#BBD64A');
+      svg.appendChild(acc);
+
+      // Content lines placeholder
+      [220,240,260,280,300,320,340,360,380,400,420].forEach((y,i) => {
+        const l=document.createElementNS(NS,'rect');
+        l.setAttribute('x','32');l.setAttribute('y',y);
+        l.setAttribute('width', i%3===0 ? '200':'280');
+        l.setAttribute('height','6');
+        l.setAttribute('rx','3');
+        l.setAttribute('fill','#E8E0F0');
+        svg.appendChild(l);
+      });
+
+      // Logo placeholder bottom
+      const logoBG=document.createElementNS(NS,'rect');
+      logoBG.setAttribute('x','32');logoBG.setAttribute('y','444');
+      logoBG.setAttribute('width','160');logoBG.setAttribute('height','18');
+      logoBG.setAttribute('rx','3');logoBG.setAttribute('fill','#E8E0F0');
+      svg.appendChild(logoBG);
+
+      const logoTxt=document.createElementNS(NS,'text');
+      logoTxt.setAttribute('x','32');logoTxt.setAttribute('y','456');
+      logoTxt.setAttribute('font-family','Raleway,sans-serif');
+      logoTxt.setAttribute('font-size','9');logoTxt.setAttribute('font-weight','700');
+      logoTxt.setAttribute('fill','#712D90');
+      logoTxt.textContent = 'positivepartnerships.com.au';
+      svg.appendChild(logoTxt);
+
+      return svg;
+    }
+
+    const mockups = [
+      { fn: makePPTMockup, label: 'PowerPoint Title Slide', ratio: '16/9' },
+      { fn: makeWebMockup, label: 'Web Hero Section', ratio: '16/9' },
+      { fn: makeDocMockup, label: 'Document Cover (A4 Portrait)', ratio: null }
+    ];
+
+    mockups.forEach(m => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;flex-direction:column;gap:12px;';
+
+      const frame = document.createElement('div');
+      frame.className = 'mockup-frame';
+      if (m.ratio) frame.style.aspectRatio = m.ratio;
+      const svgEl = m.fn();
+      svgEl.style.cssText = 'display:block;width:100%;';
+      frame.appendChild(svgEl);
+
+      const lbl = document.createElement('p');
+      lbl.style.cssText = 'font-size:.82rem;color:var(--purple-light);font-style:italic;text-align:center;';
+      lbl.textContent = m.label;
+
+      wrap.appendChild(frame);
+      wrap.appendChild(lbl);
+      grid.appendChild(wrap);
+    });
+  })();
+</script>
+</body>
+</html>
