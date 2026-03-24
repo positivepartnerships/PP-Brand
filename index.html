@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PP Brand Sandpit</title>
+<style>
+  :root {
+    --pp-medium-purple: #712D90;
+    --pp-dark-purple: #330044;
+    --pp-light-purple: #C2A7CF;
+    --pp-white: #FFFFFF;
+    --pp-lime: #BBD64A;
+    --pp-red: #F15B40;
+    --pp-orange: #F7941E;
+    --pp-dark-grey: #333333;
+    --pp-medium-grey: #999999;
+    --pp-light-grey: #CCCCCC;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-soft: 0 2px 12px rgba(51, 0, 68, 0.08);
+    --shadow-lifted: 0 8px 32px rgba(51, 0, 68, 0.12);
+    --shadow-swatch: 0 4px 16px rgba(51, 0, 68, 0.15);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--pp-dark-grey);
+    background: #F8F6FA;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Grain overlay for texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  /* ── NAV ── */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--pp-dark-purple);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--pp-medium-purple);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 52px;
+    overflow-x: auto;
+  }
+  .topnav a {
+    color: var(--pp-light-purple);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+  }
+  .topnav a:hover, .topnav a:focus {
+    color: var(--pp-white);
+    border-bottom-color: var(--pp-lime);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--pp-dark-purple);
+    padding: 4rem 2rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(113,45,144,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: var(--pp-white);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3em;
+  }
+  .hero h1 span {
+    display: inline-block;
+    background: var(--pp-medium-purple);
+    color: var(--pp-white);
+    padding: 0.05em 0.3em;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    margin-right: 0.15em;
+  }
+  .hero p {
+    color: var(--pp-light-purple);
+    font-size: 1.1rem;
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .hero-chip {
+    font-size: 0.75rem;
+    padding: 0.3em 0.8em;
+    border-radius: 100px;
+    border: 1px solid rgba(194,167,207,0.3);
+    color: var(--pp-light-purple);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+  }
+  .section + .section {
+    border-top: 1px solid rgba(51,0,68,0.06);
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pp-medium-purple);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    color: var(--pp-dark-purple);
+    margin-bottom: 0.4rem;
+    font-weight: 300;
+  }
+  .section-desc {
+    color: var(--pp-medium-grey);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    max-width: 560px;
+  }
+
+  /* ── COLOUR PALETTE ── */
+  .palette-group-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pp-medium-grey);
+    margin-bottom: 0.75rem;
+    margin-top: 1.8rem;
+    font-weight: 600;
+  }
+  .palette-group-label:first-of-type { margin-top: 0; }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  .swatch {
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-swatch);
+    transition: transform var(--transition), box-shadow var(--transition);
+    position: relative;
+  }
+  .swatch:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lifted);
+  }
+  .swatch:active { transform: translateY(-1px) scale(0.99); }
+  .swatch-color {
+    height: 100px;
+    position: relative;
+  }
+  .swatch-color::after {
+    content: 'Click to copy';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: white;
+    background: rgba(51,0,68,0.45);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+  .swatch:hover .swatch-color::after { opacity: 1; }
+  .swatch-info {
+    padding: 0.65rem 0.75rem;
+    background: white;
+  }
+  .swatch-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--pp-dark-grey);
+  }
+  .swatch-hex {
+    font-size: 0.75rem;
+    color: var(--pp-medium-grey);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: var(--pp-dark-purple);
+    color: var(--pp-white);
+    padding: 0.7rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    z-index: 10000;
+    box-shadow: 0 8px 30px rgba(51,0,68,0.3);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── TYPOGRAPHY ── */
+  .type-specimens {
+    display: grid;
+    gap: 2rem;
+  }
+  .type-specimen {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .type-specimen-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pp-medium-purple);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .type-specimen-meta {
+    font-size: 0.78rem;
+    color: var(--pp-medium-grey);
+    margin-bottom: 1rem;
+  }
+  .type-sample-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+  .type-sample-row .size-label {
+    font-size: 0.68rem;
+    color: var(--pp-light-grey);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    min-width: 50px;
+  }
+
+  /* Live type tester */
+  .type-tester {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    margin-top: 2rem;
+  }
+  .type-tester-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: end;
+  }
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .control-group label {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pp-medium-grey);
+    font-weight: 600;
+  }
+  .control-group select,
+  .control-group input[type="range"] {
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--pp-light-grey);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--pp-dark-grey);
+    min-width: 160px;
+  }
+  .control-group select:focus,
+  .control-group input:focus {
+    outline: none;
+    border-color: var(--pp-medium-purple);
+    box-shadow: 0 0 0 3px rgba(113,45,144,0.12);
+  }
+  .size-display {
+    font-size: 0.85rem;
+    color: var(--pp-dark-grey);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    min-width: 42px;
+    text-align: right;
+  }
+  .type-tester-preview {
+    min-height: 120px;
+    padding: 1.5rem;
+    border: 2px dashed var(--pp-light-grey);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    word-break: break-word;
+  }
+  .type-tester-preview:focus-within {
+    border-color: var(--pp-medium-purple);
+  }
+  .type-tester-preview [contenteditable] {
+    outline: none;
+    min-height: 80px;
+  }
+
+  /* ── COMPONENTS ── */
+  .component-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 700px) {
+    .component-grid { grid-template-columns: 1fr; }
+  }
+  .component-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .component-card-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pp-medium-purple);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: var(--radius-sm);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--pp-medium-purple);
+    color: white;
+    border-color: var(--pp-medium-purple);
+  }
+  .btn-primary:hover { background: var(--pp-dark-purple); border-color: var(--pp-dark-purple); }
+  .btn-lime {
+    background: var(--pp-lime);
+    color: var(--pp-dark-purple);
+    border-color: var(--pp-lime);
+  }
+  .btn-lime:hover { background: #a8c342; border-color: #a8c342; }
+  .btn-outline {
+    background: transparent;
+    color: var(--pp-medium-purple);
+    border-color: var(--pp-medium-purple);
+  }
+  .btn-outline:hover { background: var(--pp-medium-purple); color: white; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--pp-medium-purple);
+    border-color: transparent;
+  }
+  .btn-ghost:hover { background: rgba(113,45,144,0.08); }
+  .btn:disabled, .btn[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .btn-sm { padding: 0.35rem 0.8rem; font-size: 0.78rem; }
+  .btn-lg { padding: 0.8rem 1.8rem; font-size: 1rem; }
+  .buttons-showcase { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+
+  /* Accent cards */
+  .accent-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+  .accent-card {
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.2rem;
+    border-left: 4px solid;
+    background: white;
+    box-shadow: var(--shadow-soft);
+  }
+  .accent-card h4 { font-size: 0.92rem; margin-bottom: 0.2rem; }
+  .accent-card p { font-size: 0.82rem; color: var(--pp-medium-grey); }
+  .accent-card.purple { border-color: var(--pp-medium-purple); }
+  .accent-card.lime { border-color: var(--pp-lime); }
+  .accent-card.orange { border-color: var(--pp-orange); }
+
+  /* Alerts */
+  .alerts { display: flex; flex-direction: column; gap: 0.75rem; }
+  .alert {
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .alert-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .alert-purple { background: rgba(113,45,144,0.1); color: var(--pp-dark-purple); }
+  .alert-lime { background: rgba(187,214,74,0.2); color: #5a6b1e; }
+  .alert-red { background: rgba(241,91,64,0.1); color: #a03020; }
+  .alert-orange { background: rgba(247,148,30,0.12); color: #8a5010; }
+
+  /* Badges */
+  .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .badge {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .badge-purple { background: var(--pp-medium-purple); color: white; }
+  .badge-dark { background: var(--pp-dark-purple); color: white; }
+  .badge-light { background: var(--pp-light-purple); color: var(--pp-dark-purple); }
+  .badge-lime { background: var(--pp-lime); color: var(--pp-dark-purple); }
+  .badge-red { background: var(--pp-red); color: white; }
+  .badge-orange { background: var(--pp-orange); color: white; }
+  .badge-outline {
+    background: transparent;
+    color: var(--pp-medium-purple);
+    box-shadow: inset 0 0 0 1.5px var(--pp-medium-purple);
+  }
+
+  /* ── CONTRAST CHECKER ── */
+  .contrast-tool {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .contrast-pickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-items: end;
+  }
+  .colour-picker-group { display: flex; flex-direction: column; gap: 0.3rem; }
+  .colour-picker-group label {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pp-medium-grey);
+    font-weight: 600;
+  }
+  .colour-picker-wrap {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .colour-picker-wrap select {
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--pp-light-grey);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--pp-dark-grey);
+    min-width: 170px;
+  }
+  .colour-picker-wrap select:focus {
+    outline: none;
+    border-color: var(--pp-medium-purple);
+    box-shadow: 0 0 0 3px rgba(113,45,144,0.12);
+  }
+  .picker-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--pp-light-grey);
+    flex-shrink: 0;
+  }
+  .contrast-result {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem 2rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .contrast-ratio {
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--pp-dark-purple);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .contrast-ratio span {
+    font-size: 1rem;
+    color: var(--pp-medium-grey);
+    vertical-align: super;
+  }
+  .contrast-badges { display: flex; flex-direction: column; gap: 0.4rem; }
+  .contrast-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    width: fit-content;
+  }
+  .contrast-badge.pass { background: rgba(187,214,74,0.2); color: #4a5a16; }
+  .contrast-badge.fail { background: rgba(241,91,64,0.12); color: #a03020; }
+  .contrast-preview {
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: var(--transition);
+  }
+  .contrast-preview h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+  }
+  .contrast-preview p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* ── COMBO TESTER ── */
+  .combo-tool {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+    margin-top: 2rem;
+  }
+  .combo-preview {
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+    margin-top: 1.5rem;
+    transition: var(--transition);
+  }
+  .combo-preview h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .combo-preview p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    max-width: 500px;
+  }
+  .combo-preview .btn {
+    border-color: currentColor;
+    background: transparent;
+  }
+  .combo-preview .btn:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* ── NOTES ── */
+  .notes-area {
+    width: 100%;
+    min-height: 180px;
+    padding: 1.2rem;
+    border: 2px solid var(--pp-light-grey);
+    border-radius: var(--radius-md);
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 0.95rem;
+    color: var(--pp-dark-grey);
+    line-height: 1.7;
+    resize: vertical;
+    transition: border-color var(--transition);
+    background: white;
+  }
+  .notes-area:focus {
+    outline: none;
+    border-color: var(--pp-medium-purple);
+    box-shadow: 0 0 0 3px rgba(113,45,144,0.1);
+  }
+  .notes-status {
+    font-size: 0.75rem;
+    color: var(--pp-medium-grey);
+    margin-top: 0.5rem;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    color: var(--pp-medium-grey);
+    font-size: 0.78rem;
+    border-top: 1px solid rgba(51,0,68,0.06);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeUp 0.5s ease both; }
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.1s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1.2rem 2rem; }
+    .section { padding: 2.5rem 1.2rem; }
+    .swatches { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    .component-grid { grid-template-columns: 1fr; }
+    .contrast-result { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Nav -->
+<nav class="topnav">
+  <a href="#palette">Palette</a>
+  <a href="#typography">Type</a>
+  <a href="#components">Components</a>
+  <a href="#contrast">Contrast</a>
+  <a href="#combos">Combos</a>
+  <a href="#notes">Notes</a>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <h1><span>PP</span> Brand Sandpit</h1>
+    <p>A living experimentation space for the Positive Partnerships team to test brand ideas, explore colour combinations, and prototype visual directions. Build on it as you go.</p>
+    <div class="hero-chips">
+      <span class="hero-chip">Colours</span>
+      <span class="hero-chip">Typography</span>
+      <span class="hero-chip">Components</span>
+      <span class="hero-chip">Contrast</span>
+      <span class="hero-chip">Accessibility</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ COLOUR PALETTE ═══════════ -->
+<section class="section" id="palette">
+  <div class="section-label">01 / Colour Palette</div>
+  <h2 class="section-title">Brand Colours</h2>
+  <p class="section-desc">Click any swatch to copy its hex value. The full palette across primary, secondary, and grey families.</p>
+
+  <div class="palette-group-label">Primary</div>
+  <div class="swatches" id="primary-swatches"></div>
+
+  <div class="palette-group-label">Secondary</div>
+  <div class="swatches" id="secondary-swatches"></div>
+
+  <div class="palette-group-label">Greys</div>
+  <div class="swatches" id="grey-swatches"></div>
+</section>
+
+<!-- ═══════════ TYPOGRAPHY ═══════════ -->
+<section class="section" id="typography">
+  <div class="section-label">02 / Typography</div>
+  <h2 class="section-title">Type Specimens</h2>
+  <p class="section-desc">The three brand typefaces at different sizes and weights.</p>
+
+  <div class="type-specimens">
+    <div class="type-specimen">
+      <div class="type-specimen-label">Headings</div>
+      <div class="type-specimen-meta">Helvetica Neue &rarr; fallback: Helvetica, Arial, sans-serif</div>
+      <div class="type-sample-row">
+        <span class="size-label">36px / light</span>
+        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:36px; font-weight:300; color:var(--pp-dark-purple);">Positive Partnerships</div>
+      </div>
+      <div class="type-sample-row">
+        <span class="size-label">28px / regular</span>
+        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:28px; font-weight:400; color:var(--pp-dark-purple);">Supporting autistic students</div>
+      </div>
+      <div class="type-sample-row">
+        <span class="size-label">22px / medium</span>
+        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:22px; font-weight:500; color:var(--pp-dark-grey);">Building capacity across Australian schools</div>
+      </div>
+      <div class="type-sample-row">
+        <span class="size-label">18px / bold</span>
+        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:18px; font-weight:700; color:var(--pp-dark-grey);">Professional learning workshops</div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen-label">Body Copy</div>
+      <div class="type-specimen-meta">Arial &mdash; used for all print and online communications</div>
+      <div class="type-sample-row">
+        <span class="size-label">16px / regular</span>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:16px;">Positive Partnerships is funded by the Australian Government Department of Education through the Helping Children with Autism package to deliver workshops and resources that support school communities.</div>
+      </div>
+      <div class="type-sample-row">
+        <span class="size-label">14px / regular</span>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:var(--pp-medium-grey);">Secondary body text used for captions, supporting information, and smaller UI elements across all communications.</div>
+      </div>
+      <div class="type-sample-row">
+        <span class="size-label">16px / bold</span>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:16px; font-weight:700;">Bold text for emphasis within body copy and key callouts.</div>
+      </div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen-label">Internal Documents</div>
+      <div class="type-specimen-meta">Calibri &mdash; default for Microsoft Office, workshops, and internal docs</div>
+      <div class="type-sample-row">
+        <span class="size-label">16px / regular</span>
+        <div style="font-family:Calibri,Arial,sans-serif; font-size:16px;">Workshop materials, internal reports, and team documentation use Calibri as the primary font for comfortable reading in document format.</div>
+      </div>
+      <div class="type-sample-row">
+        <span class="size-label">14px / regular</span>
+        <div style="font-family:Calibri,Arial,sans-serif; font-size:14px; color:var(--pp-medium-grey);">Smaller Calibri text for footnotes, table content, and supplementary material in internal documents.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live type tester -->
+  <div class="type-tester">
+    <div class="type-specimen-label">Live Type Tester</div>
+    <div class="type-tester-controls">
+      <div class="control-group">
+        <label>Font Family</label>
+        <select id="tester-font">
+          <option value="'Helvetica Neue',Helvetica,Arial,sans-serif">Helvetica Neue</option>
+          <option value="Arial,Helvetica,sans-serif">Arial</option>
+          <option value="Calibri,Arial,sans-serif">Calibri</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Weight</label>
+        <select id="tester-weight">
+          <option value="300">Light (300)</option>
+          <option value="400" selected>Regular (400)</option>
+          <option value="500">Medium (500)</option>
+          <option value="600">Semi-Bold (600)</option>
+          <option value="700">Bold (700)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>Size</label>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <input type="range" id="tester-size" min="12" max="72" value="28" style="min-width:120px;">
+          <span class="size-display" id="tester-size-display">28px</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label>Colour</label>
+        <select id="tester-colour">
+          <option value="#330044">Dark Purple</option>
+          <option value="#712D90">Medium Purple</option>
+          <option value="#C2A7CF">Light Purple</option>
+          <option value="#333333" selected>Dark Grey</option>
+          <option value="#999999">Medium Grey</option>
+          <option value="#F15B40">Red</option>
+          <option value="#F7941E">Orange</option>
+          <option value="#BBD64A">Lime</option>
+        </select>
+      </div>
+    </div>
+    <div class="type-tester-preview" id="type-preview">
+      <div contenteditable="true" id="type-editable">Type something here to test…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMPONENTS ═══════════ -->
+<section class="section" id="components">
+  <div class="section-label">03 / Component Playground</div>
+  <h2 class="section-title">UI Components</h2>
+  <p class="section-desc">Common elements styled with the PP brand for reference and reuse.</p>
+
+  <div class="component-grid">
+    <!-- Buttons -->
+    <div class="component-card">
+      <div class="component-card-title">Buttons</div>
+      <div class="buttons-showcase">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-lime">Lime</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div style="margin-top:1rem;">
+        <div class="buttons-showcase">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Default</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="component-card">
+      <div class="component-card-title">Accent Cards</div>
+      <div class="accent-cards">
+        <div class="accent-card purple">
+          <h4>Workshop Update</h4>
+          <p>New professional learning dates available for Term 2.</p>
+        </div>
+        <div class="accent-card lime">
+          <h4>Resource Available</h4>
+          <p>Updated classroom strategies guide now online.</p>
+        </div>
+        <div class="accent-card orange">
+          <h4>Registration Open</h4>
+          <p>Parent and carer workshop registrations are open.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="component-card">
+      <div class="component-card-title">Alerts &amp; Notifications</div>
+      <div class="alerts">
+        <div class="alert alert-purple">
+          <span class="alert-icon">&#9432;</span>
+          Information — general brand announcement or update.
+        </div>
+        <div class="alert alert-lime">
+          <span class="alert-icon">&#10003;</span>
+          Success — action completed successfully.
+        </div>
+        <div class="alert alert-orange">
+          <span class="alert-icon">&#9888;</span>
+          Warning — something needs attention.
+        </div>
+        <div class="alert alert-red">
+          <span class="alert-icon">&#10007;</span>
+          Error — something went wrong.
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="component-card">
+      <div class="component-card-title">Badges &amp; Tags</div>
+      <div class="badges">
+        <span class="badge badge-purple">Workshop</span>
+        <span class="badge badge-dark">Phase 5</span>
+        <span class="badge badge-light">Resource</span>
+        <span class="badge badge-lime">New</span>
+        <span class="badge badge-red">Urgent</span>
+        <span class="badge badge-orange">Pending</span>
+        <span class="badge badge-outline">Draft</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTRAST CHECKER ═══════════ -->
+<section class="section" id="contrast">
+  <div class="section-label">04 / Accessibility</div>
+  <h2 class="section-title">Contrast Checker</h2>
+  <p class="section-desc">Check WCAG contrast ratios between any two brand colours.</p>
+
+  <div class="contrast-tool">
+    <div class="contrast-pickers">
+      <div class="colour-picker-group">
+        <label>Foreground (Text)</label>
+        <div class="colour-picker-wrap">
+          <select id="contrast-fg">
+            <option value="#FFFFFF" selected>White</option>
+            <option value="#330044">Dark Purple</option>
+            <option value="#712D90">Medium Purple</option>
+            <option value="#C2A7CF">Light Purple</option>
+            <option value="#BBD64A">Lime</option>
+            <option value="#F15B40">Red</option>
+            <option value="#F7941E">Orange</option>
+            <option value="#333333">Dark Grey</option>
+            <option value="#999999">Medium Grey</option>
+            <option value="#CCCCCC">Light Grey</option>
+          </select>
+          <div class="picker-swatch" id="fg-swatch"></div>
+        </div>
+      </div>
+      <div class="colour-picker-group">
+        <label>Background</label>
+        <div class="colour-picker-wrap">
+          <select id="contrast-bg">
+            <option value="#712D90" selected>Medium Purple</option>
+            <option value="#330044">Dark Purple</option>
+            <option value="#C2A7CF">Light Purple</option>
+            <option value="#FFFFFF">White</option>
+            <option value="#BBD64A">Lime</option>
+            <option value="#F15B40">Red</option>
+            <option value="#F7941E">Orange</option>
+            <option value="#333333">Dark Grey</option>
+            <option value="#999999">Medium Grey</option>
+            <option value="#CCCCCC">Light Grey</option>
+          </select>
+          <div class="picker-swatch" id="bg-swatch"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contrast-result">
+      <div class="contrast-ratio" id="contrast-ratio">4.5<span>:1</span></div>
+      <div class="contrast-badges" id="contrast-badges"></div>
+    </div>
+
+    <div class="contrast-preview" id="contrast-preview">
+      <h3>Sample Heading Text</h3>
+      <p>This is how body text looks with this colour combination. Check readability for both normal and large text at different sizes to ensure your choices meet accessibility standards.</p>
+    </div>
+  </div>
+
+  <!-- Combo tester -->
+  <div class="combo-tool" id="combos">
+    <div class="section-label" style="margin-bottom:0.5rem;">Colour Combination Tester</div>
+    <p class="section-desc" style="margin-bottom:0;">Pick a background and text colour to preview a full content block.</p>
+
+    <div class="contrast-pickers" style="margin-top:1.2rem;">
+      <div class="colour-picker-group">
+        <label>Background</label>
+        <div class="colour-picker-wrap">
+          <select id="combo-bg">
+            <option value="#330044" selected>Dark Purple</option>
+            <option value="#712D90">Medium Purple</option>
+            <option value="#C2A7CF">Light Purple</option>
+            <option value="#FFFFFF">White</option>
+            <option value="#BBD64A">Lime</option>
+            <option value="#F15B40">Red</option>
+            <option value="#F7941E">Orange</option>
+            <option value="#333333">Dark Grey</option>
+            <option value="#999999">Medium Grey</option>
+            <option value="#CCCCCC">Light Grey</option>
+          </select>
+          <div class="picker-swatch" id="combo-bg-swatch"></div>
+        </div>
+      </div>
+      <div class="colour-picker-group">
+        <label>Text Colour</label>
+        <div class="colour-picker-wrap">
+          <select id="combo-fg">
+            <option value="#FFFFFF" selected>White</option>
+            <option value="#330044">Dark Purple</option>
+            <option value="#712D90">Medium Purple</option>
+            <option value="#C2A7CF">Light Purple</option>
+            <option value="#BBD64A">Lime</option>
+            <option value="#F15B40">Red</option>
+            <option value="#F7941E">Orange</option>
+            <option value="#333333">Dark Grey</option>
+            <option value="#999999">Medium Grey</option>
+            <option value="#CCCCCC">Light Grey</option>
+          </select>
+          <div class="picker-swatch" id="combo-fg-swatch"></div>
+        </div>
+      </div>
+      <div class="colour-picker-group">
+        <label>Button Accent</label>
+        <div class="colour-picker-wrap">
+          <select id="combo-accent">
+            <option value="#BBD64A" selected>Lime</option>
+            <option value="#712D90">Medium Purple</option>
+            <option value="#330044">Dark Purple</option>
+            <option value="#C2A7CF">Light Purple</option>
+            <option value="#FFFFFF">White</option>
+            <option value="#F15B40">Red</option>
+            <option value="#F7941E">Orange</option>
+            <option value="#333333">Dark Grey</option>
+            <option value="#999999">Medium Grey</option>
+            <option value="#CCCCCC">Light Grey</option>
+          </select>
+          <div class="picker-swatch" id="combo-accent-swatch"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="combo-preview" id="combo-preview">
+      <h3>Positive Partnerships Workshop</h3>
+      <p>Supporting educators and school staff to better understand and support autistic students through evidence-informed professional learning.</p>
+      <button class="btn" id="combo-btn">Register Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NOTES ═══════════ -->
+<section class="section" id="notes">
+  <div class="section-label">05 / Scratch Pad</div>
+  <h2 class="section-title">Notes &amp; Ideas</h2>
+  <p class="section-desc">Jot down brand ideas here. Saved automatically to your browser.</p>
+  <textarea class="notes-area" id="notes-area" placeholder="Start typing brand ideas, feedback, or notes here…"></textarea>
+  <div class="notes-status" id="notes-status">Saved</div>
+</section>
+
+<footer class="site-footer">
+  Positive Partnerships Brand Sandpit &middot; Internal tool for experimentation
+</footer>
+
+<script>
+(function() {
+  // ── Colour data ──
+  const colours = {
+    primary: [
+      { name: 'Medium Purple', hex: '#712D90' },
+      { name: 'Dark Purple',   hex: '#330044' },
+      { name: 'Light Purple',  hex: '#C2A7CF' },
+      { name: 'White',         hex: '#FFFFFF' },
+    ],
+    secondary: [
+      { name: 'Lime',   hex: '#BBD64A' },
+      { name: 'Red',    hex: '#F15B40' },
+      { name: 'Orange', hex: '#F7941E' },
+    ],
+    greys: [
+      { name: 'Dark Grey',   hex: '#333333' },
+      { name: 'Medium Grey', hex: '#999999' },
+      { name: 'Light Grey',  hex: '#CCCCCC' },
+    ]
+  };
+
+  // ── Render swatches ──
+  function renderSwatches(containerId, list) {
+    const container = document.getElementById(containerId);
+    list.forEach(c => {
+      const isLight = luminance(c.hex) > 0.45;
+      const swatch = document.createElement('div');
+      swatch.className = 'swatch';
+      swatch.setAttribute('role', 'button');
+      swatch.setAttribute('tabindex', '0');
+      swatch.setAttribute('aria-label', `Copy ${c.name} ${c.hex}`);
+      swatch.innerHTML = `
+        <div class="swatch-color" style="background:${c.hex};${c.hex === '#FFFFFF' ? 'border:1px solid #eee;border-bottom:none;' : ''}"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">${c.name}</div>
+          <div class="swatch-hex">${c.hex}</div>
+        </div>`;
+      swatch.addEventListener('click', () => copyHex(c.hex, c.name));
+      swatch.addEventListener('keydown', e => { if (e.key === 'Enter') copyHex(c.hex, c.name); });
+      container.appendChild(swatch);
+    });
+  }
+  renderSwatches('primary-swatches', colours.primary);
+  renderSwatches('secondary-swatches', colours.secondary);
+  renderSwatches('grey-swatches', colours.greys);
+
+  // ── Toast / copy ──
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+  function copyHex(hex, name) {
+    navigator.clipboard.writeText(hex).then(() => {
+      showToast(`Copied ${name} — ${hex}`);
+    }).catch(() => showToast('Copy failed'));
+  }
+
+  // ── Type tester ──
+  const fontSel   = document.getElementById('tester-font');
+  const weightSel = document.getElementById('tester-weight');
+  const sizeRange = document.getElementById('tester-size');
+  const sizeDisp  = document.getElementById('tester-size-display');
+  const colourSel = document.getElementById('tester-colour');
+  const editable  = document.getElementById('type-editable');
+
+  function updateTypeTester() {
+    editable.style.fontFamily = fontSel.value;
+    editable.style.fontWeight = weightSel.value;
+    editable.style.fontSize = sizeRange.value + 'px';
+    editable.style.color = colourSel.value;
+    sizeDisp.textContent = sizeRange.value + 'px';
+  }
+  [fontSel, weightSel, sizeRange, colourSel].forEach(el => el.addEventListener('input', updateTypeTester));
+  updateTypeTester();
+
+  // ── Contrast checker ──
+  const fgSel = document.getElementById('contrast-fg');
+  const bgSel = document.getElementById('contrast-bg');
+  const fgSwatch = document.getElementById('fg-swatch');
+  const bgSwatch = document.getElementById('bg-swatch');
+  const ratioEl = document.getElementById('contrast-ratio');
+  const badgesEl = document.getElementById('contrast-badges');
+  const previewEl = document.getElementById('contrast-preview');
+
+  function hexToRgb(hex) {
+    hex = hex.replace('#', '');
+    return [parseInt(hex.substr(0,2),16), parseInt(hex.substr(2,2),16), parseInt(hex.substr(4,2),16)];
+  }
+  function luminance(hex) {
+    const [r,g,b] = hexToRgb(hex).map(v => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  }
+  function contrastRatio(hex1, hex2) {
+    const l1 = luminance(hex1), l2 = luminance(hex2);
+    const lighter = Math.max(l1, l2), darker = Math.min(l1, l2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  function updateContrast() {
+    const fg = fgSel.value, bg = bgSel.value;
+    fgSwatch.style.background = fg;
+    bgSwatch.style.background = bg;
+    if (fg === '#FFFFFF') fgSwatch.style.border = '2px solid #ddd';
+    else fgSwatch.style.border = '2px solid ' + fg;
+    if (bg === '#FFFFFF') bgSwatch.style.border = '2px solid #ddd';
+    else bgSwatch.style.border = '2px solid ' + bg;
+
+    const ratio = contrastRatio(fg, bg);
+    ratioEl.innerHTML = ratio.toFixed(2) + '<span>:1</span>';
+
+    const aaNormal = ratio >= 4.5;
+    const aaLarge  = ratio >= 3;
+    const aaaNormal = ratio >= 7;
+    const aaaLarge  = ratio >= 4.5;
+
+    badgesEl.innerHTML = `
+      <span class="contrast-badge ${aaNormal ? 'pass' : 'fail'}">${aaNormal ? '&#10003;' : '&#10007;'} AA Normal Text (4.5:1)</span>
+      <span class="contrast-badge ${aaLarge ? 'pass' : 'fail'}">${aaLarge ? '&#10003;' : '&#10007;'} AA Large Text (3:1)</span>
+      <span class="contrast-badge ${aaaNormal ? 'pass' : 'fail'}">${aaaNormal ? '&#10003;' : '&#10007;'} AAA Normal Text (7:1)</span>
+      <span class="contrast-badge ${aaaLarge ? 'pass' : 'fail'}">${aaaLarge ? '&#10003;' : '&#10007;'} AAA Large Text (4.5:1)</span>`;
+
+    previewEl.style.background = bg;
+    previewEl.style.color = fg;
+  }
+  fgSel.addEventListener('change', updateContrast);
+  bgSel.addEventListener('change', updateContrast);
+  updateContrast();
+
+  // ── Combo tester ──
+  const comboBg = document.getElementById('combo-bg');
+  const comboFg = document.getElementById('combo-fg');
+  const comboAccent = document.getElementById('combo-accent');
+  const comboBgSwatch = document.getElementById('combo-bg-swatch');
+  const comboFgSwatch = document.getElementById('combo-fg-swatch');
+  const comboAccentSwatch = document.getElementById('combo-accent-swatch');
+  const comboPreview = document.getElementById('combo-preview');
+  const comboBtn = document.getElementById('combo-btn');
+
+  function updateCombo() {
+    const bg = comboBg.value, fg = comboFg.value, accent = comboAccent.value;
+    comboBgSwatch.style.background = bg;
+    comboFgSwatch.style.background = fg;
+    comboAccentSwatch.style.background = accent;
+    [comboBgSwatch, comboFgSwatch, comboAccentSwatch].forEach((s, i) => {
+      const v = [bg, fg, accent][i];
+      s.style.border = v === '#FFFFFF' ? '2px solid #ddd' : '2px solid ' + v;
+    });
+    comboPreview.style.background = bg;
+    comboPreview.style.color = fg;
+    comboBtn.style.color = bg;
+    comboBtn.style.background = accent;
+    comboBtn.style.borderColor = accent;
+  }
+  [comboBg, comboFg, comboAccent].forEach(el => el.addEventListener('change', updateCombo));
+  updateCombo();
+
+  // ── Notes with localStorage ──
+  const notesArea = document.getElementById('notes-area');
+  const notesStatus = document.getElementById('notes-status');
+  const STORAGE_KEY = 'pp-brand-sandpit-notes';
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) notesArea.value = saved;
+
+  let saveTimer;
+  notesArea.addEventListener('input', () => {
+    notesStatus.textContent = 'Saving…';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      localStorage.setItem(STORAGE_KEY, notesArea.value);
+      notesStatus.textContent = 'Saved';
+    }, 600);
+  });
+
+  // ── Smooth scroll for nav ──
+  document.querySelectorAll('.topnav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
