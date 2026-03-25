@@ -232,6 +232,79 @@
   }
   .download-card p { font-size: 0.72rem; color: var(--pp-medium-grey); }
 
+  /* ── ANIMATION DEMOS ── */
+  .anim-stage {
+    border-radius: 14px; overflow: hidden; position: relative;
+    height: 300px; width: 100%;
+  }
+  .anim-stage-wide { height: 200px; }
+
+  /* Floating petals */
+  @keyframes floatDrift {
+    0%   { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0; }
+    8%   { opacity: 0.7; }
+    50%  { transform: translate(var(--dx), calc(var(--travel) * 0.5)) rotate(var(--rot-mid)) scale(var(--sc-mid)); opacity: var(--peak-op); }
+    92%  { opacity: 0.7; }
+    100% { transform: translate(calc(var(--dx) * 1.6), var(--travel)) rotate(var(--rot-end)) scale(1); opacity: 0; }
+  }
+  .floating-petal {
+    position: absolute; pointer-events: none;
+    animation: floatDrift var(--dur) var(--delay) ease-in-out infinite;
+    will-change: transform, opacity; opacity: 0;
+  }
+
+  /* Colour cycle */
+  @keyframes colourCycle {
+    0%   { fill: #782b8f; }
+    12%  { fill: #684b9e; }
+    25%  { fill: #0091c0; }
+    37%  { fill: #19b261; }
+    50%  { fill: #91c73e; }
+    62%  { fill: #ffce01; }
+    75%  { fill: #f37b20; }
+    87%  { fill: #ed2524; }
+    100% { fill: #782b8f; }
+  }
+
+  /* Flutter */
+  @keyframes flutter {
+    0%   { transform: rotate(var(--base-rot)) scaleX(1); }
+    25%  { transform: rotate(calc(var(--base-rot) + 8deg)) scaleX(0.88); }
+    50%  { transform: rotate(calc(var(--base-rot) - 5deg)) scaleX(1.04); }
+    75%  { transform: rotate(calc(var(--base-rot) + 3deg)) scaleX(0.94); }
+    100% { transform: rotate(var(--base-rot)) scaleX(1); }
+  }
+
+  /* Breathing bloom */
+  @keyframes breathe {
+    0%, 100% { transform: rotate(var(--petal-angle)) scaleY(1); }
+    50%      { transform: rotate(var(--petal-angle)) scaleY(1.08); }
+  }
+  @keyframes bloomSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Pulse ring */
+  @keyframes pulseRing {
+    0%   { r: 10; opacity: 0.6; }
+    100% { r: 70; opacity: 0; }
+  }
+
+  /* Spectrum wave bar */
+  @keyframes waveBar {
+    0%, 100% { transform: scaleY(1); opacity: 0.7; }
+    50%      { transform: scaleY(1.6); opacity: 1; }
+  }
+
+  /* Scatter drift for atmospheric particles */
+  @keyframes scatterDot {
+    0%   { transform: translate(0,0) scale(0); opacity: 0; }
+    15%  { opacity: 0.5; transform: translate(var(--sx1), var(--sy1)) scale(1); }
+    85%  { opacity: 0.4; transform: translate(var(--sx2), var(--sy2)) scale(0.8); }
+    100% { opacity: 0; transform: translate(var(--sx3), var(--sy3)) scale(0); }
+  }
+
   /* ── FAVOURITE SYSTEM ── */
   .fav-btn {
     position: absolute; top: 12px; right: 12px; z-index: 10;
@@ -338,6 +411,7 @@
   <a href="#slides">Slides</a>
   <a href="#assets">Assets</a>
   <a href="#logos">Logos</a>
+  <a href="#animations">Animations</a>
 </nav>
 
 <!-- Filter bar -->
@@ -1190,6 +1264,246 @@
   </div>
 </section>
 
+<!-- ═══════════ ANIMATED ASSETS ═══════════ -->
+<section class="section" id="animations">
+  <div class="section-label">Idea 07</div>
+  <h2 class="section-title">Animated Brand Elements</h2>
+  <p class="section-desc">Subtle motion adds life to the brand. These are CSS-only animations — lightweight, scalable, and ready to drop into websites, presentations, or digital signage.</p>
+
+  <div class="ideas-grid">
+
+    <!-- ── 1. Floating Petals (atmospheric) ── -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background:var(--pp-dark-purple);height:300px;padding:0;">
+        <div class="anim-stage" style="background:var(--pp-dark-purple);" id="float-stage"></div>
+      </div>
+      <div class="idea-info">
+        <h3>Floating Petals</h3>
+        <p>Translucent petals drift gently upward at different speeds and angles — like seeds on a breeze. Each petal is a random spectrum colour with slight rotation. Use as an ambient website background, loading screen, or event signage atmosphere.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Atmospheric</span>
+          <span class="idea-tag">Website</span>
+          <span class="idea-tag">Signage</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 2. Colour-cycling petal ── -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background:#faf8fc;height:300px;">
+        <svg width="160" height="220" viewBox="0 0 80 110">
+          <path d="M40,5 Q18,22 18,55 Q18,88 40,105 Q62,88 62,55 Q62,22 40,5Z" opacity="0.75">
+            <animate attributeName="fill" values="#782b8f;#684b9e;#0091c0;#5cade0;#19b261;#91c73e;#ffce01;#f37b20;#ed2524;#da7ab0;#782b8f" dur="12s" repeatCount="indefinite"/>
+          </path>
+          <path d="M40,12 Q24,26 24,55 Q24,84 40,98 Q56,84 56,55 Q56,26 40,12Z" fill="white" opacity="0.12"/>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Spectrum Fade</h3>
+        <p>A single petal smoothly cycles through every colour in the diversity spectrum — the full journey takes 12 seconds. Represents the breadth of neurodiversity in one continuous flow. Use as a hero accent, loading indicator, or favicon animation.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Hero Accent</span>
+          <span class="idea-tag">Loading</span>
+          <span class="idea-tag">Favicon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. Flutter petals ── -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background:white;height:300px;">
+        <svg width="280" height="200" viewBox="0 0 280 200">
+          <g transform="translate(60,100)">
+            <g style="--base-rot:-15deg;animation:flutter 3.2s ease-in-out infinite;transform-origin:50% 100%;">
+              <path d="M0,-8 Q-16,-45 0,-75 Q16,-45 0,-8Z" fill="#782b8f" opacity="0.6"/>
+            </g>
+          </g>
+          <g transform="translate(105,105)">
+            <g style="--base-rot:-5deg;animation:flutter 3.8s 0.4s ease-in-out infinite;transform-origin:50% 100%;">
+              <path d="M0,-8 Q-16,-45 0,-75 Q16,-45 0,-8Z" fill="#0091c0" opacity="0.55"/>
+            </g>
+          </g>
+          <g transform="translate(150,98)">
+            <g style="--base-rot:3deg;animation:flutter 3.5s 0.8s ease-in-out infinite;transform-origin:50% 100%;">
+              <path d="M0,-8 Q-16,-45 0,-75 Q16,-45 0,-8Z" fill="#91c73e" opacity="0.6"/>
+            </g>
+          </g>
+          <g transform="translate(195,103)">
+            <g style="--base-rot:10deg;animation:flutter 3.1s 0.2s ease-in-out infinite;transform-origin:50% 100%;">
+              <path d="M0,-8 Q-16,-45 0,-75 Q16,-45 0,-8Z" fill="#ffce01" opacity="0.55"/>
+            </g>
+          </g>
+          <g transform="translate(240,100)">
+            <g style="--base-rot:18deg;animation:flutter 3.6s 0.6s ease-in-out infinite;transform-origin:50% 100%;">
+              <path d="M0,-8 Q-16,-45 0,-75 Q16,-45 0,-8Z" fill="#f37b20" opacity="0.6"/>
+            </g>
+          </g>
+          <!-- Ground line -->
+          <line x1="40" y1="108" x2="260" y2="108" stroke="#C2A7CF" stroke-width="1" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Flutter in the Breeze</h3>
+        <p>Petals gently sway and compress as if caught in a light breeze — each on its own rhythm so the motion feels organic, not mechanical. Use as a decorative banner element or section divider that's alive with subtle movement.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Decorative</span>
+          <span class="idea-tag">Banner</span>
+          <span class="idea-tag">Organic</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4. Breathing bloom ── -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background:var(--pp-dark-purple);height:300px;">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <g transform="translate(100,100)">
+            <g style="--petal-angle:0deg;animation:breathe 4s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#782b8f" opacity="0.65"/>
+            </g>
+            <g style="--petal-angle:45deg;animation:breathe 4s 0.5s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#684b9e" opacity="0.55" transform="rotate(45)"/>
+            </g>
+            <g style="--petal-angle:90deg;animation:breathe 4s 1s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#0091c0" opacity="0.6" transform="rotate(90)"/>
+            </g>
+            <g style="--petal-angle:135deg;animation:breathe 4s 1.5s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#5cade0" opacity="0.5" transform="rotate(135)"/>
+            </g>
+            <g style="--petal-angle:180deg;animation:breathe 4s 2s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#91c73e" opacity="0.6" transform="rotate(180)"/>
+            </g>
+            <g style="--petal-angle:225deg;animation:breathe 4s 2.5s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#19b261" opacity="0.5" transform="rotate(225)"/>
+            </g>
+            <g style="--petal-angle:270deg;animation:breathe 4s 3s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#ffce01" opacity="0.55" transform="rotate(270)"/>
+            </g>
+            <g style="--petal-angle:315deg;animation:breathe 4s 3.5s ease-in-out infinite;transform-origin:center center;">
+              <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#f37b20" opacity="0.55" transform="rotate(315)"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Breathing Bloom</h3>
+        <p>The full bloom gently pulses — each petal slightly extends and contracts in a staggered wave, like a living thing breathing. Calm, meditative, and deeply on-brand. Perfect for a hero background, welcome screen, or calming visual in workshop waiting rooms.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Hero</span>
+          <span class="idea-tag">Calming</span>
+          <span class="idea-tag">Welcome Screen</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. Pulse ripple ── -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background:#faf8fc;height:300px;">
+        <svg width="240" height="240" viewBox="0 0 200 200">
+          <g transform="translate(100,100)">
+            <!-- Ripple rings -->
+            <circle cx="0" cy="0" fill="none" stroke="#782b8f" stroke-width="2">
+              <animate attributeName="r" values="10;70" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="0" cy="0" fill="none" stroke="#0091c0" stroke-width="2">
+              <animate attributeName="r" values="10;70" dur="3s" begin="0.75s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0" dur="3s" begin="0.75s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="0" cy="0" fill="none" stroke="#91c73e" stroke-width="2">
+              <animate attributeName="r" values="10;70" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="0" cy="0" fill="none" stroke="#f37b20" stroke-width="2">
+              <animate attributeName="r" values="10;70" dur="3s" begin="2.25s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0" dur="3s" begin="2.25s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Centre bloom stays solid -->
+            <path d="M0,-4 Q-8,-22 0,-34 Q8,-22 0,-4Z" fill="#782b8f" opacity="0.7" transform="rotate(0)"/>
+            <path d="M0,-4 Q-8,-22 0,-34 Q8,-22 0,-4Z" fill="#0091c0" opacity="0.6" transform="rotate(90)"/>
+            <path d="M0,-4 Q-8,-22 0,-34 Q8,-22 0,-4Z" fill="#91c73e" opacity="0.6" transform="rotate(180)"/>
+            <path d="M0,-4 Q-8,-22 0,-34 Q8,-22 0,-4Z" fill="#f37b20" opacity="0.6" transform="rotate(270)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Ripple Pulse</h3>
+        <p>Coloured rings ripple outward from a central bloom — like the impact of a partnership radiating through a community. Each ring is a different spectrum colour. Use for notification moments, page transitions, or to draw the eye to a call-to-action.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Notification</span>
+          <span class="idea-tag">CTA</span>
+          <span class="idea-tag">Impact</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 6. Slow-spin bloom ── -->
+    <div class="idea-card">
+      <div class="idea-preview" style="background:var(--pp-dark-purple);height:300px;">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <g transform="translate(100,100)" style="animation:bloomSpin 30s linear infinite;">
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#782b8f" opacity="0.55" transform="rotate(0)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#684b9e" opacity="0.45" transform="rotate(45)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#0091c0" opacity="0.5" transform="rotate(90)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#5cade0" opacity="0.4" transform="rotate(135)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#91c73e" opacity="0.5" transform="rotate(180)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#19b261" opacity="0.4" transform="rotate(225)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#ffce01" opacity="0.45" transform="rotate(270)"/>
+            <path d="M0,-8 Q-16,-42 0,-72 Q16,-42 0,-8Z" fill="#f37b20" opacity="0.45" transform="rotate(315)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="idea-info">
+        <h3>Slow Spin</h3>
+        <p>The bloom rotates almost imperceptibly — one full revolution every 30 seconds. You barely notice it's moving, but it gives the logo a living, organic quality. Ideal for a website watermark, loading state, or ambient desktop wallpaper element.</p>
+        <div class="idea-tags">
+          <span class="idea-tag">Watermark</span>
+          <span class="idea-tag">Loading</span>
+          <span class="idea-tag">Ambient</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Full-width atmospheric demo ── -->
+  <div style="margin-top:2.5rem;">
+    <div style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--pp-medium-purple);font-weight:600;margin-bottom:0.8rem;">Full-Width Atmospheric Demo</div>
+    <div class="anim-stage anim-stage-wide" style="background:linear-gradient(135deg, var(--pp-dark-purple) 0%, #1a0028 100%);border-radius:14px;display:flex;align-items:center;justify-content:center;" id="atmos-stage">
+      <div style="position:relative;z-index:2;text-align:center;padding:0 2rem;">
+        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:300;color:white;margin-bottom:0.3rem;">Every learner is unique</div>
+        <div style="font-family:Arial,sans-serif;font-size:0.9rem;color:var(--pp-light-purple);opacity:0.8;">Positive Partnerships — Professional Learning Workshops 2026</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--pp-medium-grey);margin-top:0.8rem;max-width:600px;">Floating petals as a full-width atmospheric background. This is how it could look on a website hero section, event screen, or digital signage. The petals are randomly generated — every page load is slightly different.</p>
+  </div>
+
+  <!-- ── Spectrum wave bar demo ── -->
+  <div style="margin-top:2.5rem;">
+    <div style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--pp-medium-purple);font-weight:600;margin-bottom:0.8rem;">Animated Spectrum Bar</div>
+    <div style="background:white;border-radius:14px;padding:2rem;box-shadow:0 2px 12px rgba(51,0,68,0.06);display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+      <svg width="320" height="60" viewBox="0 0 320 60">
+        <rect x="10" y="10" width="28" height="40" rx="6" fill="#782b8f" opacity="0.7" style="transform-origin:24px 50px;animation:waveBar 2s 0s ease-in-out infinite;"/>
+        <rect x="48" y="10" width="28" height="40" rx="6" fill="#684b9e" opacity="0.65" style="transform-origin:62px 50px;animation:waveBar 2s 0.15s ease-in-out infinite;"/>
+        <rect x="86" y="10" width="28" height="40" rx="6" fill="#0091c0" opacity="0.7" style="transform-origin:100px 50px;animation:waveBar 2s 0.3s ease-in-out infinite;"/>
+        <rect x="124" y="10" width="28" height="40" rx="6" fill="#19b261" opacity="0.65" style="transform-origin:138px 50px;animation:waveBar 2s 0.45s ease-in-out infinite;"/>
+        <rect x="162" y="10" width="28" height="40" rx="6" fill="#91c73e" opacity="0.7" style="transform-origin:176px 50px;animation:waveBar 2s 0.6s ease-in-out infinite;"/>
+        <rect x="200" y="10" width="28" height="40" rx="6" fill="#ffce01" opacity="0.7" style="transform-origin:214px 50px;animation:waveBar 2s 0.75s ease-in-out infinite;"/>
+        <rect x="238" y="10" width="28" height="40" rx="6" fill="#f37b20" opacity="0.7" style="transform-origin:252px 50px;animation:waveBar 2s 0.9s ease-in-out infinite;"/>
+        <rect x="276" y="10" width="28" height="40" rx="6" fill="#ed2524" opacity="0.65" style="transform-origin:290px 50px;animation:waveBar 2s 1.05s ease-in-out infinite;"/>
+      </svg>
+      <p style="font-size:0.82rem;color:var(--pp-medium-grey);text-align:center;max-width:480px;margin:0;">An equaliser-style spectrum wave — the bars pulse in sequence creating a flowing wave of colour. Use as an animated divider, loading bar, or decorative footer element.</p>
+    </div>
+  </div>
+
+  <!-- ── Particle scatter demo ── -->
+  <div style="margin-top:2.5rem;">
+    <div style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--pp-medium-purple);font-weight:600;margin-bottom:0.8rem;">Particle Scatter</div>
+    <div class="anim-stage" style="background:white;border-radius:14px;height:180px;box-shadow:0 2px 12px rgba(51,0,68,0.06);" id="scatter-stage"></div>
+    <p style="font-size:0.82rem;color:var(--pp-medium-grey);margin-top:0.8rem;max-width:600px;">Tiny spectrum-coloured dots drift softly across a light background — like pollen or particles of light. Very subtle, very calming. Use as a background texture for web sections or behind content cards.</p>
+  </div>
+</section>
+
 <!-- ═══════════ TOOLS RECOMMENDATION ═══════════ -->
 <section class="section">
   <div class="section-label">Next Steps</div>
@@ -1399,6 +1713,84 @@ document.querySelectorAll('.topnav a[href^="#"]').forEach(a => {
       }
     });
   });
+})();
+
+// ══════════════════════════════════════════
+// ── FLOATING PETALS GENERATOR ──
+// ══════════════════════════════════════════
+(function() {
+  const spectrumColours = [
+    '#782b8f','#684b9e','#0091c0','#5cade0','#19b261',
+    '#91c73e','#ffce01','#f37b20','#ed2524','#da7ab0','#ac3392'
+  ];
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function createFloatingPetal(container, size, i, total) {
+    const colour = pick(spectrumColours);
+    const w = rand(size * 0.6, size * 1.4);
+    const h = w * rand(2, 3);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    svg.setAttribute('viewBox', '0 0 20 50');
+    svg.innerHTML = `<path d="M10,2 Q3,12 3,25 Q3,38 10,48 Q17,38 17,25 Q17,12 10,2Z" fill="${colour}" opacity="${rand(0.25, 0.6)}"/>`;
+
+    const el = document.createElement('div');
+    el.className = 'floating-petal';
+    el.appendChild(svg);
+
+    // Distribute start positions across the width
+    const leftPct = (i / total) * 100 + rand(-5, 5);
+    el.style.left = Math.max(0, Math.min(95, leftPct)) + '%';
+    el.style.bottom = '-' + (h + 10) + 'px';
+
+    // CSS custom properties for the animation
+    const dur = rand(8, 16);
+    el.style.setProperty('--dur', dur + 's');
+    el.style.setProperty('--delay', rand(0, dur) + 's');
+    el.style.setProperty('--travel', '-' + (container.offsetHeight + h + 40) + 'px');
+    el.style.setProperty('--dx', rand(-60, 60) + 'px');
+    el.style.setProperty('--rot-mid', rand(-40, 40) + 'deg');
+    el.style.setProperty('--rot-end', rand(-80, 80) + 'deg');
+    el.style.setProperty('--sc-mid', rand(0.8, 1.15));
+    el.style.setProperty('--peak-op', rand(0.4, 0.7));
+
+    container.appendChild(el);
+  }
+
+  // Populate both floating stages
+  ['float-stage','atmos-stage'].forEach(id => {
+    const stage = document.getElementById(id);
+    if (!stage) return;
+    const count = id === 'atmos-stage' ? 18 : 12;
+    const size = id === 'atmos-stage' ? 14 : 18;
+    for (let i = 0; i < count; i++) {
+      createFloatingPetal(stage, size, i, count);
+    }
+  });
+
+  // ── Particle scatter ──
+  const scatterStage = document.getElementById('scatter-stage');
+  if (scatterStage) {
+    for (let i = 0; i < 25; i++) {
+      const dot = document.createElement('div');
+      const colour = pick(spectrumColours);
+      const size = rand(4, 10);
+      dot.style.cssText = `
+        position:absolute; width:${size}px; height:${size}px;
+        border-radius:50%; background:${colour}; opacity:0;
+        left:${rand(5,90)}%; top:${rand(10,80)}%;
+        pointer-events:none;
+        --sx1:${rand(-30,30)}px; --sy1:${rand(-20,20)}px;
+        --sx2:${rand(-50,50)}px; --sy2:${rand(-40,40)}px;
+        --sx3:${rand(-70,70)}px; --sy3:${rand(-50,50)}px;
+        animation: scatterDot ${rand(6,14)}s ${rand(0,8)}s ease-in-out infinite;
+      `;
+      scatterStage.appendChild(dot);
+    }
+  }
 })();
 </script>
 </body>
