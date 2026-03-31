@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Mark Concepts — Negative Space — Positive Partnerships</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pd:   #330044;   /* purple dark  */
+      --pm:   #712D90;   /* purple mid   */
+      --pl:   #C2A7CF;   /* purple light */
+      --mist: #EDE6F5;
+      --bg:   #F8F5FB;
+      --teal: #00B5C8;
+      --lime: #BBD64A;
+      --org:  #F7941E;
+      --td:   #1a0028;
+      --tm:   #4a3060;
+      --white:#FFFFFF;
+      --r:    12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Open Sans',sans-serif; background:var(--bg); color:var(--td); line-height:1.6; }
+
+    /* ── Nav ── */
+    nav {
+      background:var(--pd); display:flex; align-items:center;
+      justify-content:space-between; padding:0 32px; height:54px;
+      position:sticky; top:0; z-index:100;
+      box-shadow:0 2px 12px rgba(0,0,0,.35);
+    }
+    nav .nb { font-size:.74rem; font-weight:700; color:var(--pl); letter-spacing:.08em; text-transform:uppercase; }
+    nav .nm { font-size:.74rem; color:rgba(255,255,255,.4); }
+    nav a   { color:var(--pl); text-decoration:none; font-size:.78rem; }
+    nav a:hover { color:#fff; }
+
+    /* ── Header ── */
+    .hdr {
+      background:linear-gradient(150deg,var(--pd) 0%,#1e0035 100%);
+      padding:56px 32px 48px; text-align:center;
+    }
+    .hdr h1 { font-size:clamp(1.5rem,4vw,2.3rem); font-weight:700; color:#fff; letter-spacing:-.02em; }
+    .hdr p  { color:var(--pl); font-size:.95rem; margin:10px auto 0; max-width:560px; }
+    .pill {
+      display:inline-block; margin-top:16px;
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.13);
+      border-radius:40px; padding:7px 20px;
+      font-size:.75rem; color:rgba(255,255,255,.5); font-style:italic;
+    }
+
+    /* ── Wrap ── */
+    .wrap  { max-width:1080px; margin:0 auto; padding:0 24px; }
+    .lbar  { width:40px; height:3px; background:var(--lime); border-radius:2px; margin:10px 0 6px; }
+    .tbar  { width:40px; height:3px; background:var(--teal); border-radius:2px; margin:10px 0 6px; }
+    .obar  { width:40px; height:3px; background:var(--org);  border-radius:2px; margin:10px 0 6px; }
+    .pbar  { width:40px; height:3px; background:var(--pm);   border-radius:2px; margin:10px 0 6px; }
+
+    /* ── Concept section ── */
+    .concept { padding:64px 0 40px; border-top:1px solid rgba(113,45,144,.12); }
+    .concept:first-of-type { border-top:none; }
+    .concept-tag {
+      display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.12em;
+      text-transform:uppercase; border-radius:4px; padding:3px 10px; margin-bottom:10px; color:#fff;
+    }
+    .concept h2 { font-size:1.5rem; font-weight:700; color:var(--pd); margin-bottom:4px; }
+    .concept h2 em { font-style:normal; color:var(--pm); }
+    .concept-desc { font-size:.9rem; color:var(--tm); max-width:620px; margin-bottom:36px; }
+
+    /* ── Mark grid ── */
+    .mark-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:16px;
+      margin-bottom:20px;
+    }
+    @media(max-width:680px){ .mark-grid{ grid-template-columns:1fr; } }
+
+    .mark-cell {
+      border-radius:var(--r);
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; gap:14px;
+      padding:32px 20px 20px;
+      box-shadow:0 2px 16px rgba(51,0,68,.1);
+      position:relative;
+    }
+    .mark-cell.dark   { background:var(--pd); box-shadow:0 4px 20px rgba(0,0,0,.3); }
+    .mark-cell.light  { background:var(--white); }
+    .mark-cell.mist   { background:var(--mist); }
+    .mark-cell-label {
+      font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      position:absolute; top:10px; left:14px;
+    }
+    .mark-cell.dark  .mark-cell-label { color:rgba(255,255,255,.3); }
+    .mark-cell.light .mark-cell-label { color:var(--pl); }
+    .mark-cell.mist  .mark-cell-label { color:var(--pm); }
+
+    /* SVG mark sizes in cells */
+    .mark-cell svg.lg { width:auto; height:120px; }
+    .mark-cell svg.md { width:auto; height:72px; }
+    .mark-cell svg.sm { width:auto; height:44px; }
+
+    /* ── Logo lockup row ── */
+    .lockup-row {
+      background:var(--white); border-radius:var(--r);
+      padding:24px 28px; margin-bottom:8px;
+      box-shadow:0 2px 12px rgba(51,0,68,.07);
+      display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+    }
+    .lockup-item { display:flex; align-items:center; gap:10px; }
+    .lockup-item svg { height:52px; width:auto; flex-shrink:0; }
+    .lockup-item .wm {
+      font-family:'Fraunces',serif; font-weight:400;
+      color:var(--pd); white-space:nowrap;
+    }
+    .wm-lg { font-size:1.45rem; }
+    .wm-md { font-size:1rem; }
+
+    .lockup-dark {
+      background:var(--pd); border-radius:var(--r);
+      padding:24px 28px;
+      box-shadow:0 4px 20px rgba(0,0,0,.25);
+      display:flex; align-items:center; gap:32px; flex-wrap:wrap;
+    }
+    .lockup-dark .lockup-item .wm { color:#fff; }
+
+    /* ── Design note ── */
+    .design-note {
+      background:linear-gradient(135deg,#f7f2ff,#ede4f7);
+      border-left:4px solid var(--pm);
+      border-radius:0 var(--r) var(--r) 0;
+      padding:18px 22px; margin-top:20px;
+      font-size:.85rem; color:var(--tm);
+    }
+    .design-note strong { color:var(--pm); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:6px; }
+
+    /* ── Compare grid ── */
+    .compare { padding:64px 0 80px; border-top:1px solid rgba(113,45,144,.12); }
+    .compare h2 { font-size:1.3rem; font-weight:700; color:var(--pd); margin-bottom:4px; }
+    .compare p  { font-size:.88rem; color:var(--tm); margin-bottom:32px; }
+    .cmp-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+    @media(max-width:760px){ .cmp-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:440px){ .cmp-grid{ grid-template-columns:1fr; } }
+    .cmp-cell {
+      background:var(--pd); border-radius:var(--r);
+      padding:28px 20px 20px;
+      display:flex; flex-direction:column; align-items:center; gap:14px;
+      box-shadow:0 4px 16px rgba(0,0,0,.25);
+    }
+    .cmp-cell svg { height:88px; width:auto; }
+    .cmp-name {
+      font-size:.7rem; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; color:rgba(255,255,255,.45); text-align:center;
+    }
+
+    /* ── Footer ── */
+    footer { background:var(--pd); color:rgba(255,255,255,.38); text-align:center; padding:28px; font-size:.76rem; }
+    footer strong { color:rgba(255,255,255,.65); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nb">Positive Partnerships — Brand Sandpit</span>
+  <span class="nm">Negative Space Mark Concepts · March 2026</span>
+</nav>
+
+<div class="hdr">
+  <h1>Brand Mark Concepts — Negative Space</h1>
+  <p>Four directions exploring how negative space can embed meaning into the Positive Partnerships mark. Each concept hides a petal — or something more — in the space between shapes.</p>
+  <span class="pill">The best logos say two things at once</span>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════════
+     CONCEPT 1 — THE LENS
+     Two circles, vesica piscis petal between them
+══════════════════════════════════════════ -->
+<section class="concept" id="lens">
+  <span class="concept-tag" style="background:var(--pm);">Concept 1</span>
+  <h2>The Lens <em>— two circles, one vision</em></h2>
+  <div class="lbar"></div>
+  <p class="concept-desc">
+    Two overlapping circles — one for home, one for school. Where they meet,
+    the negative space reveals a vertical petal: the place where partnership
+    creates something neither could alone. Minimal, geometric, universally legible.
+  </p>
+
+  <div class="mark-grid">
+    <div class="mark-cell dark">
+      <span class="mark-cell-label">Large · Dark</span>
+      <!-- large -->
+      <svg class="lg" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <rect width="140" height="110" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+    </div>
+    <div class="mark-cell light">
+      <span class="mark-cell-label">Large · White</span>
+      <svg class="lg" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <rect width="140" height="110" fill="#712D90"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+    </div>
+    <div class="mark-cell mist">
+      <span class="mark-cell-label">Sizes</span>
+      <!-- three sizes -->
+      <svg class="md" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <rect width="140" height="110" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+      <svg class="sm" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <rect width="140" height="110" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- lockup light -->
+  <div class="lockup-row">
+    <div class="lockup-item">
+      <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg" style="height:56px;width:auto;">
+        <rect width="140" height="110" fill="#330044" rx="10"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+    <div class="lockup-item">
+      <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
+        <rect width="140" height="110" fill="#330044" rx="8"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+      <span class="wm wm-md">Positive Partnerships</span>
+    </div>
+  </div>
+  <!-- lockup dark -->
+  <div class="lockup-dark">
+    <div class="lockup-item">
+      <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg" style="height:52px;width:auto;">
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+  </div>
+
+  <div class="design-note">
+    <strong>Design Notes</strong>
+    The two circles reference the Venn diagram — a universal symbol of overlap and shared purpose. The vesica piscis (the lens shape) has centuries of use as a symbol of union and new life. At small sizes the petal disappears and two clean circles remain — maintaining legibility as a favicon or app icon. The mark works monochromatically and at any scale.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONCEPT 2 — THE PP PETAL
+     Two D-shapes / P-bowls, petal in negative space
+══════════════════════════════════════════ -->
+<section class="concept" id="pp-petal">
+  <span class="concept-tag" style="background:var(--teal);color:#001a1e;">Concept 2</span>
+  <h2>The PP Petal <em>— hidden in the initials</em></h2>
+  <div class="tbar"></div>
+  <p class="concept-desc">
+    The twin bowls of the initials P+P face each other like two hands cupped together.
+    Where they overlap, the letterforms disappear and the petal reveals itself in the negative space.
+    A secret hidden in the name — you can't unsee it once you spot it.
+  </p>
+
+  <div class="mark-grid">
+    <div class="mark-cell dark">
+      <span class="mark-cell-label">Large · Dark</span>
+      <svg class="lg" viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="104" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+    </div>
+    <div class="mark-cell light">
+      <span class="mark-cell-label">Large · Colour</span>
+      <svg class="lg" viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="104" fill="#712D90"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+    </div>
+    <div class="mark-cell mist">
+      <span class="mark-cell-label">Sizes</span>
+      <svg class="md" viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="104" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+      <svg class="sm" viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="104" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="lockup-row">
+    <div class="lockup-item">
+      <svg viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg" style="height:56px;width:auto;">
+        <rect width="120" height="104" fill="#330044" rx="10"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+    <div class="lockup-item">
+      <svg viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
+        <rect width="120" height="104" fill="#330044" rx="8"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+      <span class="wm wm-md">Positive Partnerships</span>
+    </div>
+  </div>
+  <div class="lockup-dark">
+    <div class="lockup-item">
+      <svg viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg" style="height:52px;width:auto;">
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+  </div>
+
+  <div class="design-note" style="border-color:var(--teal);">
+    <strong style="color:var(--teal);">Design Notes</strong>
+    The initials PP read naturally into the bowls of the letterforms. Two white crescents flank a central petal — read as: two partners (crescents) creating something together (petal). The straight inner edges of the Ps create satisfying geometric tension with the curved outer arcs. Strong at all sizes; at favicon size it reads as a clean circle-ish badge.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONCEPT 3 — THE CRADLE
+     Two arcs cradling a petal in the centre
+══════════════════════════════════════════ -->
+<section class="concept" id="cradle">
+  <span class="concept-tag" style="background:var(--org);color:#1a0028;">Concept 3</span>
+  <h2>The Cradle <em>— held within</em></h2>
+  <div class="obar"></div>
+  <p class="concept-desc">
+    Two sweeping arcs — two arms, or two paths — curve around each other.
+    In the space they protect between them, a petal grows.
+    Warmth and support made visible: the child held by the community.
+  </p>
+
+  <div class="mark-grid">
+    <div class="mark-cell dark">
+      <span class="mark-cell-label">Large · Dark</span>
+      <svg class="lg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="120" fill="#330044"/>
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="mark-cell light">
+      <span class="mark-cell-label">Large · Colour</span>
+      <svg class="lg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="120" fill="#712D90"/>
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="mark-cell mist">
+      <span class="mark-cell-label">Sizes</span>
+      <svg class="md" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="120" fill="#330044"/>
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+      <svg class="sm" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="120" fill="#330044"/>
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="lockup-row">
+    <div class="lockup-item">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="height:56px;width:auto;">
+        <rect width="100" height="120" fill="#330044" rx="10"/>
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+    <div class="lockup-item">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
+        <rect width="100" height="120" fill="#330044" rx="8"/>
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="wm wm-md">Positive Partnerships</span>
+    </div>
+  </div>
+  <div class="lockup-dark">
+    <div class="lockup-item">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="height:52px;width:auto;">
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+  </div>
+
+  <div class="design-note" style="border-color:var(--org);">
+    <strong style="color:var(--org);">Design Notes</strong>
+    The two arcs meet at the same top and bottom points — visually tight, a closed system of support. The negative space petal is pointed at both ends (classic petal form) and perfectly centred. The rounded stroke caps make the mark feel warm rather than rigid. Without the background, the mark works as two flowing paths — use on dark backgrounds for maximum impact.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONCEPT 4 — PETAL WITHIN PETAL
+     Ring-frame with inner petal negative space
+══════════════════════════════════════════ -->
+<section class="concept" id="ring">
+  <span class="concept-tag" style="background:var(--pm);">Concept 4</span>
+  <h2>Petal Within Petal <em>— growth within growth</em></h2>
+  <div class="pbar"></div>
+  <p class="concept-desc">
+    A petal frame — its outer edge solid white, its interior hollow — reveals a second,
+    smaller petal in the negative space within. The outer petal is the support network.
+    The inner petal is the child. The white frame is the act of partnership itself.
+  </p>
+
+  <div class="mark-grid">
+    <div class="mark-cell dark">
+      <span class="mark-cell-label">Large · Dark</span>
+      <svg class="lg" viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="124" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+    </div>
+    <div class="mark-cell light">
+      <span class="mark-cell-label">Large · Colour</span>
+      <svg class="lg" viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="124" fill="#712D90"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+    </div>
+    <div class="mark-cell mist">
+      <span class="mark-cell-label">Sizes</span>
+      <svg class="md" viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="124" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+      <svg class="sm" viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="124" fill="#330044"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="lockup-row">
+    <div class="lockup-item">
+      <svg viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg" style="height:56px;width:auto;">
+        <rect width="100" height="124" fill="#330044" rx="10"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+    <div class="lockup-item">
+      <svg viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
+        <rect width="100" height="124" fill="#330044" rx="8"/>
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+      <span class="wm wm-md">Positive Partnerships</span>
+    </div>
+  </div>
+  <div class="lockup-dark">
+    <div class="lockup-item">
+      <svg viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg" style="height:52px;width:auto;">
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+      <span class="wm wm-lg">Positive Partnerships</span>
+    </div>
+  </div>
+
+  <div class="design-note">
+    <strong>Design Notes</strong>
+    Most directly connected to the existing petal brand language — can evolve the current mark rather than replace it. The frame/ring approach is extremely versatile: vary the frame thickness to shift from delicate to bold. The inner petal can also hold a small icon or dot (representing the child or a specific program). Works well as a circular badge, envelope seal, or document watermark.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     COMPARISON
+══════════════════════════════════════════ -->
+<section class="compare">
+  <h2>All Four — Side by Side</h2>
+  <div class="lbar"></div>
+  <p>Each concept on dark purple at the same height.</p>
+  <div class="cmp-grid">
+    <div class="cmp-cell">
+      <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" fill="white" d="
+          M 47,12 C 65.78,12 81,27.22 81,46 C 81,64.78 65.78,80 47,80
+          C 28.22,80 13,64.78 13,46 C 13,27.22 28.22,12 47,12 Z
+          M 93,12 C 111.78,12 127,27.22 127,46 C 127,64.78 111.78,80 93,80
+          C 74.22,80 59,64.78 59,46 C 59,27.22 74.22,12 93,12 Z
+        "/>
+      </svg>
+      <span class="cmp-name">1 · The Lens</span>
+    </div>
+    <div class="cmp-cell">
+      <svg viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" fill="white" d="
+          M 46,12 L 46,92 C 60,92 82,78 82,52 C 82,26 60,12 46,12 Z
+          M 74,12 L 74,92 C 60,92 38,78 38,52 C 38,26 60,12 74,12 Z
+        "/>
+      </svg>
+      <span class="cmp-name">2 · The PP Petal</span>
+    </div>
+    <div class="cmp-cell">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,16 Q 8,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M 50,16 Q 92,60 50,104" stroke="white" stroke-width="13" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="cmp-name">3 · The Cradle</span>
+    </div>
+    <div class="cmp-cell">
+      <svg viewBox="0 0 100 124" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" fill="white" d="
+          M 50,6 C 84,18 84,106 50,118 C 16,106 16,18 50,6 Z
+          M 50,26 C 72,35 72,89 50,98 C 28,89 28,35 50,26 Z
+        "/>
+      </svg>
+      <span class="cmp-name">4 · Petal Within Petal</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <strong>Positive Partnerships</strong> — Brand Sandpit · Negative Space Mark Concepts · March 2026<br/>
+  <span style="font-size:.7rem;opacity:.8;">All marks are SVG — scalable, editable, and ready for refinement in Illustrator or Figma · Wordmark set in Fraunces (≈ Moranga)</span>
+</footer>
+
+</body>
+</html>
