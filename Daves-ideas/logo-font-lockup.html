@@ -83,21 +83,19 @@
       position: relative; overflow: hidden;
     }
     .card.light   { background: var(--white); }
-    .card.dark    { background: var(--mist); }
+    .card.dark    { background: var(--purple-dark); box-shadow: 0 2px 14px rgba(0,0,0,.28); }
 
     /* Petal mark */
     .petal { width: 50px; height: 50px; flex-shrink: 0; display: block; }
 
-    /* Font image wrapper — fades out the font-name label on the right */
+    /* Font image wrapper — shared base */
     .fimg-wrap {
       overflow: hidden;
       height: 44px;
-      max-width: 400px;     /* wide enough for boldest/widest fonts */
+      max-width: 400px;
       flex-shrink: 1;
       min-width: 0;
-      /* Gradient mask: fully opaque through the wordmark, fades over the label area */
-      -webkit-mask-image: linear-gradient(to right, black 72%, transparent 92%);
-              mask-image: linear-gradient(to right, black 72%, transparent 92%);
+      position: relative;
     }
     .fimg {
       height: 44px;
@@ -105,8 +103,34 @@
       max-width: none;
       display: block;
     }
-    /* Multiply blend makes white background transparent, keeps dark text */
-    .fimg { mix-blend-mode: multiply; }
+
+    /* ── LIGHT cards: multiply on the wrapper + gradient mask ──
+       Blend mode on wrapper composites the masked result against the card.
+       No isolation issue because the mask and blend are on the same element. */
+    .card.light .fimg-wrap {
+      mix-blend-mode: multiply;
+      -webkit-mask-image: linear-gradient(to right, black 72%, transparent 92%);
+              mask-image: linear-gradient(to right, black 72%, transparent 92%);
+    }
+
+    /* ── DARK cards: invert image, screen-blend wrapper against dark purple.
+       Avoids mask-image entirely (which breaks screen blend via stacking context).
+       Instead a ::after overlay fades to black — screen(dark_purple, black) = dark_purple,
+       so the overlay area just shows the card background cleanly. ── */
+    .card.dark .fimg-wrap {
+      mix-blend-mode: screen;
+    }
+    .card.dark .fimg {
+      filter: invert(1);
+    }
+    .card.dark .fimg-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 40%;
+      background: linear-gradient(to right, transparent, #000000);
+      pointer-events: none;
+    }
 
     /* Font name label */
     .flabel {
@@ -114,7 +138,7 @@
       font-size: .62rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
     }
     .card.light .flabel { color: var(--purple-light); }
-    .card.dark  .flabel { color: var(--purple-mid); }
+    .card.dark  .flabel { color: rgba(255,255,255,.35); }
 
     /* Recommendation badges */
     .badge {
@@ -122,8 +146,8 @@
       font-size: .58rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
       border-radius: 20px; padding: 2px 8px;
     }
-    .card.light .badge { background: var(--lime);   color: #1a0028; }
-    .card.dark  .badge { background: var(--purple-mid); color: #fff; }
+    .card.light .badge { background: var(--lime); color: #1a0028; }
+    .card.dark  .badge { background: var(--teal); color: #001a1e; }
 
     /* ── Footer ── */
     footer { background: var(--purple-dark); color: rgba(255,255,255,.38); text-align: center; padding: 28px; font-size: .76rem; }
@@ -151,7 +175,7 @@
 
   <div class="col-headers">
     <div class="col-header">On White</div>
-    <div class="col-header">On Mist Lavender</div>
+    <div class="col-header">On Dark Purple</div>
   </div>
 
   <div class="fonts-grid" id="grid"></div>
