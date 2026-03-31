@@ -83,7 +83,7 @@
       position: relative; overflow: hidden;
     }
     .card.light   { background: var(--white); }
-    .card.dark    { background: var(--purple-dark); box-shadow: 0 2px 14px rgba(0,0,0,.28); }
+    .card.dark    { background: var(--mist); }
 
     /* Petal mark */
     .petal { width: 50px; height: 50px; flex-shrink: 0; display: block; }
@@ -96,8 +96,8 @@
       flex-shrink: 1;
       min-width: 0;
       /* Gradient mask: fully opaque through the wordmark, fades over the label area */
-      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 85%);
-              mask-image: linear-gradient(to right, black 60%, transparent 85%);
+      -webkit-mask-image: linear-gradient(to right, black 72%, transparent 92%);
+              mask-image: linear-gradient(to right, black 72%, transparent 92%);
     }
     .fimg {
       height: 44px;
@@ -105,10 +105,8 @@
       max-width: none;
       display: block;
     }
-    /* Light bg: multiply blend makes white transparent, keeps dark text */
-    .card.light .fimg { mix-blend-mode: multiply; }
-    /* Dark bg: invert image first (black→white text, white→black bg), then screen blend */
-    .card.dark  .fimg { filter: invert(1); mix-blend-mode: screen; }
+    /* Multiply blend makes white background transparent, keeps dark text */
+    .fimg { mix-blend-mode: multiply; }
 
     /* Font name label */
     .flabel {
@@ -116,7 +114,7 @@
       font-size: .62rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
     }
     .card.light .flabel { color: var(--purple-light); }
-    .card.dark  .flabel { color: rgba(255,255,255,.28); }
+    .card.dark  .flabel { color: var(--purple-mid); }
 
     /* Recommendation badges */
     .badge {
@@ -125,7 +123,7 @@
       border-radius: 20px; padding: 2px 8px;
     }
     .card.light .badge { background: var(--lime);   color: #1a0028; }
-    .card.dark  .badge { background: var(--teal);   color: #001a1e; }
+    .card.dark  .badge { background: var(--purple-mid); color: #fff; }
 
     /* ── Footer ── */
     footer { background: var(--purple-dark); color: rgba(255,255,255,.38); text-align: center; padding: 28px; font-size: .76rem; }
@@ -153,7 +151,7 @@
 
   <div class="col-headers">
     <div class="col-header">On White</div>
-    <div class="col-header">On Dark Purple</div>
+    <div class="col-header">On Mist Lavender</div>
   </div>
 
   <div class="fonts-grid" id="grid"></div>
