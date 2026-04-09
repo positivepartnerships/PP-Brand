@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positive Partnerships — Brand Evolution</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:        #5C2D91;
+      --purple-mid:    #7B52B3;
+      --purple-light:  #C4AADC;
+      --teal:          #1A7A78;
+      --teal-light:    #6EB0BC;
+      --bg:            #f7f6fb;
+      --text:          #2a2a3a;
+      --muted:         #6b6b80;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fff;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Utility ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+    .divider { width: 44px; height: 4px; border-radius: 2px; background: var(--teal); margin: 14px 0 28px; }
+    .label {
+      font-size: 11px; font-weight: 900; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    }
+    h2 { font-size: 38px; font-weight: 900; color: var(--purple); line-height: 1.15; }
+    .lead { font-size: 17px; color: var(--muted); max-width: 680px; line-height: 1.85; margin-bottom: 44px; }
+
+    /* ── Header ── */
+    header {
+      padding: 24px 48px;
+      border-bottom: 1px solid #ede8f5;
+      display: flex;
+      align-items: center;
+    }
+    header img { height: 48px; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 48px 80px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .hero-geo {
+      position: absolute;
+      top: -20px; right: -40px;
+      width: 480px; height: 400px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .hero .label { font-size: 12px; }
+    .hero h1 {
+      font-size: 60px; font-weight: 900;
+      color: var(--purple); line-height: 1.08;
+      max-width: 680px; margin-bottom: 26px;
+    }
+    .hero p {
+      font-size: 18px; color: var(--muted);
+      max-width: 600px; line-height: 1.8;
+    }
+
+    /* ── Sections ── */
+    section { padding: 88px 0; }
+    section.tinted { background: var(--bg); }
+
+    /* ── Logo Feature ── */
+    .logo-feature {
+      background: var(--bg);
+      border-radius: 24px;
+      padding: 72px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-feature-geo {
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 280px; opacity: 0.18;
+    }
+    .logo-feature img { max-width: 620px; width: 100%; position: relative; z-index: 1; }
+
+    .logo-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pillar {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 28px 28px 28px 32px;
+      border-left: 4px solid var(--teal);
+    }
+    .pillar h4 { font-size: 15px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+    .pillar p  { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── Insights ── */
+    .insights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 44px;
+    }
+    .insight {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(92,45,145,0.07);
+    }
+    .insight-icon { font-size: 32px; margin-bottom: 14px; }
+    .insight h4 { font-size: 16px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+    .insight p  { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── Wheel ── */
+    .wheel-layout {
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .wheel-img {
+      width: 100%;
+      border-radius: 50%;
+      box-shadow: 0 24px 64px rgba(92,45,145,0.18);
+    }
+    .wheel-text h2 { font-size: 34px; }
+    .wheel-text p  { font-size: 16px; color: var(--muted); margin-bottom: 18px; line-height: 1.8; }
+    .dims {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .dim {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px; font-weight: 800;
+      color: #fff; line-height: 1.3;
+    }
+
+    /* ── Palette ── */
+    .palette-section { display: flex; flex-direction: column; gap: 52px; }
+    .palette-group-label {
+      font-size: 12px; font-weight: 900; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #aaa; margin-bottom: 20px;
+    }
+    .swatches { display: flex; flex-wrap: wrap; gap: 20px; }
+    .swatch   { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+    .swatch-block {
+      width: 86px; height: 86px; border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+    .swatch-name { font-size: 11px; font-weight: 800; color: #666; text-align: center; }
+    .swatch-hex  { font-size: 11px; color: #aaa; font-family: monospace; }
+
+    /* ── Design Elements ── */
+    .elements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 44px;
+    }
+    .el-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(92,45,145,0.07);
+    }
+    .el-preview { height: 120px; overflow: hidden; }
+    .el-body { padding: 24px; }
+    .el-body h4 { font-size: 15px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+    .el-body p  { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── Slides ── */
+    .slides-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .slide-card {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+    .slide-card img { width: 100%; display: block; }
+    .slide-cap {
+      padding: 14px 18px;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      background: #fff;
+    }
+
+    /* ── Collateral ── */
+    .collateral-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .collateral-card {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      background: #fff;
+    }
+    .collateral-card img { width: 100%; display: block; }
+    .collateral-body { padding: 20px 22px; }
+    .collateral-body h4 { font-size: 15px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+    .collateral-body p  { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--purple);
+      padding: 52px 48px;
+      text-align: center;
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    footer strong { color: #fff; }
+    footer a { color: var(--purple-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <img src="./logo_option1.png" alt="Positive Partnerships">
+</header>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <!-- Geometric accent (top-right) -->
+  <svg class="hero-geo" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="120,0 240,0 300,120 180,200" fill="#88BDD4"/>
+    <polygon points="240,0 480,0 480,160 300,120" fill="#B8D8E8"/>
+    <polygon points="300,120 480,160 480,320 360,280" fill="#9B7ACC"/>
+    <polygon points="180,200 300,120 360,280 220,360" fill="#6EB0BC"/>
+    <polygon points="360,280 480,320 480,400 300,400" fill="#C4AADC"/>
+    <polygon points="220,360 360,280 300,400 140,400" fill="#B0A0D0"/>
+    <polygon points="0,200 120,0 180,200 80,320" fill="#D4C0E8"/>
+    <polygon points="80,320 180,200 220,360 120,400" fill="#88BDD4"/>
+    <polygon points="0,320 80,320 120,400 0,400" fill="#6EB0BC"/>
+  </svg>
+
+  <div class="label">Brand Evolution — Phase 2</div>
+  <h1>A Brand Growing<br>With Our Community</h1>
+  <p>Positive Partnerships has always stood for connection, inclusion, and belonging. This evolution of our visual identity brings those values to life — drawing from the rich, diverse colour world of our Diversity Wheel to create a brand that is warm, dynamic, and unmistakably ours.</p>
+</div>
+
+<!-- ── THE EVOLVED LOGO ── -->
+<section>
+  <div class="container">
+    <div class="label">The Mark</div>
+    <h2>The Evolved Logo</h2>
+    <div class="divider"></div>
+    <p class="lead">The PP mark has been reimagined with the geometric, faceted quality of the Diversity Wheel — blues, purples, and teals merge in a low-poly mosaic that gives the familiar form new depth and energy. The wordmark and tagline remain anchored in our trusted brand typeface.</p>
+
+    <div class="logo-feature">
+      <!-- Bottom-right geometric accent -->
+      <svg class="logo-feature-geo" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,280 140,280 280,140 280,280" fill="#F7C325" opacity="0.6"/>
+        <polygon points="140,280 280,140 280,280" fill="#F5831F" opacity="0.5"/>
+        <polygon points="200,280 280,200 280,280" fill="#E85D3A" opacity="0.6"/>
+      </svg>
+      <img src="./logo_option1.png" alt="Positive Partnerships logo — new brand direction">
+    </div>
+
+    <div class="logo-pillars">
+      <div class="pillar">
+        <h4>The Mark</h4>
+        <p>The PP letterforms — a trusted symbol for our community — now rendered in a multi-colour faceted style drawn directly from the structure and palette of the Diversity Wheel.</p>
+      </div>
+      <div class="pillar">
+        <h4>The Wordmark</h4>
+        <p>"Positive Partnerships" in deep brand purple. Authoritative, warm, and instantly recognisable to our existing audience across schools and families.</p>
+      </div>
+      <div class="pillar">
+        <h4>The Tagline</h4>
+        <p>"working together to support autistic school-aged students" — set in teal, grounding every application of the logo in our mission and the communities we serve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRAND STORY ── -->
+<section class="tinted">
+  <div class="container">
+    <div class="label">The Story</div>
+    <h2>Evolution, Not Revolution</h2>
+    <div class="divider"></div>
+    <p class="lead">Our existing brand has served us well — it's recognisable, trusted, and connected to years of meaningful work with families and schools across Australia. This rebrand builds on that foundation rather than replacing it.</p>
+
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-icon">🔵</div>
+        <h4>Familiar Foundation</h4>
+        <p>The PP mark and the Positive Partnerships wordmark are retained — our community knows and trusts these. The evolution is in the detail: new depth, new colour, new energy drawn from our most important educational resource.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-icon">🌈</div>
+        <h4>Rooted in the Diversity Wheel</h4>
+        <p>The Diversity Wheel is central to our educational model. By drawing its colour palette and geometric shapes into our brand, we make our values visible in everything we produce — connecting design to purpose.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-icon">✦</div>
+        <h4>Dynamic & Inclusive</h4>
+        <p>A spectrum of colour signals that autism is not one experience — it is rich, varied, and uniquely human. Our brand now reflects that diversity with confidence, warmth, and clarity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DIVERSITY WHEEL ── -->
+<section>
+  <div class="container">
+    <div class="label">The Design Foundation</div>
+    <h2>The Diversity Wheel</h2>
+    <div class="divider"></div>
+
+    <div class="wheel-layout">
+      <img src="./Diversity_Wheel.png" alt="The Diversity Wheel" class="wheel-img">
+      <div class="wheel-text">
+        <p>The Diversity Wheel represents the six key areas that shape everyday experiences for autistic people. Adapted from the original wheel by autistic cartoonist Rebecca Burgess, it is both a powerful educational tool and a visual expression of the richness and variety of human experience.</p>
+        <p>The wheel's full-spectrum colour palette and its geometric, faceted structure are the direct source of our brand's new design language — from the low-poly triangle patterns in our presentation backgrounds, to the multi-coloured gradient in the refreshed PP mark, to the vibrant accent corners in our collateral.</p>
+        <p>By placing the Diversity Wheel at the centre of our visual identity, we ensure our brand is always connected to the people and experiences it exists to serve.</p>
+
+        <div class="dims">
+          <div class="dim" style="background:#C8273A">Sensory Processing</div>
+          <div class="dim" style="background:#2B6CB0">Executive Functioning</div>
+          <div class="dim" style="background:#4CAE4F">Strengths &amp; Interests</div>
+          <div class="dim" style="background:#7B4FA8">Communication &amp; Social</div>
+          <div class="dim" style="background:#F5831F">Connections to Culture</div>
+          <div class="dim" style="background:#1A7A78">Self Care</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COLOUR PALETTE ── -->
+<section class="tinted">
+  <div class="container">
+    <div class="label">Colour</div>
+    <h2>The Palette</h2>
+    <div class="divider"></div>
+    <p class="lead">Our palette is drawn directly from the Diversity Wheel — a full spectrum that flexes across all our materials. Two anchor colours ground the brand, with a rich supporting cast that can be deployed to reflect the breadth of the autism experience.</p>
+
+    <div class="palette-section">
+
+      <div>
+        <div class="palette-group-label">Brand Anchors</div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-block" style="background:#5C2D91"></div>
+            <div class="swatch-name">Deep Purple</div>
+            <div class="swatch-hex">#5C2D91</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#1A7A78"></div>
+            <div class="swatch-name">Teal</div>
+            <div class="swatch-hex">#1A7A78</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#7B52B3"></div>
+            <div class="swatch-name">Mid Purple</div>
+            <div class="swatch-hex">#7B52B3</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#C4AADC"></div>
+            <div class="swatch-name">Lavender</div>
+            <div class="swatch-hex">#C4AADC</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="palette-group-label">Diversity Wheel — Full Spectrum</div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-block" style="background:#C8273A"></div>
+            <div class="swatch-name">Crimson</div>
+            <div class="swatch-hex">#C8273A</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#E85D3A"></div>
+            <div class="swatch-name">Coral</div>
+            <div class="swatch-hex">#E85D3A</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#F5831F"></div>
+            <div class="swatch-name">Warm Orange</div>
+            <div class="swatch-hex">#F5831F</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#F7C325"></div>
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-hex">#F7C325</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#9DC840"></div>
+            <div class="swatch-name">Lime</div>
+            <div class="swatch-hex">#9DC840</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#4CAE4F"></div>
+            <div class="swatch-name">Fresh Green</div>
+            <div class="swatch-hex">#4CAE4F</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#2BAE96"></div>
+            <div class="swatch-name">Teal Green</div>
+            <div class="swatch-hex">#2BAE96</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#2B9EC8"></div>
+            <div class="swatch-name">Ocean Blue</div>
+            <div class="swatch-hex">#2B9EC8</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#2B6CB0"></div>
+            <div class="swatch-name">Deep Blue</div>
+            <div class="swatch-hex">#2B6CB0</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#6B4FA8"></div>
+            <div class="swatch-name">Violet</div>
+            <div class="swatch-hex">#6B4FA8</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#C13B8A"></div>
+            <div class="swatch-name">Magenta</div>
+            <div class="swatch-hex">#C13B8A</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#E8597A"></div>
+            <div class="swatch-name">Warm Pink</div>
+            <div class="swatch-hex">#E8597A</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="palette-group-label">Geometric Backgrounds — Cool Tones</div>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-block" style="background:#B8D8E8"></div>
+            <div class="swatch-name">Ice Blue</div>
+            <div class="swatch-hex">#B8D8E8</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#88BDD4"></div>
+            <div class="swatch-name">Sky Blue</div>
+            <div class="swatch-hex">#88BDD4</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#6EB0BC"></div>
+            <div class="swatch-name">Dusty Teal</div>
+            <div class="swatch-hex">#6EB0BC</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#B0A0D0"></div>
+            <div class="swatch-name">Periwinkle</div>
+            <div class="swatch-hex">#B0A0D0</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#C4AADC"></div>
+            <div class="swatch-name">Pale Violet</div>
+            <div class="swatch-hex">#C4AADC</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-block" style="background:#E8D8F4"></div>
+            <div class="swatch-name">Whisper</div>
+            <div class="swatch-hex">#E8D8F4</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── DESIGN ELEMENTS ── -->
+<section>
+  <div class="container">
+    <div class="label">Visual Language</div>
+    <h2>Design Elements</h2>
+    <div class="divider"></div>
+    <p class="lead">Three core design elements work together across all Positive Partnerships materials — creating a flexible visual system that is instantly recognisable while adapting to every context.</p>
+
+    <div class="elements-grid">
+
+      <div class="el-card">
+        <div class="el-preview">
+          <svg width="100%" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <polygon points="0,120 80,0 160,120"   fill="#B8D8E8"/>
+            <polygon points="80,0 160,120 240,0"   fill="#88BDD4"/>
+            <polygon points="160,120 240,0 320,120" fill="#9B7ACC"/>
+            <polygon points="240,0 320,120 400,0"   fill="#C4AADC"/>
+            <polygon points="0,0 80,0 0,120"        fill="#6EB0BC"/>
+            <polygon points="320,120 400,0 400,120"  fill="#B0A0D0"/>
+            <polygon points="0,60 40,0 80,0 0,120"  fill="#D4C0E8" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="el-body">
+          <h4>Geometric Low-Poly Patterns</h4>
+          <p>Triangular facets drawn from the Diversity Wheel structure create dynamic, energetic backgrounds. They suggest depth and complexity without cluttering communication — ideal for slide backgrounds, cover pages, and section dividers.</p>
+        </div>
+      </div>
+
+      <div class="el-card">
+        <div class="el-preview" style="background: var(--bg); display:flex; align-items:center; justify-content:center;">
+          <svg width="200" height="110" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Petal oval shape -->
+            <ellipse cx="60" cy="55" rx="52" ry="50" fill="#C4AADC" opacity="0.5"/>
+            <ellipse cx="60" cy="55" rx="40" ry="42" fill="#9B7ACC" opacity="0.35"/>
+            <text x="60" y="60" text-anchor="middle" font-size="10" fill="#5C2D91" font-family="Nunito" font-weight="900">photo</text>
+            <!-- Arrow -->
+            <text x="118" y="58" text-anchor="middle" font-size="18" fill="#C4AADC">→</text>
+            <!-- Petal shape -->
+            <path d="M160,10 C188,10 200,30 200,55 C200,80 188,100 160,100 C132,100 120,80 120,55 C120,30 132,10 160,10 Z" fill="#9B7ACC" opacity="0.25"/>
+            <path d="M160,10 C132,10 120,30 120,55 C120,80 132,100 160,100 C160,100 160,10 160,10 Z" fill="#7B52B3" opacity="0.25"/>
+            <text x="160" y="60" text-anchor="middle" font-size="10" fill="#5C2D91" font-family="Nunito" font-weight="900">photo</text>
+          </svg>
+        </div>
+        <div class="el-body">
+          <h4>Petal &amp; Oval Photo Frames</h4>
+          <p>Photography is cropped into soft petal and oval shapes — connecting directly to the PP mark and our existing petal design motif. This creates warmth and human connection while reinforcing the brand's core form language.</p>
+        </div>
+      </div>
+
+      <div class="el-card">
+        <div class="el-preview" style="background:#fff; display:flex; align-items:center; justify-content:flex-end; overflow:hidden;">
+          <svg width="140" height="120" viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Warm-tone arc accent from bottom-right corner -->
+            <circle cx="140" cy="120" r="105" fill="none" stroke="#F7C325" stroke-width="22" opacity="0.55"/>
+            <circle cx="140" cy="120" r="78"  fill="none" stroke="#F5831F" stroke-width="18" opacity="0.55"/>
+            <circle cx="140" cy="120" r="55"  fill="none" stroke="#E85D3A" stroke-width="14" opacity="0.55"/>
+            <circle cx="140" cy="120" r="36"  fill="none" stroke="#C8273A" stroke-width="10" opacity="0.55"/>
+          </svg>
+        </div>
+        <div class="el-body">
+          <h4>Diversity Wheel Corner Accents</h4>
+          <p>Warm-toned arc fragments from the Diversity Wheel appear as corner and edge accents on collateral and resources. They signal our connection to the wheel, add energy to layouts, and introduce the full spectrum into every communication.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PRESENTATION SLIDES ── -->
+<section class="tinted">
+  <div class="container">
+    <div class="label">In Practice</div>
+    <h2>Presentation Slides</h2>
+    <div class="divider"></div>
+    <p class="lead">Presentations are our highest-volume touch point — every workshop, every module, every training session. These examples show the new brand system applied across different slide types, with the geometric pattern, photo treatment, and new logo working as a coherent whole.</p>
+
+    <div class="slides-grid">
+      <div class="slide-card">
+        <img src="./Slide_example_1.png" alt="Title slide — Parent and carer audience">
+        <div class="slide-cap">Title Slide — Parent &amp; Carer Audience</div>
+      </div>
+      <div class="slide-card">
+        <img src="./Slide_example_2.png" alt="Title slide — School staff audience">
+        <div class="slide-cap">Title Slide — School Staff Audience</div>
+      </div>
+      <div class="slide-card">
+        <img src="./Slide_example_3.png" alt="Section divider — module introduction">
+        <div class="slide-cap">Section Divider — Module Introduction</div>
+      </div>
+      <div class="slide-card">
+        <img src="./Slide_example_4.png" alt="Content slide with resource reference">
+        <div class="slide-cap">Content Slide — Resource &amp; Key Points</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COLLATERAL ── -->
+<section>
+  <div class="container">
+    <div class="label">Real-World Application</div>
+    <h2>Collateral &amp; Resources</h2>
+    <div class="divider"></div>
+    <p class="lead">Beyond presentations, the brand system extends naturally to community workshop flyers, educational resources, and printed materials — maintaining visual consistency while adapting to every audience and format.</p>
+
+    <div class="collateral-grid">
+      <div class="collateral-card">
+        <img src="./West Perth_Indonesian workshop flyer_rebrand example.png" alt="Workshop flyer — Indonesian community, West Perth">
+        <div class="collateral-body">
+          <h4>Workshop Flyer — Indonesian Community</h4>
+          <p>The new brand applied to a localised community workshop flyer. The Diversity Wheel arc accent frames the corner while the clean white layout keeps the message accessible. Bold purple headings, teal links, and the refreshed logo create a welcoming, professional piece of community communication.</p>
+        </div>
+      </div>
+      <div class="collateral-card">
+        <img src="./diversity wheel mockup_A3.png" alt="The Diversity Wheel — A3 educational resource">
+        <div class="collateral-body">
+          <h4>The Diversity Wheel — A3 Resource</h4>
+          <p>A core educational resource used in workshops nationwide, showing the six dimensions of everyday experience. This resource is both a workshop handout and the direct visual and conceptual source for the brand's evolved design language — making the connection between our identity and our educational purpose explicit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEXT STEPS ── -->
+<section class="tinted">
+  <div class="container">
+    <div class="label">Where To Next</div>
+    <h2>The Path Forward</h2>
+    <div class="divider"></div>
+    <p class="lead">This phase has established the visual direction for the evolved brand. The next steps bring it to life across all our channels and materials.</p>
+
+    <div class="insights">
+      <div class="insight">
+        <div class="insight-icon">🎨</div>
+        <h4>Finalise the Mark</h4>
+        <p>Lock in the final version of the PP mark and wordmark, confirm the geometric colour treatment, and produce master files in all required formats (SVG, PNG, EPS) for deployment across teams.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-icon">📖</div>
+        <h4>Brand Guidelines</h4>
+        <p>Document the full visual system — logo usage rules, colour palette with CMYK/RGB/HEX values, typography hierarchy, photo treatment guidelines, and pattern usage — in a formal Brand Guidelines document.</p>
+      </div>
+      <div class="insight">
+        <div class="insight-icon">🌐</div>
+        <h4>Website &amp; Digital</h4>
+        <p>Apply the evolved brand to positivepartnerships.com.au — refreshing the header, colour system, typography, and imagery treatment to reflect the new direction while preserving existing content and SEO.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <strong>Positive Partnerships</strong> — Brand Evolution, Phase 2<br>
+  Funded by the Australian Government Department of Education &nbsp;·&nbsp; Delivered by Aspect (Autism Spectrum Australia)<br>
+  <a href="https://www.positivepartnerships.com.au">www.positivepartnerships.com.au</a>
+</footer>
+
+</body>
+</html>
