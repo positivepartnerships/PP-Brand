@@ -56,10 +56,13 @@
     }
     .hero-geo {
       position: absolute;
-      top: -20px; right: -40px;
-      width: 480px; height: 400px;
-      opacity: 0.22;
+      top: 50%; right: -60px;
+      transform: translateY(-50%);
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      opacity: 0.55;
       pointer-events: none;
+      object-fit: cover;
     }
     .hero .label { font-size: 12px; }
     .hero h1 {
@@ -271,18 +274,7 @@
 
 <!-- ── HERO ── -->
 <div class="hero">
-  <!-- Geometric accent (top-right) -->
-  <svg class="hero-geo" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="120,0 240,0 300,120 180,200" fill="#88BDD4"/>
-    <polygon points="240,0 480,0 480,160 300,120" fill="#B8D8E8"/>
-    <polygon points="300,120 480,160 480,320 360,280" fill="#9B7ACC"/>
-    <polygon points="180,200 300,120 360,280 220,360" fill="#6EB0BC"/>
-    <polygon points="360,280 480,320 480,400 300,400" fill="#C4AADC"/>
-    <polygon points="220,360 360,280 300,400 140,400" fill="#B0A0D0"/>
-    <polygon points="0,200 120,0 180,200 80,320" fill="#D4C0E8"/>
-    <polygon points="80,320 180,200 220,360 120,400" fill="#88BDD4"/>
-    <polygon points="0,320 80,320 120,400 0,400" fill="#6EB0BC"/>
-  </svg>
+  <img class="hero-geo" src="./Diversity_Wheel.png" alt="The Diversity Wheel">
 
   <div class="label">Brand Evolution — Phase 2</div>
   <h1>A Brand Growing<br>With Our Community</h1>
