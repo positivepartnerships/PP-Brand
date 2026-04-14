@@ -220,6 +220,35 @@
     .collateral-body h4 { font-size: 15px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
     .collateral-body p  { font-size: 13px; color: var(--muted); line-height: 1.65; }
 
+    /* ── Banners ── */
+    .banner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .banner-card {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    .banner-card img { width: 100%; display: block; }
+
+    /* ── Social tiles ── */
+    .tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    /* 5 tiles: make last 2 centred in the bottom row */
+    .tiles-grid .tile-card:nth-child(4) { grid-column: 1; }
+    .tiles-grid .tile-card:nth-child(5) { grid-column: 2; }
+    .tile-card {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      aspect-ratio: 1 / 1;
+    }
+    .tile-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
     /* ── Footer ── */
     footer {
       background: var(--purple);
@@ -612,6 +641,55 @@
           <h4>The Diversity Wheel — A3 Resource</h4>
           <p>A core educational resource used in workshops nationwide, showing the six dimensions of everyday experience. This resource is both a workshop handout and the direct visual and conceptual source for the brand's evolved design language — making the connection between our identity and our educational purpose explicit.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PULL-UP BANNERS ── -->
+<section>
+  <div class="container">
+    <div class="label">Event Presence</div>
+    <h2>Pull-Up Banner Examples</h2>
+    <div class="divider"></div>
+    <p class="lead">Pull-up banners bring the brand into workshop venues and community events. The new design language — geometric low-poly panels, petal-framed photography, and the refreshed logo — creates a confident, welcoming presence that works across any room.</p>
+
+    <div class="banner-grid">
+      <div class="banner-card">
+        <img src="./pull-up-banner-example_1.jpg" alt="Pull-up banner example 1 — dual photo layout">
+        <div class="slide-cap">Banner 1 — Dual Audience, Petal Photo Treatment</div>
+      </div>
+      <div class="banner-card">
+        <img src="./pull-up-banner-example_2.jpg" alt="Pull-up banner example 2 — Welcome, multi-photo warm tones">
+        <div class="slide-cap">Banner 2 — Welcome, Multi-Photo &amp; Warm Tone Panels</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL MEDIA TILES ── -->
+<section class="tinted">
+  <div class="container">
+    <div class="label">Social Media</div>
+    <h2>Social Media Tiles</h2>
+    <div class="divider"></div>
+    <p class="lead">This set of social tiles was created for a family workshop in Sandringham, VIC — demonstrating how the new brand system adapts to a square social format. A sequenced campaign uses all three design expressions: hero photography, warm Diversity Wheel accents, and the cool geometric background.</p>
+
+    <div class="tiles-grid">
+      <div class="tile-card">
+        <img src="./SANDRINGHAM%2025-26VICFPC34_Social%20tiles_new%20branding.jpg" alt="Social tile 1 — hero image, Sandringham workshop announcement">
+      </div>
+      <div class="tile-card">
+        <img src="./SANDRINGHAM%2025-26VICFPC34_Social%20tiles_new%20branding2.jpg" alt="Social tile 2 — audience, warm wheel accent">
+      </div>
+      <div class="tile-card">
+        <img src="./SANDRINGHAM%2025-26VICFPC34_Social%20tiles_new%20branding3.jpg" alt="Social tile 3 — what's covered, content tile">
+      </div>
+      <div class="tile-card">
+        <img src="./SANDRINGHAM%2025-26VICFPC34_Social%20tiles_new%20branding4.jpg" alt="Social tile 4 — credibility, geometric background">
+      </div>
+      <div class="tile-card">
+        <img src="./SANDRINGHAM%2025-26VICFPC34_Social%20tiles_new%20branding5.jpg" alt="Social tile 5 — event details and registration">
       </div>
     </div>
   </div>
